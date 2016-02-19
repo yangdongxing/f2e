@@ -1,0 +1,32 @@
+{{ partial "head.html" . }}
+<body class="{{ .Site.Params.themeColor }}">
+
+  {{ partial "sidebar.html" . }}
+
+  <div class="content container">
+    <div class="posts">
+      {{ range .Paginator.Pages }}
+        <div class="post">
+          <h1 class="post-title">
+            <a href="{{ .Permalink }}">
+              {{ .Title }}
+            </a>
+          </h1>
+
+          <span class="post-date">{{ with .Site.Params.DateFormat }}{{ $.Date.Format . }}{{ else }}{{ $.Date.Format "Mon, Jan 2, 2006" }}{{ end }}</span>
+
+          <div class="body">{{ if .Truncated }}{{ .Summary }}{{ else }}{{ .Content }}{{ end }}</div>
+
+          {{ if .Truncated }}
+          <footer>
+            <a href="{{ .Permalink }}" class="btn btn-default">Read More…</a>
+          </footer>
+          {{ end }}
+        </div>
+      {{ end }}
+    </div>
+    {{ partial "pagination.html" . }}
+</div>
+
+  </body>
+</html>
