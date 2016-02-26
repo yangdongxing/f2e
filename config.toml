@@ -1,8 +1,8 @@
-baseurl = "http://jyu213.github.io/"
+baseurl = "http://f2e.dxy.net/blog"
 title = "丁香园前端小分队"
 theme = "hyde"
 hasCJKLanguage = true
-# paginate = 1
+relativeURLs = true
 
 [params]
     DateFormat = "Mon, Jan 2, 2006"
