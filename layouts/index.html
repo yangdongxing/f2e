@@ -13,7 +13,10 @@
             </a>
           </h1>
 
-          <span class="post-date">{{ with .Site.Params.DateFormat }}{{ $.Date.Format . }}{{ else }}{{ $.Date.Format "Mon, Jan 2, 2006" }}{{ end }}</span>
+          <span class="post-date">
+            {{ .Date.Format "Mon, Jan 2, 2006" }}
+            {{ .Params.author }}
+          </span>
 
           <div class="body">{{ if .Truncated }}{{ .Summary }}{{ else }}{{ .Content }}{{ end }}</div>
 

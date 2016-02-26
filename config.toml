@@ -2,7 +2,7 @@ baseurl = "http://jyu213.github.io/"
 title = "丁香园前端小分队"
 theme = "hyde"
 hasCJKLanguage = true
-paginate = 1
+# paginate = 1
 
 [params]
     DateFormat = "Mon, Jan 2, 2006"
@@ -15,7 +15,6 @@ paginate = 1
 
 [permalinks]
     post = "/blog/:year/:month/:day/:slug/"
-
 
 [[menu.main]]
     name = "首页"
