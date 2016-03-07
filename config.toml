@@ -1,4 +1,4 @@
-baseurl = "http://f2e.dxy.net/blog"
+baseurl = "http://dxy-developer.github.io/f2e/"
 title = "丁香园前端小分队"
 theme = "hyde"
 hasCJKLanguage = true
