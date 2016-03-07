@@ -1,0 +1,187 @@
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.15" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title> ES6 - 解构赋值 &middot; 丁香园前端小分队 </title>
+
+  
+  <link rel="stylesheet" href="http://f2e.dxy.net/blogcss/poole.css">
+  <link rel="stylesheet" href="http://f2e.dxy.net/blogcss/syntax.css">
+  <link rel="stylesheet" href="http://f2e.dxy.net/blogcss/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../../../../apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="../../../../../favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="丁香园前端小分队" />
+</head>
+
+    <body class="">
+        <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="http://f2e.dxy.net/blog"><h1>丁香园前端小分队</h1></a>
+      <p class="lead">
+       说明文案说明文案说明文案说明文案 
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+        <li><a href="../../../../../blog/aboutus/"> 关于我们 </a></li>
+      
+        <li><a href="../../../../../blog/"> 首页 </a></li>
+      
+    </ul>
+
+    <p>&copy; 2016. All rights reserved. </p>
+  </div>
+</div>
+
+
+        <div class="content container">
+            <div class="post">
+                <h1>ES6 - 解构赋值</h1>
+              <span class="post-date">见见 / Mon, Dec 14, 2015</span>
+                  
+
+<p>在解释什么是解构赋值前，我们先来看一下， ES5 中对变量的声明和赋值。</p>
+
+<pre><code class="language-javascript">var str = 'hello word';
+</code></pre>
+
+<p>左边一个变量名，右边可以是字符串，数组或对象。</p>
+
+<p>ES6 中增加了一种更为便捷的赋值方式。称为 <strong>Destructuring</strong> 。好像大家普遍翻译为解构。解构赋值允许我们将数组或对象的属性赋予给任何变量，该变量的定义语法与数组字面量或对象字面量很相似。举个例子可以直观的说明。</p>
+
+<pre><code class="language-javascript">let [speak, name] = ['hello', 'destructuring'];
+console.log( speak + ' ' + name ); // hello destructuring
+</code></pre>
+
+<h3 id="数组的解构赋值:e302e6c8f79de556a21c4ad066a4fea9">数组的解构赋值</h3>
+
+<p>用更加直白的话来描述就是，等号两边保持相同的形式（数组对应数组，对象对应对象），则左边的变量就会被赋予对应的值。如果对应的右边值缺失，缺失部分变量值为 <code>undefined</code> ,如果右边值多余，依旧能够正常解构。</p>
+
+<pre><code class="language-javascript">// ES6 中
+let arr = [1,2,3,4,5];
+let [el1, el2] = [arr];
+// 或者
+let [el1, el2] = [1,2,3,4,5];
+// el1 =&gt; 1, el2 =&gt; 2
+</code></pre>
+
+<p>解构赋值也是可嵌套的：</p>
+
+<pre><code class="language-javascript">let value = [1, 2, [3, 4, 5]];
+let [el1, el2, [el3, el4]] = value;
+</code></pre>
+
+<p>同样可以通过简单地在指定位置省略变量来忽略数组中的某个元素：</p>
+
+<pre><code class="language-javascript">let value = [1, 2, 3, 4, 5];
+let [el1, , el3, , el5] = value;
+</code></pre>
+
+<p>更进一步，默认值同样也可以被指定：</p>
+
+<pre><code class="language-javascript">let [firstName = &quot;John&quot;, lastName = &quot;Doe&quot;] = [];
+</code></pre>
+
+<p>ES6中，提供了一种将右侧多余的值以数组的形式赋值给左侧变量的语法——“rest“模式：</p>
+
+<pre><code class="language-javascript">let [head, ...tail] = [1, 2, 3, 4];
+console.log(tail);  // [2, 3, 4]
+</code></pre>
+
+<p>当默认值不存在，变量值就等于 <code>undefined</code></p>
+
+<pre><code class="language-javascript">let [missing] = [];
+console.log(missing);  // undefined
+</code></pre>
+
+<p>这里的数组，指的是部署了 <code>[Iterator](http://www.2ality.com/2015/02/es6-iteration.html)</code> 接口的数据结构。</p>
+
+<h3 id="对象的解构赋值:e302e6c8f79de556a21c4ad066a4fea9">对象的解构赋值</h3>
+
+<p>和数组的用法相类似，一个主要的不同点是，对象是无次序排列的，所以变量必须和属性名相同。</p>
+
+<pre><code class="language-javascript">let person = {firstName: &quot;John&quot;, lastName: &quot;Doe&quot;};
+let {firstName, lastName} = person;
+</code></pre>
+
+<p>解构另一个特性是，变量 keys 可以使用<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names">计算后的属性名</a>，但是如果你对这容易混淆的话，不建议使用。</p>
+
+<pre><code class="language-javascript">let person = {firstName: &quot;John&quot;, lastName: &quot;Doe&quot;};
+let {firstName: name, lastName} = person;
+// `name`变量将会被声明为 `person.firstName` 的值
+</code></pre>
+
+<h3 id="函数参数的解构赋值:e302e6c8f79de556a21c4ad066a4fea9">函数参数的解构赋值</h3>
+
+<p>函数的参数也可以解构赋值。</p>
+
+<pre><code class="language-javascript">function add({x: 0, y: 0}){
+    return x+y;
+}
+add({1,2}); // 3
+</code></pre>
+
+<h3 id="null-和-undefined:e302e6c8f79de556a21c4ad066a4fea9">null 和 undefined</h3>
+
+<p>当尝试解构 <code>null</code> 和 <code>undefined</code> 的时候会报错。这是因为使用对象赋值模式时，被解构的值必需能够转换成一个对象（object）。大多数的类型都可以转换为一个对象，但null和undefined却并不能被转换。</p>
+
+<h3 id="其它:e302e6c8f79de556a21c4ad066a4fea9">其它</h3>
+
+<p>解构赋值的好处有很多，比如</p>
+
+<ul>
+<li>两个值的交换</li>
+<li>函数参数默认值</li>
+<li>函数返回值</li>
+<li>正则匹配的返回值</li>
+<li>快速处理 JSON 数据</li>
+<li>遍历Map结构</li>
+</ul>
+
+<p>ES6 的解构赋值给 JS 的书写带来了很大的便利性，同时也提高了代码的可读性。但是也需要注意一些问题，避免适得其反。
+* 关于圆括号的问题，欢迎翻看<a href="http://es6.ruanyifeng.com/#docs/destructuring#圆括号问题">阮一峰老师的博客</a>
+* 解构的嵌套尽量不要太深
+* 函数有多个返回值时，尽量使用对象解构而不用数组解构，避免出现顺序对应问题
+* 已声明过的变量不能用于解构</p>
+
+<h3 id="浏览器支持:e302e6c8f79de556a21c4ad066a4fea9">浏览器支持</h3>
+
+<p><a href="http://kangax.github.io/compat-table/es6/#destructuring">http://kangax.github.io/compat-table/es6/#destructuring</a>
+不完全统计：
+* IE NO
+* FF 38+ (大部分)
+* CH/OP NO
+* Webkit
+* SF 9+, 8部分
+* IOS8 部分</p>
+
+<p>PS: 整理的时候发现以前还保留着这样一份文章，无新，基本参考下述文章内容。仅供学习。</p>
+
+<h3 id="参考文章:e302e6c8f79de556a21c4ad066a4fea9">参考文章</h3>
+
+<ul>
+<li><a href="http://es6.ruanyifeng.com/#docs/destructuring">变量的解构赋值 - 阮一峰</a></li>
+<li><a href="https://hacks.mozilla.org/2015/05/es6-in-depth-destructuring/">ES6 In Depth: Destructuring</a></li>
+<li><a href="https://strongloop.com/strongblog/getting-started-with-javascript-es6-destructuring/">Getting Started with JavaScript ES6 Destructuring</a></li>
+</ul>
+
+            </div>
+
+            
+        </div>
+
+  </body>
+</html>
