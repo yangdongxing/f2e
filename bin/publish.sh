@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # remove, public folder will created later
 rm -rf public
 
@@ -5,7 +7,7 @@ git add .
 git commit -m 'hugo project init'
 
 # push
-git push -u github master
+git push -u origin master
 
 # Create a new orphand branch (no commit history) named gh-pages
 git checkout --orphan gh-pages
@@ -19,7 +21,7 @@ git add .
 git commit -m "INIT: initial commit on gh-pages branch"
 
 # Push to remote gh-pages branch
-git push github gh-pages
+git push origin gh-pages
 
 # Return to master branch
 git checkout master
@@ -40,7 +42,7 @@ hugo
 git add -A
 
 # Commit and push to master
-git commit -m "Updating site" && git push github master
+git commit -m "Updating site" && git push origin master
 
 # Push the public subtree to the gh-pages branch
 git subtree push --prefix=public git@github.com:dxy-developer/f2e.git gh-pages
