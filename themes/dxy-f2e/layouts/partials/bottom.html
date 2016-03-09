@@ -1,0 +1,16 @@
+<div class="bottom">
+    <h3>文章列表</h3>
+    <div class="posts">
+        {{ range .Paginator.Pages }}
+        <div class="post">
+            <span class="post-title">
+                <img src="{{ .Site.BaseURL }}img/avatar.png" /><a href="{{ .Permalink }}">{{ .Title }}</a>
+            </span>
+            <span class="post-info">
+                Author.<span>{{ .Params.author }}</span> · Tag.
+                <span>H5 JS CSS3</span> · {{ .Date.Format .Site.Params.DateFormat }} · 286次点击
+            </span>
+        </div>
+        {{ end }}
+    </div>
+</div>

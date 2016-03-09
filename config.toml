@@ -1,14 +1,16 @@
 baseurl = "http://dxy-developer.github.io/f2e/"
 title = "丁香园前端小分队"
-theme = "hyde"
+copyright = "Establishment · 丁香园前端"
+theme = "dxy-f2e"
 hasCJKLanguage = true
 relativeURLs = true
 
 [params]
     DateFormat = "Mon, Jan 2, 2006"
-    description = "说明文案说明文案说明文案说明文案"
+    Description = "说明文案说明文案说明文案说明文案"
     ShowRelatedPost = false
     SyntaxHighlightTheme = "solarized_dark.min.css"
+    SubTitle = "DXY Tech&Product Division"
 
 [Indexes]
     tag = "tags"

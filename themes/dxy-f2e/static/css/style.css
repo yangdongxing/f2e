@@ -1,0 +1,224 @@
+body {
+    font-family: Menlo, 'Ubuntu Mono', Consolas, 'Courier New', 'Microsoft Yahei', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', sans-serif;
+    background: #fff;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+
+/* header */
+
+.header {
+    padding: 135px 0 0 0;
+    text-align: center;
+}
+
+.header a {
+    display: inline-block;
+}
+
+.header a:hover {
+    cursor: pointer;
+}
+
+.header p {
+    text-align: center;
+}
+
+.header .title {
+    height: 30px;
+    line-height: 30px;
+    font-size: 30px;
+    color: #4e4e4e;
+}
+
+.header .sub-title {
+    height: 20px;
+    line-height: 20px;
+    font-size: 20px;
+    color: #8a8a8a;
+    padding: 20px 0;
+}
+
+.header hr {
+    border: 0;
+    border-bottom: 5px solid #41b3a6;
+    width: 300px;
+    margin: auto auto;
+}
+
+
+/* container */
+
+.container {
+    max-width: 1300px;
+    margin: 75px auto;
+    padding: 0 50px;
+    position: relative;
+}
+
+
+/* left */
+
+.left {
+    margin-right: 200px;
+}
+
+.post {
+    margin: 0 0 70px 0;
+}
+
+.post-title img {
+    width: 36px;
+    border-radius: 36px;
+    vertical-align: middle;
+}
+
+.post-title a {
+    font-size: 25px;
+    color: #4e4e4e;
+    vertical-align: middle;
+    margin: 0 0 0 10px;
+}
+
+.post-info {
+    color: #afafaf;
+    padding: 10px 0;
+}
+
+.post-info span {
+    color: #41b3a6;
+}
+
+.post-body * {
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 26px;
+    color: #666;
+}
+
+.post-body a {
+    color: #41b3a6;
+}
+
+.post-body hr{
+	display: none;
+}
+
+.post-body img{
+	padding:10px 0;
+}
+
+.post-more a {
+    font-size: 15px;
+    color: #41b3a6;
+}
+
+.bottom .post {
+	height: 30px;
+	line-height: 30px;
+    margin: 0 0 20px 0;
+}
+
+.bottom span {
+	display: inline-block;
+	height: 30px;
+	line-height: 30px;
+}
+
+.bottom h3 {
+    font-size: 25px;
+    color: #4e4e4e;
+    margin: 0 0 30px 0;
+}
+
+.bottom .post-title img {
+    width: 30px;
+    border-radius: 30px;
+}
+
+.bottom .post-title a {
+    font-size: 15px;
+}
+
+.bottom .post-info {
+    margin: 0 0 0 15px;
+    padding: 0;
+    height: 30px;
+    line-height: 30px;
+}
+
+
+/* right */
+
+.right {
+    position: absolute;
+    top: 0;
+    right: 50px;
+}
+
+.recruit {
+    width: 150px;
+    height: 235px;
+    background-color: #41b3a6;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.v-align {
+    display: inline-block;
+    width: 100%;
+}
+
+.recruit p {
+    color: #fff;
+    font-size: 35px;
+    text-align: center;
+}
+
+.recruit p+p {
+    font-size: 20px;
+}
+
+.assort {
+    padding: 60px 0 0 0;
+}
+
+.assort p {
+    font-size: 25px;
+    color: #4e4e4e;
+}
+
+.assort ul {
+    padding: 15px 0 0 0;
+}
+
+.assort ul li {
+    font-size: 15px;
+    padding: 0 0 10px 0;
+}
+
+.assort ul li a {
+    color: #41b3a6;
+}
+
+.assort ul li span {
+    color: #8a8a8a;
+}
+
+
+/* footer */
+
+.footer {
+    height: 260px;
+    background-color: #41b3a6;
+}
+
+.footer p {
+    color: #fff;
+    font-size: 15px;
+    text-align: center;
+    line-height: 260px;
+}

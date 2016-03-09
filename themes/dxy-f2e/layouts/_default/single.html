@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ .Site.Title }}</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/init.css">
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css">
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/markdown.css">
+</head>
+
+<body>
+    {{ partial "header.html" . }}
+
+    <div class="container clearfix">
+        <div class="post markdown-body">
+            <h1 class="post-title">
+                <a href="javascript:;">{{ .Title }}</a>
+            </h1>
+            <p class="post-info">
+                Author.<span>{{ .Params.author }}</span> · 
+                Tag.<span>H5 JS CSS3</span> · 
+                {{ .Date.Format .Site.Params.DateFormat }} · 
+                286次点击
+            </p>
+            <p class="post-body">
+                {{ .Content }}
+            </p>
+        </div>
+    </div>
+
+    {{ partial "footer.html" . }}
+</body>
+
+</html>
