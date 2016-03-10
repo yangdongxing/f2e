@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>{{ .Site.Title }}</title>
+    <title>{{ .Title }}</title>
     <!-- CSS -->
     <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/init.css">
     <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/particles.css">
@@ -13,7 +13,7 @@
 <body>
     <div class="header">
         <a href="{{ .Site.BaseURL }}">
-            <p class="title">{{ .Site.Title }}</p>
+            <p class="title">{{ .Title }}</p>
             <p class="sub-title">{{ .Site.Params.SubTitle }}</p>
             <hr />
         </a>
