@@ -1,12 +1,10 @@
 +++
-date = "2016-02-22T17:18:13+08:00"
 title = "Web 前端技术栈"
+date = "2016-02-22T17:18:13+08:00"
+tags = ["Web前端资讯"]
 author = "f2e"
-description = ""
-categories = ["js"]
-draft = true
+avatar = "jianjian.png"
 +++
-
 
 ### 标题
 简单 Demo 示例说明。山顶的朋友好~~~
@@ -186,5 +184,3 @@ Bob-->Alice: I am good thanks!
 [2]: https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#cmd-markdown-高阶语法手册
 [3]: http://weibo.com/ghosert
 [4]: http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference
-
-![img-git](/post/demo/git.png)

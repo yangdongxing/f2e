@@ -1,6 +1,6 @@
 +++
-draft = true
-categories = []
-description = ""
+title = ""
+date = ""
 author = ""
+tags = []
 +++

@@ -1,8 +1,9 @@
 +++
 title = "Gulp/Grunt/WebPack 你最喜欢哪个"
 date = "2015-12-14"
+author = "晓涛"
 tags = ["es6"]
-author = "见见"
+avatar = "xiaotao.png"
 +++
 
 ## ES6 - 字符串模板

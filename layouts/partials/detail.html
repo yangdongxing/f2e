@@ -1,0 +1,13 @@
+<div class="post markdown-body">
+    <h1 class="post-title">
+        <a href="javascript:;">{{ .Title }}</a>
+    </h1>
+    <p class="post-info">
+        Author.<span>{{ .Params.author }}</span> · 
+        Tag.{{ range .Params.tags }}<a href="/f2e/tags/{{ . | urlize }}">{{ . }}</a>{{ end }} · 
+        {{ .Date.Format .Site.Params.DateFormat }}
+    </p>
+    <p class="post-body">
+        {{ .Content }}
+    </p>
+</div>

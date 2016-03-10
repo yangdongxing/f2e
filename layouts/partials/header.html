@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ .Site.Title }}</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/init.css">
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/particles.css">
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/markdown.css">
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/style.css">
+</head>
+
+<body>
+    <div class="header">
+        <a href="{{ .Site.BaseURL }}">
+            <p class="title">{{ .Site.Title }}</p>
+            <p class="sub-title">{{ .Site.Params.SubTitle }}</p>
+            <hr />
+        </a>
+    </div>

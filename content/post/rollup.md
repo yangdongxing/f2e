@@ -1,8 +1,9 @@
 +++
 title = "深入理解Javascript类的创建和继承"
 date = "2016-01-14"
+author = "阿Wing"
 tags = ["js", "自动化"]
-author = "见见"
+avatar = "awing.png"
 +++
 
 最近看到挺多次 Rollup 这个词，再也架不住好奇，简单的学习实践了一下。[完整项目库地址请戳](https://github.com/jyu213/rollup-demo)。

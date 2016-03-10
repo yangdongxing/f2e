@@ -1,0 +1,19 @@
+<div class="right">
+    <div class="recruit">
+        <a class="v-align" href="javascript:;">
+            <p>丁香园</p>
+            <p>招聘</p>
+        </a>
+    </div>
+    <div class="assort">
+        <p>分类</p>
+        <ul>
+          {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+            <li>
+                <a href="/f2e/tags/{{ $name | urlize }}">{{ $name }}</a>
+                <span>({{ $taxonomy.Count }})</span>
+            </li>
+          {{ end }}
+        </ul>
+    </div>
+</div>

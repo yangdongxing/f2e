@@ -1,8 +1,9 @@
 +++
 title = "ES6 - 解构赋值"
 date = "2015-12-14"
-tags = ["es6"]
 author = "见见"
+tags = ["es6","es7","Array"]
+avatar = "jianjian.png"
 +++
 
 在解释什么是解构赋值前，我们先来看一下， ES5 中对变量的声明和赋值。
