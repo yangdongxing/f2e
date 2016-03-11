@@ -1,8 +1,9 @@
 +++
 title = "ES6 - 解构赋值"
 date = "2015-12-14"
-tags = ["es6"]
 author = "见见"
+tags = ["es6","es7","Array"]
+avatar = "jianjian.png"
 +++
 
 在解释什么是解构赋值前，我们先来看一下， ES5 中对变量的声明和赋值。
@@ -22,6 +23,7 @@ console.log( speak + ' ' + name ); // hello destructuring
 
 ### 数组的解构赋值
 用更加直白的话来描述就是，等号两边保持相同的形式（数组对应数组，对象对应对象），则左边的变量就会被赋予对应的值。如果对应的右边值缺失，缺失部分变量值为 `undefined` ,如果右边值多余，依旧能够正常解构。
+<!--more-->
 
 ```javascript
 // ES6 中

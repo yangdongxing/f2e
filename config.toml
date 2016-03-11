@@ -1,24 +1,10 @@
-baseurl = "http://dxy-developer.github.io/f2e/"
+baseurl = "http://dxy-developer.github.io/f2e"
 title = "丁香园前端小分队"
-theme = "hyde"
-hasCJKLanguage = true
-relativeURLs = true
+copyright = "Establishment · 丁香园前端"
 
 [params]
     DateFormat = "Mon, Jan 2, 2006"
-    description = "说明文案说明文案说明文案说明文案"
-    ShowRelatedPost = false
-    SyntaxHighlightTheme = "solarized_dark.min.css"
+    SubTitle = "DXY Tech&Product Division"
 
-[Indexes]
+[indexes]
     tag = "tags"
-
-[permalinks]
-    post = "/blog/:year/:month/:day/:slug/"
-
-[[menu.main]]
-    name = "首页"
-    url = "/"
-[[menu.main]]
-    name = "关于我们"
-    url = "/aboutus/"

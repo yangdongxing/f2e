@@ -1,8 +1,9 @@
 +++
-title = "Rollup 试炼之路"
+title = "深入理解Javascript类的创建和继承"
 date = "2016-01-14"
+author = "阿Wing"
 tags = ["js", "自动化"]
-author = "见见"
+avatar = "awing.png"
 +++
 
 最近看到挺多次 Rollup 这个词，再也架不住好奇，简单的学习实践了一下。[完整项目库地址请戳](https://github.com/jyu213/rollup-demo)。
@@ -16,6 +17,8 @@ PS: ES6 对应 ES2015，请忽略这些细节。
 ### 优势在哪
 * 可以生成 AMD，CMD，UMD 甚至 ES6 模块文件。
 * Tree-shaking
+
+<!--more-->
 
 `tree-shaking`(有知道中文怎么翻译的同学欢迎留言告知一下)，大致意思就是打包的时候会移除未使用到的 ES6 `exports`模块。想要更深入的了解 `tree-shaking` 的话，可以看下博士的这篇文章[Tree-shaking with webpack 2 and Babel 6](http://www.2ality.com/2015/12/webpack-tree-shaking.html)。
 
