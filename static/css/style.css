@@ -90,6 +90,7 @@ button{
 
 .header a {
     display: inline-block;
+    position: relative;
 }
 
 .header a:hover {
@@ -106,10 +107,25 @@ button{
     overflow: hidden;
     font-size: 30px;
     color: #4e4e4e;
+    transition: .3s;
 }
 
-.header:hover .title {
-    content: "丁香园前端小分队";
+.header a:hover .title{
+    transform: rotateX(180deg);
+    opacity: 0;
+}
+
+.header .title+.title{
+    width:100%;
+    position: absolute;
+    top:0;
+    transform: rotateX(180deg);
+    opacity: 0;
+}
+
+.header a:hover .title+.title{
+    transform: rotateX(0);
+    opacity: 1;
 }
 
 .header .sub-title {
@@ -118,6 +134,7 @@ button{
     font-size: 20px;
     color: #8a8a8a;
     padding: 20px 0;
+    transition: .3s;
 }
 
 .header hr {
@@ -125,11 +142,15 @@ button{
     border-bottom: 5px solid #41b3a6;
     width: 300px;
     margin: auto auto;
-    transition: all .3s linear;
+    transition: .3s;
 }
 
 .header a:hover hr {
     width: 330px;
+}
+
+.header a:hover .sub-title{
+    letter-spacing: 1px;
 }
 
 
@@ -288,6 +309,12 @@ span {
 .assort ul li {
     font-size: 15px;
     padding: 0 0 10px 0;
+    transition: .3s;
+}
+
+.assort ul li:hover{
+    cursor: pointer;
+    transform: translateX(-8px);
 }
 
 .assort ul li a {

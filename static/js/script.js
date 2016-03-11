@@ -3,7 +3,7 @@ $(function(){
 		$('.nav').toggleClass('expand');
 	});
 
-	$('.nav li').click(function(){
+	$('.nav li,.assort li').click(function(){
 		window.location = $(this).find('a').attr('href');
 	});
 
