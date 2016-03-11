@@ -7,13 +7,6 @@
     </div>
     <div class="assort">
         <p>分类</p>
-        <ul>
-          {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-            <li>
-                <a href="/f2e/tags/{{ $name | urlize }}">{{ $name }}</a>
-                <span>({{ $taxonomy.Count }})</span>
-            </li>
-          {{ end }}
-        </ul>
+        {{ partial "assort.html" . }}
     </div>
 </div>

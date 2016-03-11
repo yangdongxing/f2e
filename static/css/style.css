@@ -3,8 +3,81 @@ body {
     background: #fff;
 }
 
+a {
+    word-break: break-all;
+}
+
 a:hover {
     text-decoration: none;
+}
+
+button{
+    outline: none;
+}
+
+/* nav */
+
+.nav {
+    display: none;
+    background-color: #41b3a6;
+    height: 40px;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.nav .menu {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+    background-image: url(/f2e/media/icon-expand.png);
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.nav.expand .menu{
+    background-image: url(/f2e/media/icon-close.png);
+}
+
+.nav ul {
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    overflow: hidden;
+    transition: all .3s ease;
+    display: none;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    box-shadow:inset 0 1px 0 #fff,0 8px 10px rgba(0,0,0,0.15)
+}
+
+.nav.expand ul{
+    display: block;
+}
+
+.nav ul li {
+    display: block;
+    background-color: #41b3a6;
+    border-top: 1px solid #32a497;
+    height: 40px;
+    padding-left: 20px;
+    transition: all .3s ease;
+}
+
+.nav ul li:hover{
+    cursor: pointer;
+    background-color: #32a497;
+}
+
+.nav li span,
+.nav li a {
+    color: #fff;
+    font-size:16px;
+    line-height: 40px;
 }
 
 
@@ -28,14 +101,15 @@ a:hover {
 }
 
 .header .title {
-    height: 30px;
-    line-height: 30px;
+    max-height: 80px;
+    line-height: 40px;
+    overflow: hidden;
     font-size: 30px;
     color: #4e4e4e;
 }
 
-.header:hover .title{
-    content:"丁香园前端小分队";
+.header:hover .title {
+    content: "丁香园前端小分队";
 }
 
 .header .sub-title {
@@ -65,9 +139,10 @@ a:hover {
     max-width: 1300px;
     min-height: 600px;
     margin: 75px auto;
-    padding: 0 50px;
+    padding: 0 5%;
     position: relative;
 }
+
 
 /* left */
 
@@ -103,7 +178,7 @@ span {
     color: #41b3a6;
 }
 
-.post-info a+a{
+.post-info a+a {
     padding-left: 5px;
 }
 
@@ -164,6 +239,7 @@ span {
     height: 30px;
     line-height: 30px;
 }
+
 
 /* right */
 
@@ -247,20 +323,33 @@ span {
     z-index: -1;
 }
 
-@media (max-width:960px){
-    .right{
+@media (max-width:960px) {
+    .right {
         display: none;
     }
-
-    .left{
-        margin:0;
+    .left {
+        margin: 0;
+    }
+    .nav {
+        display: block;
+    }
+    .footer{
+        height: 40px;
     }
 
-    .recommend .post-title a{
-        display: inline-block;
-        width:120px;
-        white-space:nowrap;
-        overflow:hidden;
-        text-overflow:ellipsis;
+    .footer p{
+        height: 40px;
+        line-height: 40px;
     }
+}
+
+@media (max-width:720px) {
+    .recommend .post-info {
+        display: none;
+    }
+}
+
+/* common */
+.hide{
+    display: none;
 }

@@ -3,6 +3,7 @@
 
 <head>
     <title>{{ .Title }}</title>
+    <meta name='viewport' content='width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no' />
     <!-- CSS -->
     <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/init.css">
     <link rel="stylesheet" href="{{ .Site.BaseURL }}/css/particles.css">
@@ -11,6 +12,10 @@
 </head>
 
 <body>
+    <div class="nav">
+        <button class="menu"></button>
+        {{ partial "assort.html" . }}
+    </div>
     <div class="header">
         <a href="{{ .Site.BaseURL }}">
             <p class="title">{{ .Title }}</p>
