@@ -18,8 +18,6 @@ PS: ES6 对应 ES2015，请忽略这些细节。
 * 可以生成 AMD，CMD，UMD 甚至 ES6 模块文件。
 * Tree-shaking
 
-<!--more-->
-
 `tree-shaking`(有知道中文怎么翻译的同学欢迎留言告知一下)，大致意思就是打包的时候会移除未使用到的 ES6 `exports`模块。想要更深入的了解 `tree-shaking` 的话，可以看下博士的这篇文章[Tree-shaking with webpack 2 and Babel 6](http://www.2ality.com/2015/12/webpack-tree-shaking.html)。
 
 话题转回来，Rollup 正是使用了 ES6 的模块特性，所以会使打包后的文件体积更小。如果是 CommonJS 的则需要先通过插件转为 ES6 后处理。
