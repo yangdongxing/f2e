@@ -1,65 +1,244 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
+
 <head>
-  <link href="http://gmpg.org/xfn/11" rel="profile">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.15" />
-
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-
-  <title> Es6 &middot; 丁香园前端小分队 </title>
-
-  
-  <link rel="stylesheet" href="http://dxy-developer.github.io/f2e/css/poole.css">
-  <link rel="stylesheet" href="http://dxy-developer.github.io/f2e/css/syntax.css">
-  <link rel="stylesheet" href="http://dxy-developer.github.io/f2e/css/hyde.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
-
-  
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../apple-touch-icon-144-precomposed.png">
-  <link rel="shortcut icon" href="../../favicon.png">
-
-  
-  <link href="http://dxy-developer.github.io/f2e/tags/es6/index.xml" rel="alternate" type="application/rss+xml" title="丁香园前端小分队" />
+    <title>Es6</title>
+    <meta name='viewport' content='width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no' />
+    
+    <link rel="stylesheet" href="http://dxy-developer.github.io/f2e/css/init.css">
+    <link rel="stylesheet" href="http://dxy-developer.github.io/f2e/css/particles.css">
+    <link rel="stylesheet" href="http://dxy-developer.github.io/f2e/css/markdown.css">
+    <link rel="stylesheet" href="http://dxy-developer.github.io/f2e/css/style.css">
 </head>
 
-<body class="">
+<body>
+    <div class="nav">
+        <button class="menu"></button>
+        <ul>
+    
+    <li>
+        <a href="/f2e/tags/array">array</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
+        <a href="/f2e/tags/es6">es6</a>
+        <span>(2)</span>
+    </li>
+    
+    <li>
+        <a href="/f2e/tags/es7">es7</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
+        <a href="/f2e/tags/js">js</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
+        <a href="/f2e/tags/web%E5%89%8D%E7%AB%AF%E8%B5%84%E8%AE%AF">web前端资讯</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
+        <a href="/f2e/tags/%E8%87%AA%E5%8A%A8%E5%8C%96">自动化</a>
+        <span>(1)</span>
+    </li>
+    
+</ul>
 
-<div class="sidebar">
-  <div class="container sidebar-sticky">
-    <div class="sidebar-about">
-      <a href="http://dxy-developer.github.io/f2e/"><h1>丁香园前端小分队</h1></a>
-      <p class="lead">
-       说明文案说明文案说明文案说明文案 
-      </p>
+    </div>
+    <div class="header">
+        <a href="http://dxy-developer.github.io/f2e">
+            <p class="title">Es6</p>
+            <p class="title">回到首页</p>
+            <p class="sub-title">DXY Tech&amp;Product Division</p>
+            <hr />
+        </a>
     </div>
 
-    <ul class="sidebar-nav">
-      
-        <li><a href="../../f2e/aboutus/"> 关于我们 </a></li>
-      
-        <li><a href="../../f2e/"> 首页 </a></li>
-      
-    </ul>
+<div class="container">
+    <div class="left">
+        <div class="posts">
+     
+    <div class="post">
+    <h1 class="post-title">
+        <img src="http://dxy-developer.github.io/f2emedia/jianjian.png" />
+        <a href="http://dxy-developer.github.io/f2e/article/es6-destructuring/">ES6 - 解构赋值</a>
+    </h1>
 
-    <p>&copy; 2016. All rights reserved. </p>
-  </div>
+    <p class="post-info">
+        Author.<span>见见</span> · 
+        Tag.<a href="/f2e/tags/es6">es6</a><a href="/f2e/tags/es7">es7</a><a href="/f2e/tags/array">Array</a> · 
+        Mon, Dec 14, 2015
+    </p>
+
+    <div class="post-body">
+         
+        <p>在解释什么是解构赋值前，我们先来看一下， ES5 中对变量的声明和赋值。</p>
+
+<pre><code class="language-javascript">var str = 'hello word';
+</code></pre>
+
+<p>左边一个变量名，右边可以是字符串，数组或对象。</p>
+
+<p>ES6 中增加了一种更为便捷的赋值方式。称为 <strong>Destructuring</strong> 。好像大家普遍翻译为解构。解构赋值允许我们将数组或对象的属性赋予给任何变量，该变量的定义语法与数组字面量或对象字面量很相似。举个例子可以直观的说明。</p>
+
+<pre><code class="language-javascript">let [speak, name] = ['hello', 'destructuring'];
+console.log( speak + ' ' + name ); // hello destructuring
+</code></pre>
+
+<h3 id="数组的解构赋值:e302e6c8f79de556a21c4ad066a4fea9">数组的解构赋值</h3>
+
+<p>用更加直白的话来描述就是，等号两边保持相同的形式（数组对应数组，对象对应对象），则左边的变量就会被赋予对应的值。如果对应的右边值缺失，缺失部分变量值为 <code>undefined</code> ,如果右边值多余，依旧能够正常解构。</p>
+ 
+        
+    </div>
+
+    
+    <p class="post-more">
+        <a href="http://dxy-developer.github.io/f2e/article/es6-destructuring/">查看更多 …</a>
+    </p>    
+    
+</div>
+ 
+     
+    <div class="post">
+    <h1 class="post-title">
+        <img src="http://dxy-developer.github.io/f2emedia/xiaotao.png" />
+        <a href="http://dxy-developer.github.io/f2e/article/es6-string/">Gulp/Grunt/WebPack 你最喜欢哪个</a>
+    </h1>
+
+    <p class="post-info">
+        Author.<span>晓涛</span> · 
+        Tag.<a href="/f2e/tags/es6">es6</a> · 
+        Mon, Dec 14, 2015
+    </p>
+
+    <div class="post-body">
+         
+        <h2 id="es6-字符串模板:788adb061bdfedb3e4613f98a331a370">ES6 - 字符串模板</h2>
+
+<h3 id="写在前面:788adb061bdfedb3e4613f98a331a370">写在前面</h3>
+
+<p>关于 ES6, 也终于在 2015 年的 7 月 18 号尘埃落定了。虽然说各大浏览器还没有全面的支持，不过这并不妨碍我们一颗想要撸一把的心。在后端，可以使用 Node.js(0.12+)或 io.js, 前端的话，也可以使用<a href="http://babeljs.io/">Babel</a> 或<a href="https://github.com/google/traceur-compiler#what-is-traceur">Traceur</a> 进行语法预转义成 ES5使用 。</p>
+
+<p>关于该系列（不知道能不能成为一个系列，总是各种懒），会没有规律的挑选一些内容来学习。欢迎大家积极纠错，留言探讨。</p>
+
+<h3 id="模板字符串-template-strings:788adb061bdfedb3e4613f98a331a370">模板字符串(template strings)</h3>
+
+<p>ES6 中引进的一种新型的字符串字面量语法 - 模板字符串。书面上来解释，模板字符串是一种能在字符串文本中内嵌表示式的字符串字面量。简单来讲，就是增加了变量功能的字符串。</p>
+
+<p>先来看一下以前我们对字符串的使用：</p>
+ 
+        
+    </div>
+
+    
+    <p class="post-more">
+        <a href="http://dxy-developer.github.io/f2e/article/es6-string/">查看更多 …</a>
+    </p>    
+    
+</div>
+ 
+    
 </div>
 
+    </div>
+    <div class="right">
+    <div class="recruit">
+        <a class="v-align" href="javascript:;">
+            <p>丁香园</p>
+            <p>招聘</p>
+        </a>
+    </div>
+    <div class="assort">
+        <p>分类</p>
+        <ul>
+    
+    <li>
+        <a href="/f2e/tags/array">array</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
+        <a href="/f2e/tags/es6">es6</a>
+        <span>(2)</span>
+    </li>
+    
+    <li>
+        <a href="/f2e/tags/es7">es7</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
+        <a href="/f2e/tags/js">js</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
+        <a href="/f2e/tags/web%E5%89%8D%E7%AB%AF%E8%B5%84%E8%AE%AF">web前端资讯</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
+        <a href="/f2e/tags/%E8%87%AA%E5%8A%A8%E5%8C%96">自动化</a>
+        <span>(1)</span>
+    </li>
+    
+</ul>
 
-  <div class="content container">
-    <ul class="posts">
+    </div>
+</div>
+ 
+    <div class="recommend">
+    <h3>文章列表</h3>
+    <div class="posts">
         
-        <li>
-          <span><a href="http://dxy-developer.github.io/f2e/blog/2015/12/14/es6---%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A8%A1%E6%9D%BF/">ES6 - 字符串模板</a> <time class="pull-right post-list">Mon, Dec 14, 2015</time></span>
-        </li>
+        <div class="post">
+            <span class="post-title">
+                <img src="http://dxy-developer.github.io/f2e/media/jianjian.png" />
+                <a href="http://dxy-developer.github.io/f2e/article/es6-destructuring/">ES6 - 解构赋值</a>
+            </span>
+            <span class="post-info">
+                Author.<span>见见</span> · 
+                Tag.<a href="/f2e/tags/es6">es6</a><a href="/f2e/tags/es7">es7</a><a href="/f2e/tags/array">Array</a> · 
+                Mon, Dec 14, 2015
+            </span>
+        </div>
         
-        <li>
-          <span><a href="http://dxy-developer.github.io/f2e/blog/2015/12/14/es6---%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/">ES6 - 解构赋值</a> <time class="pull-right post-list">Mon, Dec 14, 2015</time></span>
-        </li>
+        <div class="post">
+            <span class="post-title">
+                <img src="http://dxy-developer.github.io/f2e/media/xiaotao.png" />
+                <a href="http://dxy-developer.github.io/f2e/article/es6-string/">Gulp/Grunt/WebPack 你最喜欢哪个</a>
+            </span>
+            <span class="post-info">
+                Author.<span>晓涛</span> · 
+                Tag.<a href="/f2e/tags/es6">es6</a> · 
+                Mon, Dec 14, 2015
+            </span>
+        </div>
         
-    </ul>
-  </div>
+    </div>
+</div>
+
+</div>
+<div id="gotop">
+	<a href="javascript:;">TOP</a>
+</div>
+<div class="footer">
+    <p>Establishment · 丁香园前端</p>
+</div>
+<script type="text/javascript" src="http://dxy-developer.github.io/f2e/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="http://dxy-developer.github.io/f2e/js/script.js"></script>
 </body>
+
 </html>
+ 
+<div id="particles-js"></div>
+<script type="text/javascript" src="http://dxy-developer.github.io/f2e/js/particles.js"></script>
+<script type="text/javascript">
+	particlesJS.load('particles-js', 'http:\/\/dxy-developer.github.io\/f2e/json/particles.json', null);
+</script>
+
