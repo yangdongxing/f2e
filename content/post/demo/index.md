@@ -1,10 +1,12 @@
 +++
-title = "Web 前端技术栈"
 date = "2016-02-22T17:18:13+08:00"
-tags = ["Web前端资讯"]
+title = "test-demo"
 author = "f2e"
-avatar = "jianjian.png"
+description = ""
+categories = ["js"]
+draft = true
 +++
+
 
 ### 标题
 简单 Demo 示例说明。山顶的朋友好~~~
@@ -27,7 +29,6 @@ avatar = "jianjian.png"
 ### [Windows/Mac/Linux 全平台客户端](https://www.zybuluo.com/cmd/)
 
 > 请保留此份 Cmd Markdown 的欢迎稿兼使用说明，如需撰写新稿件，点击顶部工具栏右侧的 <i class="icon-file"></i> **新文稿** 或者使用快捷键 `Ctrl+Alt+N`。
-<!--more-->
 
 ------
 
@@ -184,3 +185,5 @@ Bob-->Alice: I am good thanks!
 [2]: https://www.zybuluo.com/mdeditor?url=https://www.zybuluo.com/static/editor/md-help.markdown#cmd-markdown-高阶语法手册
 [3]: http://weibo.com/ghosert
 [4]: http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference
+
+![img-git](/post/demo/git.png)

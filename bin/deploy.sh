@@ -8,9 +8,16 @@ if [ $# -eq 1 ]
   then msg="$1"
 fi
 
-# Build the project.
-hugo
+# Push Hugo content
+git add -A
+git commit -m '$msg'
+git push origin master
 
+# Build the project.
+hugo # if using a theme, replace by `hugo -t <yourtheme>`
+
+# Go To Public folder
+cd public
 # Add changes to git.
 git add -A
 
@@ -18,5 +25,6 @@ git commit -m "$msg"
 
 # Push source and build repos.
 git push origin master
-# Push the public subtree to the gh-pages branch
-git subtree push --prefix=public git@github.com:dxy-developer/f2e.git gh-pages
+
+# Come Back
+cd ..
