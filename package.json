@@ -1,0 +1,19 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "### 目录说明 * archetypes: 模板目录（可忽略） * content: 文章目录（主战场） * public: 线上今天目录（程序生成） * static: 静态资源文件 * data: hugo 数据目录 * layouts: hugo 页面样式模板 * themes: hugo 主题 * 其它",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dxy-developer/f2e.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dxy-developer/f2e/issues"
+  },
+  "homepage": "https://github.com/dxy-developer/f2e#readme"
+}
