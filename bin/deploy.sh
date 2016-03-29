@@ -10,6 +10,7 @@ fi
 
 git stash
 git pull gitlab
+git stash pop
 rm -rf public
 
 # Build the project.
