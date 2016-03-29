@@ -1,7 +1,7 @@
 +++
-title = "Web 前端技术栈"
+title = "Markdown Demo"
 date = "2016-02-22T17:18:13+08:00"
-tags = ["Web前端资讯"]
+tags = ["Demo"]
 draft = true
 author = "f2e"
 avatar = "jianjian.png"
@@ -143,6 +143,7 @@ Bob-->Alice: I am good thanks!
 ![tool-manager](https://www.zybuluo.com/static/img/toolbar-reader.jpg)
 
 通过 **预览区** 右上角的 **阅读工具栏**，可以查看当前文稿的目录并增强阅读体验。
+
 
 工具栏上的五个图标依次为：
 
