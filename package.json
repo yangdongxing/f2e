@@ -18,5 +18,8 @@
   "homepage": "https://github.com/dxy-developer/f2e#readme",
   "dependencies": {
     "github-webhook-handler": "^0.5.0"
+  },
+  "devDependencies": {
+    "gitlab-webhooker": "^2.2.6"
   }
 }
