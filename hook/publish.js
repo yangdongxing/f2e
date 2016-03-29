@@ -56,4 +56,7 @@ handler.on('issues', function (event) {
     event.payload.issue.title)
 })
 */
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
