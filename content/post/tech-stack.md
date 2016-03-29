@@ -2,6 +2,7 @@
 title = "Web 前端技术栈"
 date = "2016-02-22T17:18:13+08:00"
 tags = ["Web前端资讯"]
+draft = true
 author = "f2e"
 avatar = "jianjian.png"
 +++
