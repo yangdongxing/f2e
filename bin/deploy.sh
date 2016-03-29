@@ -8,6 +8,8 @@ if [ $# -eq 1 ]
   then msg="$1"
 fi
 
+rm -rf public
+
 # Build the project.
 hugo
 
