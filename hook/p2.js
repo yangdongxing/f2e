@@ -6,6 +6,6 @@ webhooker.init({
   port: 6030,
   branches: ['master'],
   events: ['push', 'merge_request'],
-  command: 'sh ./bin/deploy.sh; echo "a";'
+  command: 'sh ./bin/deploy.sh'
   // exit: true
 });

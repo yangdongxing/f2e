@@ -5,6 +5,10 @@ var http = require('http');
 var createHandler = require('github-webhook-handler');
 var handler = createHandler({ path: '/fetch', secret: 'Gfk74nSvgqpCF6V1h7wi' });
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+// var handler = createHandler({ path: '/fetch' });
+>>>>>>> Stashed changes
 =======
 // var handler = createHandler({ path: '/fetch' });
 >>>>>>> Stashed changes
