@@ -4,6 +4,10 @@
 var http = require('http');
 var createHandler = require('github-webhook-handler');
 var handler = createHandler({ path: '/fetch', secret: 'Gfk74nSvgqpCF6V1h7wi' });
+<<<<<<< Updated upstream
+=======
+// var handler = createHandler({ path: '/fetch' });
+>>>>>>> Stashed changes
 // 上面的 secret 保持和 GitHub 后台设置的一致
 
 function run_cmd(cmd, args, callback) {
