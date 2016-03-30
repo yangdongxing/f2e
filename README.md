@@ -37,7 +37,7 @@ clone 本项目 git@gitlab.dxy.net:f2e/blog-hugo.git。
 * tags = ["标签类别"]
 * draft = true  // 是否为草稿
 * author = "f2e"  // 作者
-* avatar = "jianjian.png"  // 对应作者图片，在 `media` 中添加，建议和作者名保持一致
+* avatar = "jianjian.png"  // 对应作者图片，在 `media` 中添加
 
 ### 路由说明
 `http://site.com/blog/:year/:month/:day/:slug/`
