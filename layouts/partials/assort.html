@@ -1,7 +1,8 @@
 <ul>
+    {{ $baseUrl := .Site.BaseURL }}
     {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
     <li>
-        <a href="/f2e/tags/{{ $name | urlize }}">{{ $name }}</a>
+        <a href="{{ $baseUrl }}/tags/{{ $name | urlize }}">{{ $name }}</a>
         <span>({{ $taxonomy.Count }})</span>
     </li>
     {{ end }}

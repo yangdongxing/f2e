@@ -8,8 +8,9 @@
                 <a href="{{ .Permalink }}">{{ .Title }}</a>
             </span>
             <span class="post-info">
-                Author.<span>{{ .Params.author }}</span> · 
-                Tag.{{ range .Params.tags }}<a href="/f2e/tags/{{ . | urlize }}">{{ . }}</a>{{ end }} · 
+                Author.<span>{{ .Params.author }}</span> ·
+                {{ $baseUrl := .Site.BaseURL }}
+                Tag.{{ range .Params.tags }}<a href="{{ $baseUrl }}/tags/{{ . | urlize }}">{{ . }}</a>{{ end }} ·
                 {{ .Date.Format .Site.Params.DateFormat }}
             </span>
         </div>
