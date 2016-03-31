@@ -9,7 +9,7 @@ if [ $# -eq 1 ]
 fi
 
 git stash
-git pull gitlab master -q
+git pull gitlab master -f
 git stash pop
 rm -rf public
 
