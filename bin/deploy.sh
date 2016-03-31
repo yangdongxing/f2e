@@ -9,7 +9,11 @@ if [ $# -eq 1 ]
 fi
 
 git stash
+<<<<<<< Updated upstream
 git pull gitlab master
+=======
+git pull gitlab
+>>>>>>> Stashed changes
 git stash pop
 rm -rf public
 
