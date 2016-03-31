@@ -8,3 +8,6 @@ copyright = "Establishment · 丁香园前端"
 
 [indexes]
     tag = "tags"
+
+[permalinks]
+    post = "/blog/:year/:month/:day/:slug/"
