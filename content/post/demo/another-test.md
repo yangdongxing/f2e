@@ -10,7 +10,7 @@ avatar = "jianjian.png"
 ### 标题
 简单 Demo 示例说明。山顶的朋友好~~~
 
-# 欢迎使用 Cmd Markdown 编辑阅读器
+# 欢迎使用 Cmd Markdown 编辑阅读器淡淡的
 
 ------
 
