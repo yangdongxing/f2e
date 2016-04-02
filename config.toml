@@ -5,6 +5,7 @@ copyright = "Establishment · 丁香园前端"
 [params]
     DateFormat = "Mon, Jan 2, 2006"
     SubTitle = "DXY Tech&Product Division"
+    comment = true
 
 [indexes]
     tag = "tags"
