@@ -67,14 +67,14 @@ ___
 ### 代码示例：
 
 ``` javascript
-	$(被拖动元素).on("dragstart", function (e) {
-	    /*开始拖拽源文本*/			
-	    e.preventDefault();
-	    e.dataTransfer.effectAllowed = "move";
-	    e.originalEvent.dataTransfer.setData("text", '要传递的数据');
-	    return true;
+    $(被拖动元素).on("dragstart", function (e) {
+        /*开始拖拽源文本*/			
+        e.preventDefault();
+        e.dataTransfer.effectAllowed = "move";
+        e.originalEvent.dataTransfer.setData("text", '要传递的数据');
+        return true;
     });
-    
+
     $(被拖动元素).on("dragend",  function(ev) {
         /*拖拽结束*/
         ev.dataTransfer.clearData("text");
@@ -82,25 +82,23 @@ ___
         return false
     };
 
-	$(放置目标元素).on("dragover", function (e) {
-	    /*拖拽元素在目标元素头上移动的时候*/
-		e.preventDefault();
-		return true;
-	});
-	
-	$(放置目标元素).on("dragenter",  function(ev) {
+    $(放置目标元素).on("dragover", function (e) {
+        /*拖拽元素在目标元素头上移动的时候*/
+        e.preventDefault();
+        return true;
+    });
+
+    $(放置目标元素).on("dragenter",  function(ev) {
         /*拖拽元素进入目标元素头上的时候*/
         return true;
     };
 
-	$(放置目标元素).on("drop", function (e) {               
-	    /*拖拽元素进入目标元素头上，同时鼠标松开的时候*/
-		var	data = e.originalEvent.dataTransfer.getData("text");
-		/*阻止在Firefox中拖拽打开新标签*/
-		return false;
-		}
-    	
-	});
+    $(放置目标元素).on("drop", function (e) {               
+        /*拖拽元素进入目标元素头上，同时鼠标松开的时候*/
+        var	data = e.originalEvent.dataTransfer.getData("text");
+        /*阻止在Firefox中拖拽打开新标签*/
+        return false;
+    });
 
 ```
 
