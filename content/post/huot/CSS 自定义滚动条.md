@@ -3,8 +3,8 @@ title = "CSS 自定义滚动条"
 date = "2016-04-04"
 tags = ["CSS"]
 draft = false
-author = "霍腾"
-avatar = "huoteng.png" 
+author = "huot"
+avatar = "huot.jpg" 
 +++
 
 最近遇到的一个需求，由于移动端空间有限，表格不能完整显示，为了让用户知道可以通过左右滑动来查看表格的完整信息，PM 希望能模拟一个水平滚动条来提醒用户。具体需求如下（或者您也可以查看线上实例，[丁香诊所](http://hz.dxy.com) → 医疗团队 → 排班信息）：
@@ -12,6 +12,8 @@ avatar = "huoteng.png"
 > PC 端效果
 
 ![排版信息 - PC](https://raw.githubusercontent.com/huoteng/blog/master/media/custom-scrollbar/duty-info-pc.png)
+
+<!--more-->
 
 > 移动端效果
 
