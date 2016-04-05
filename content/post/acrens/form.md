@@ -20,6 +20,7 @@ HTML5 自动校验截图：
 
 
 在这里在特别说明下 form 的 enctype 属性；用于设置表单提交数据的编码，默认编码格式：application/x-www-form-urlencoded，在发送前会对所有字符进行编码；当为值 multipart/form-data 时，并不对字符进行编码，一般在文件上传时一定要使用该类型；另外还有一个不经常使用的值：text/plain，提交数据会以存文本形式编码，且不包含格式字符。
+<!--more-->
 
 ----
 
