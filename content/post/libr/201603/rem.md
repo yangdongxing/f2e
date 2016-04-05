@@ -2,8 +2,9 @@
 title = "rem 的使用"
 tags = ["css"]
 date = "2016-04-05T15:50:37+08:00"
+draft = false
 author = "libr"
-avatar = "../libr.png"
+avatar = "libr.png"
 +++
 
 ------
@@ -66,7 +67,7 @@ avatar = "../libr.png"
 chrome 支持的最小字体为 12px，所以设置为 100px，方便取值。
 
 ### 兼容：
-<img src='rem.jpg' alt="rem 兼容性" />
+![rem 兼容性](rem.jpg)
 
 ### 坑：
 <p>随着越来越多的项目使用，后面在此补上具体坑。</p>
