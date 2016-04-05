@@ -1,4 +1,4 @@
-<div class="post">
+<div class="post markdown-body">
     <h1 class="post-title">
         <img src="{{ .Site.BaseURL }}/media/{{ .Params.avatar }}" />
         <a href="{{ .Permalink }}">{{ .Title }}</a>
@@ -11,7 +11,7 @@
         {{ .Date.Format .Site.Params.DateFormat }}
     </p>
 
-    <div class="post-body">
+    <div class="post-body J-hack-url" data-url="{{.Site.BaseURL}}{{ .Source.Dir }}">
         {{ if .Truncated }}
         {{ .Summary }}
         {{ else }}
