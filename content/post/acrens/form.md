@@ -13,13 +13,13 @@ avatar = "acrens.jpeg"
 这里先解释表单，相信大家看到这里已经知道是什么了；没错，这里说的表单就是 html 中的 form 表单。
 
 HTML5 中 form 做了一些优化，比如增加 novalidate 属性，可以控制 form 无需校验提交；给 form 内部 input 增加 required 属性，结合 validate 既可以控制表单必填字段校验，又无需写 js 代码校验。
+<!--more-->
 
 HTML5 自动校验截图：
 ![表单验证](../share1.png)
 
 
 在这里在特别说明下 form 的 enctype 属性；用于设置表单提交数据的编码，默认编码格式：application/x-www-form-urlencoded，在发送前会对所有字符进行编码；当为值 multipart/form-data 时，并不对字符进行编码，一般在文件上传时一定要使用该类型；另外还有一个不经常使用的值：text/plain，提交数据会以存文本形式编码，且不包含格式字符。
-<!--more-->
 
 ----
 
