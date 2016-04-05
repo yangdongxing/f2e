@@ -3,7 +3,7 @@ title = "rem 的使用"
 tags = ["css"]
 date = "2016-04-05T15:50:37+08:00"
 author = "libr"
-avatar = ""
+avatar = "../libr.png"
 +++
 
 ------
