@@ -1,4 +1,4 @@
-﻿+++
++++
 title = "HTML5 drag and drop"
 date = "2016-04-05"
 tags = ["HTML5"]
@@ -31,10 +31,12 @@ avatar = "yaoyj.jpg"
 - **属性**：`draggable`
     - 设为 true，则该元素可拖放
     - 在 html 中，图片、超链接、被选中文本，这些元素默认就是可拖拽，可以不用设置该属性
+
 ``` html
 <div draggable="true" ondragstart="event.dataTransfer.setData('text/plain', '这里是想要拖动的元素')">
   这里是想要拖动的元素
 </div>
+
 ```
 ___
 - **事件**：
@@ -60,7 +62,10 @@ ___
     - 属性：`effectAllowed`
         - 值：none/move/copt/link/all/...
         - 跟 dropeffect 搭配使用，表示允许拖动元素的哪种 dropeffect
+
+
 ### 代码示例：
+
 ``` javascript
 	$(被拖动元素).on("dragstart", function (e) {
 	    /*开始拖拽源文本*/			
@@ -96,7 +101,9 @@ ___
 		}
     	
 	});
+
 ```
+
 ---
 ### 注意点：
 
