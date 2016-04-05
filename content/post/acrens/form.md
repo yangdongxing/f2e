@@ -15,7 +15,7 @@ avatar = "acrens.jpeg"
 HTML5 中 form 做了一些优化，比如增加 novalidate 属性，可以控制 form 无需校验提交；给 form 内部 input 增加 required 属性，结合 validate 既可以控制表单必填字段校验，又无需写 js 代码校验。
 
 HTML5 自动校验截图：
-![Alt text](/images/share1.png)
+![Alt text](share1.png)
 
 
 在这里在特别说明下 form 的 enctype 属性；用于设置表单提交数据的编码，默认编码格式：application/x-www-form-urlencoded，在发送前会对所有字符进行编码；当为值 multipart/form-data 时，并不对字符进行编码，一般在文件上传时一定要使用该类型；另外还有一个不经常使用的值：text/plain，提交数据会以存文本形式编码，且不包含格式字符。
@@ -27,7 +27,7 @@ HTML5 自动校验截图：
 魔性给我们带来的感觉就是很神奇，为什么会这样；这里所说的魔性跟 form 提交相关联。
 
 在一次项目开发中，曾经碰到这样的问题，在一个页面上有一个 input 输入框，同时有一个提交按钮，input 需要支持 enter 按键提交，并且提交之前需要 JS 校验。
-![Alt text](./images/share2.png)
+![Alt text](share2.png)
 
 此时，我正在调试 enter keyup input 输入框，死活都不进入我的 keyup 事件监听函数里，后面就开始进行了扫盲行动，在某搜索引擎输入关键字 "form 自动提交"关键词，难题迎刃而解。
 
@@ -47,7 +47,7 @@ HTML5 自动校验截图：
 -----
 #### 解决方案
 在 form 里面再添加一个 input 输入框，type 不可以为 hidden，否则无效：
-![Alt text](./屏幕快照 2016-03-31 下午10.59.42.png)
+![Alt text](share3.png)
 
 
 在最底部我添加了一个 input 输入框 type="text"。 
