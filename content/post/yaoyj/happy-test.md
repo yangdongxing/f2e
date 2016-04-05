@@ -1,13 +1,13 @@
 ﻿+++
-title = "happy test"
-date = "2016-04-01T16:26:13+08:00"
+title = "test"
+date = "2016-04-05"
 tags = ["HTML5"]
-draft=true
+draft = true
 author = "f2e"
-avatar = ""
+avatar = "jianjian.png"
 +++
 
-### 测试标题
+### test
 
 test again
 
