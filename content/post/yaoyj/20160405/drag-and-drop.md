@@ -80,7 +80,7 @@ ___
         ev.dataTransfer.clearData("text");
         eleDrag = null;
         return false
-    };
+    });
 
     $(放置目标元素).on("dragover", function (e) {
         /*拖拽元素在目标元素头上移动的时候*/
@@ -91,7 +91,7 @@ ___
     $(放置目标元素).on("dragenter",  function(ev) {
         /*拖拽元素进入目标元素头上的时候*/
         return true;
-    };
+    });
 
     $(放置目标元素).on("drop", function (e) {               
         /*拖拽元素进入目标元素头上，同时鼠标松开的时候*/
