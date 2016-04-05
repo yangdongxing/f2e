@@ -1,5 +1,5 @@
 +++
-title = "SEO"
+title = "SEO学习笔记"
 date = "2016-04-05"
 tags = ["SEO"]
 draft = false
