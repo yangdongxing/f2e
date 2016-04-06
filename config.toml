@@ -1,6 +1,7 @@
 baseurl = "http://dxy-developer.github.io/f2e"
 title = "丁香园前端小分队"
 copyright = "Establishment · 丁香园前端"
+hasCJKLanguage = true
 
 [params]
     DateFormat = "Mon, Jan 2, 2006"

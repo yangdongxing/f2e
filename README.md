@@ -46,8 +46,7 @@ clone 本项目 git@gitlab.dxy.net:f2e/blog-hugo.git。
 
 ### FAQ
 * 图片链接：`content` 同目录下为 `../xx.jpg`
-* `markdown` 中加 `<!-- more -->` 可自定义文章列表中的详情长度（默认 70）
-
+* `markdown` 中加 `<!--more-->` 可自定义文章列表中的详情长度（默认 70）
 
 ## 开发文档
 ### 目录说明
