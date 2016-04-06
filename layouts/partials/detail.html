@@ -5,7 +5,7 @@
         Tag.{{ range .Params.tags }}<a href="{{ $baseUrl }}/tags/{{ . | urlize }}">{{ . }}</a>{{ end }} ·
         {{ .Date.Format .Site.Params.DateFormat }}
     </p>
-    <div class="post-body J-hack-url" data-url="{{.Site.BaseURL}}{{ .Source.Dir }}">
+    <div class="post-body J-hack-url" data-url="{{.Site.BaseURL}}/{{ .Source.Dir }}">
         {{ .Content }}
     </div>
 </div>
