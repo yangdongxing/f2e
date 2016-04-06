@@ -2,8 +2,8 @@
 title = "webpack学习笔记"
 date = "2016-03-26T17:18:13+08:00"
 tags = ["Webpack"]
-author = "f2e"
-avatar = ""
+author = "李小帅"
+avatar = "xiaoshuai.jpg"
 +++
 
 
