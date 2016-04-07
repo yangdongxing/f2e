@@ -7,9 +7,22 @@ hasCJKLanguage = true
     DateFormat = "Mon, Jan 2, 2006"
     SubTitle = "DXY Tech&Product Division"
     comment = true
+    [params.authors]
+        acrens = "acrens.jpeg"
+        alexayan = "alexayan.png"
+        huot = "huot.jpg"
+        "见见" = "jianjian.jpg"
+        libr = "libr.png"
+        "李小帅" = "xiaoshuai.jpg"
+        uojo = "uojo.jpg"
+        wangxt = "wangxt.jpg"
+        "阿wing" = "awing.jpg"
+        yaoyj = "yaoyj.jpg"
 
 [indexes]
     tag = "tags"
 
 [permalinks]
     post = "/blog/:year/:month/:day/:slug/"
+
+
