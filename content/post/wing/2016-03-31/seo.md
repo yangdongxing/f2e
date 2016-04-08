@@ -4,7 +4,6 @@ date = "2016-04-05"
 tags = ["SEO"]
 draft = false
 author = "阿wing"
-avatar = "awing.jpg"
 +++
 
 ------
