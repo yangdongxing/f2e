@@ -4,10 +4,10 @@
         {{ $authors := .Site.Params.authors }}
         {{ $ava := .Params.author }}
 
-        {{ range $element, $index := $authors }}
-            {{ if eq $element $ava }}
-            <img src="{{ $.Site.BaseURL }}/media/{{ . }}" />
-            {{ end }}
+        {{ if and (index $authors $ava) }}
+        <img src="{{ $.Site.BaseURL }}/media/{{ index $authors $ava }}" />
+        {{ else }}
+        <img src="{{ $.Site.BaseURL }}/media/default.png" />
         {{ end }}
 
         <a href="{{ .Permalink }}">{{ .Title }}</a>
