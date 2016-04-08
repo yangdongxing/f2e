@@ -2,10 +2,10 @@
     <h1 class="post-title">
 
         {{ $authors := .Site.Params.authors }}
-        {{ $ava := .Params.avatar }}
+        {{ $ava := .Params.author }}
 
-        {{ range $authors }}
-            {{ if eq . $ava }}
+        {{ range $element, $index := $authors }}
+            {{ if eq $element $ava }}
             <img src="{{ $.Site.BaseURL }}/media/{{ . }}" />
             {{ end }}
         {{ end }}

@@ -38,7 +38,9 @@ clone 本项目 git@gitlab.dxy.net:f2e/blog-hugo.git。
 * tags = ["标签类别"]
 * draft = true  // 是否为草稿
 * author = "f2e"  // 作者
-* avatar = "jianjian.png"  // 对应作者图片，在 `media` 中添加
+
+### 关于作者图片说明
+在根目录 'config.toml' 中配置与作者名对应的图片地址，存放于 `static/media` 中。
 
 ### 路由说明
 `http://site.com/blog/:year/:month/:day/:slug/`
