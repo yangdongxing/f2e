@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="http://dxy-developer.github.io/f2e/css/particles.css">
     <link rel="stylesheet" href="http://dxy-developer.github.io/f2e/css/markdown.css">
     <link rel="stylesheet" href="http://dxy-developer.github.io/f2e/css/style.css">
+    <script type="text/javascript" src="http://dxy-developer.github.io/f2e/js/jquery-1.8.3.min.js"></script>
+    <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+    <script>
+      
+      function setLeanCloud() {
+        AV.initialize('PPDrp7ANvEDvzYqBF2gKC7vY-gzGzoHsz', '60o0boL7ij0mkftarA5kEfNs');
+      }
+      setLeanCloud();
+    </script>
 </head>
 
 <body>
@@ -77,7 +86,7 @@
     </div>
     <div class="header">
         <a href="http://dxy-developer.github.io/f2e">
-            <p class="title">Css</p>
+            <p class="title J-title">Css</p>
             <p class="title">回到首页</p>
             <p class="sub-title">DXY Tech&amp;Product Division</p>
             <hr />
@@ -86,8 +95,8 @@
 
 <div class="container">
     <div class="left">
-        <div class="posts">
-     
+        <div class="posts J-list">
+    
     <div class="post">
     <h1 class="post-title">
 
@@ -98,7 +107,7 @@
         <img src="http://dxy-developer.github.io/f2e/media/libr.png" />
         
 
-        <a href="http://dxy-developer.github.io/f2e/blog/2016/04/05/rem-%E7%9A%84%E4%BD%BF%E7%94%A8/">rem 的使用</a>
+        <a class="J-link" href="http://dxy-developer.github.io/f2e/blog/2016/04/05/rem-%E7%9A%84%E4%BD%BF%E7%94%A8/">rem 的使用</a>
     </h1>
 
     <p class="post-info">
@@ -132,8 +141,8 @@
     </p>
     
 </div>
- 
-     
+
+    
     <div class="post">
     <h1 class="post-title">
 
@@ -144,7 +153,7 @@
         <img src="http://dxy-developer.github.io/f2e/media/huot.jpg" />
         
 
-        <a href="http://dxy-developer.github.io/f2e/blog/2016/04/04/css-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%BB%9A%E5%8A%A8%E6%9D%A1/">CSS 自定义滚动条</a>
+        <a class="J-link" href="http://dxy-developer.github.io/f2e/blog/2016/04/04/css-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%BB%9A%E5%8A%A8%E6%9D%A1/">CSS 自定义滚动条</a>
     </h1>
 
     <p class="post-info">
@@ -172,8 +181,8 @@
     </p>
     
 </div>
- 
-     
+
+    
     <div class="post">
     <h1 class="post-title">
 
@@ -184,7 +193,7 @@
         <img src="http://dxy-developer.github.io/f2e/media/wangxt.jpg" />
         
 
-        <a href="http://dxy-developer.github.io/f2e/blog/2016/03/31/mobile-article-align-justify-minor-experience/">处理移动端文章两端对齐的一点微小经验</a>
+        <a class="J-link" href="http://dxy-developer.github.io/f2e/blog/2016/03/31/mobile-article-align-justify-minor-experience/">处理移动端文章两端对齐的一点微小经验</a>
     </h1>
 
     <p class="post-info">
@@ -208,8 +217,8 @@
     </p>
     
 </div>
- 
-     
+
+    
     <div class="post">
     <h1 class="post-title">
 
@@ -220,7 +229,7 @@
         <img src="http://dxy-developer.github.io/f2e/media/jianjian.jpg" />
         
 
-        <a href="http://dxy-developer.github.io/f2e/blog/2016/02/24/css%E5%93%B2%E5%AD%A6%E4%BC%AA%E5%91%BD%E9%A2%98/">CSS哲学伪命题</a>
+        <a class="J-link" href="http://dxy-developer.github.io/f2e/blog/2016/02/24/css%E5%93%B2%E5%AD%A6%E4%BC%AA%E5%91%BD%E9%A2%98/">CSS哲学伪命题</a>
     </h1>
 
     <p class="post-info">
@@ -241,9 +250,32 @@
     </p>
     
 </div>
- 
+
     
 </div>
+
+<script>
+  
+  function renderVisit(link, dom) {
+    var query = new AV.Query('Visit');
+    query.equalTo('link', link);
+    query.find().then(function(res) {
+      var len = res.length || 0;
+      dom.append('· 浏览量. <span>' + len + '</span>');
+    });
+  }
+
+  $('.J-list .post').each(function() {
+    var a = document.createElement('a');
+    var el = $(this),
+        href = el.find('.J-link').attr('href'),
+        dom = el.find('.post-info');
+
+    a.href = href;
+    var link = a.pathname;
+    renderVisit(link, dom);
+  });
+</script>
 
     </div>
     <div class="right">
@@ -395,7 +427,6 @@
 <div class="footer">
     <p>Establishment · 丁香园前端</p>
 </div>
-<script type="text/javascript" src="http://dxy-developer.github.io/f2e/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="http://dxy-developer.github.io/f2e/js/script.js"></script>
 </body>
 

@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="http://dxy-developer.github.io/f2e/css/particles.css">
     <link rel="stylesheet" href="http://dxy-developer.github.io/f2e/css/markdown.css">
     <link rel="stylesheet" href="http://dxy-developer.github.io/f2e/css/style.css">
+    <script type="text/javascript" src="http://dxy-developer.github.io/f2e/js/jquery-1.8.3.min.js"></script>
+    <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+    <script>
+      
+      function setLeanCloud() {
+        AV.initialize('PPDrp7ANvEDvzYqBF2gKC7vY-gzGzoHsz', '60o0boL7ij0mkftarA5kEfNs');
+      }
+      setLeanCloud();
+    </script>
 </head>
 
 <body>
@@ -77,7 +86,7 @@
     </div>
     <div class="header">
         <a href="http://dxy-developer.github.io/f2e">
-            <p class="title">设计模式在JavaScript中的应用</p>
+            <p class="title J-title">设计模式在JavaScript中的应用</p>
             <p class="title">回到首页</p>
             <p class="sub-title">DXY Tech&amp;Product Division</p>
             <hr />
@@ -87,8 +96,8 @@
 <div class="container">
     <div class="left">
         <div class="post markdown-body">
-    <p class="post-info">
-        Author.<span>uojo</span> ·
+    <p class="post-info J-detail-option">
+        Author.<span class="J-author">uojo</span> ·
         Tag.<a href="http://dxy-developer.github.io/f2e/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a> ·
         Mon, Apr 4, 2016
     </p>
@@ -194,6 +203,39 @@ A：条条大道通罗马，只要<strong>编码有规律可循</strong>，且�
     </div>
 </div>
 
+<script type="text/javascript">
+  $(function() {
+    var VisitTable = AV.Object.extend('Visit');
+    var URLLinkId = location.pathname;
+    var author = $('.J-author').text() || '';
+    var title = $('.J-title').text() || '';
+
+    
+    function postVisitData() {
+      var visit = new VisitTable();
+      visit.save({
+        link: URLLinkId,
+        author: author,
+        title: title
+      });
+    }
+
+    
+    function getCurrentData(link) {
+      var query = new AV.Query('Visit');
+      query.equalTo('link', link);
+      query.find().then(function(results) {
+        var len = results.length;
+        $('.J-detail-option').append('· 浏览量. <span>' + len + '</span>');
+      });
+    }
+
+    postVisitData();
+    getCurrentData(URLLinkId);
+  });
+</script>
+
+
         
 <div class="ds-thread" data-thread-key="http://dxy-developer.github.io/f2e/blog/2016/04/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9C%A8javascript%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" data-title="设计模式在JavaScript中的应用" data-url="http://dxy-developer.github.io/f2e/blog/2016/04/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9C%A8javascript%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/"></div>
 <script type="text/javascript">
@@ -283,7 +325,6 @@ var duoshuoQuery = {short_name:"dxy-developer"};
 <div class="footer">
     <p>Establishment · 丁香园前端</p>
 </div>
-<script type="text/javascript" src="http://dxy-developer.github.io/f2e/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="http://dxy-developer.github.io/f2e/js/script.js"></script>
 </body>
 
