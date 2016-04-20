@@ -1,6 +1,6 @@
 <div class="post markdown-body">
-    <p class="post-info">
-        Author.<span>{{ .Params.author }}</span> ·
+    <p class="post-info J-detail-option">
+        Author.<span class="J-author">{{ .Params.author }}</span> ·
         Tag.{{ range .Params.tags }}<a href="{{ $.Site.BaseURL }}/tags/{{ . | urlize }}">{{ . }}</a>{{ end }} ·
         {{ .Date.Format .Site.Params.DateFormat }}
     </p>
@@ -8,3 +8,35 @@
         {{ .Content }}
     </div>
 </div>
+
+<script type="text/javascript">
+  $(function() {
+    var VisitTable = AV.Object.extend('Visit');
+    var URLLinkId = location.pathname;
+    var author = $('.J-author').text() || '';
+    var title = $('.J-title').text() || '';
+
+    // 推送访问请求
+    function postVisitData() {
+      var visit = new VisitTable();
+      visit.save({
+        link: URLLinkId,
+        author: author,
+        title: title
+      });
+    }
+
+    // 取当前页面数据
+    function getCurrentData(link) {
+      var query = new AV.Query('Visit');
+      query.equalTo('link', link);
+      query.find().then(function(results) {
+        var len = results.length;
+        $('.J-detail-option').append('· 浏览量. <span>' + len + '</span>');
+      });
+    }
+
+    postVisitData();
+    getCurrentData(URLLinkId);
+  });
+</script>

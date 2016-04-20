@@ -1,5 +1,28 @@
-<div class="posts">
-    {{ range .Paginator.Pages }} 
-    {{ partial "summary.html" . }} 
+<div class="posts J-list">
+    {{ range .Paginator.Pages }}
+    {{ partial "summary.html" . }}
     {{ end }}
 </div>
+
+<script>
+  // 渲染浏览量
+  function renderVisit(link, dom) {
+    var query = new AV.Query('Visit');
+    query.equalTo('link', link);
+    query.find().then(function(res) {
+      var len = res.length || 0;
+      dom.append('· 浏览量. <span>' + len + '</span>');
+    });
+  }
+
+  $('.J-list .post').each(function() {
+    var a = document.createElement('a');
+    var el = $(this),
+        href = el.find('.J-link').attr('href'),
+        dom = el.find('.post-info');
+
+    a.href = href;
+    var link = a.pathname;
+    renderVisit(link, dom);
+  });
+</script>
