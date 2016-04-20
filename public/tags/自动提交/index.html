@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="http://dxy-developer.github.io/f2e/css/particles.css">
     <link rel="stylesheet" href="http://dxy-developer.github.io/f2e/css/markdown.css">
     <link rel="stylesheet" href="http://dxy-developer.github.io/f2e/css/style.css">
+    <script type="text/javascript" src="http://dxy-developer.github.io/f2e/js/jquery-1.8.3.min.js"></script>
+    <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+    <script>
+      
+      function setLeanCloud() {
+        AV.initialize('PPDrp7ANvEDvzYqBF2gKC7vY-gzGzoHsz', '60o0boL7ij0mkftarA5kEfNs');
+      }
+      setLeanCloud();
+    </script>
 </head>
 
 <body>
@@ -77,7 +86,7 @@
     </div>
     <div class="header">
         <a href="http://dxy-developer.github.io/f2e">
-            <p class="title">自动提交</p>
+            <p class="title J-title">自动提交</p>
             <p class="title">回到首页</p>
             <p class="sub-title">DXY Tech&amp;Product Division</p>
             <hr />
@@ -86,8 +95,8 @@
 
 <div class="container">
     <div class="left">
-        <div class="posts">
-     
+        <div class="posts J-list">
+    
     <div class="post">
     <h1 class="post-title">
 
@@ -98,7 +107,7 @@
         <img src="http://dxy-developer.github.io/f2e/media/acrens.jpeg" />
         
 
-        <a href="http://dxy-developer.github.io/f2e/blog/2016/04/05/%E7%BB%8F%E9%AA%8C%E6%9D%82%E8%B0%88---%E9%AD%94%E6%80%A7%E8%A1%A8%E5%8D%95/">经验杂谈 - 魔性表单</a>
+        <a class="J-link" href="http://dxy-developer.github.io/f2e/blog/2016/04/05/%E7%BB%8F%E9%AA%8C%E6%9D%82%E8%B0%88---%E9%AD%94%E6%80%A7%E8%A1%A8%E5%8D%95/">经验杂谈 - 魔性表单</a>
     </h1>
 
     <p class="post-info">
@@ -126,9 +135,32 @@
     </p>
     
 </div>
- 
+
     
 </div>
+
+<script>
+  
+  function renderVisit(link, dom) {
+    var query = new AV.Query('Visit');
+    query.equalTo('link', link);
+    query.find().then(function(res) {
+      var len = res.length || 0;
+      dom.append('· 浏览量. <span>' + len + '</span>');
+    });
+  }
+
+  $('.J-list .post').each(function() {
+    var a = document.createElement('a');
+    var el = $(this),
+        href = el.find('.J-link').attr('href'),
+        dom = el.find('.post-info');
+
+    a.href = href;
+    var link = a.pathname;
+    renderVisit(link, dom);
+  });
+</script>
 
     </div>
     <div class="right">
@@ -229,7 +261,6 @@
 <div class="footer">
     <p>Establishment · 丁香园前端</p>
 </div>
-<script type="text/javascript" src="http://dxy-developer.github.io/f2e/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="http://dxy-developer.github.io/f2e/js/script.js"></script>
 </body>
 
