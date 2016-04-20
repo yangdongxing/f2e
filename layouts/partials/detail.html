@@ -19,24 +19,28 @@
     // 推送访问请求
     function postVisitData() {
       var visit = new VisitTable();
-      visit.save({
-        link: URLLinkId,
-        author: author,
-        title: title
-      });
-    }
-
-    // 取当前页面数据
-    function getCurrentData(link) {
       var query = new AV.Query('Visit');
-      query.equalTo('link', link);
-      query.find().then(function(results) {
-        var len = results.length;
-        $('.J-detail-option').append('· 浏览量. <span>' + len + '</span>');
+
+      query.equalTo('link', URLLinkId)
+      query.find().then(function(list) {
+        var count = 1;
+        if (list.length > 0) {
+          var item = list[0];
+          item.increment('visitCount');
+          item.save();
+          count = item.get('visitCount');
+        } else {
+          visit.increment('visitCount');
+          visit.save({
+            link: URLLinkId,
+            author: author,
+            title: title
+          });
+        }
+        $('.J-detail-option').append('· 浏览量. <span>' + count + '</span>');
       });
     }
 
     postVisitData();
-    getCurrentData(URLLinkId);
   });
 </script>

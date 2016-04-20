@@ -6,23 +6,29 @@
 
 <script>
   // 渲染浏览量
-  function renderVisit(link, dom) {
+  function renderVisit() {
     var query = new AV.Query('Visit');
-    query.equalTo('link', link);
-    query.find().then(function(res) {
-      var len = res.length || 0;
-      dom.append('· 浏览量. <span>' + len + '</span>');
+    query.limit(1000);
+    query.find().then(function(list) {
+      var treeMap = {};
+      list.forEach(function(item) {
+        var keyLink = item.get('link'),
+            count = item.get('visitCount');
+        treeMap[keyLink] = count;
+      });
+
+        $('.J-list .post').each(function() {
+          var a = document.createElement('a');
+          var el = $(this),
+              href = el.find('.J-link').attr('href'),
+              dom = el.find('.post-info');
+
+          a.href = href;
+          var link = a.pathname;
+          var len = treeMap[link] || 0;
+          dom.append('· 浏览量. <span>' + len + '</span>');
+        });
     });
   }
-
-  $('.J-list .post').each(function() {
-    var a = document.createElement('a');
-    var el = $(this),
-        href = el.find('.J-link').attr('href'),
-        dom = el.find('.post-info');
-
-    a.href = href;
-    var link = a.pathname;
-    renderVisit(link, dom);
-  });
+  renderVisit();
 </script>
