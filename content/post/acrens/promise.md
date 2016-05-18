@@ -32,30 +32,40 @@ Promise 具有三种状态，分别为 pending（执行中）、resolved（被�
 > Promise.all 方法为 Promise 组件的静态方法，无需创建 Promise 对象就可以直接使用此方法来并行执行多个 Promise 对象，且在 Promise.all(["Promise1"，"Promise2"， "Promise2"])，如果在 all 方法参数的数组中有一个 Promise 对象执行失败即停止执行，返回结果需要等到数组对象执行完成才返回最后结果，结果为多个 Promise 对象返回值组成的数组。
 > 
 > 代码：
-> var p1 = Promise.resolve(1)；
-> var p2 = Promise.resolve(2)；
-> var p3 = Promise.resolve(3);
-> Promise.all([p1, p2, p3]).then(function(results) {
-> console.log(results);  // [1, 2, 3]
-> });
+```javascript
+var p1 = Promise.resolve(1)；
+var p2 = Promise.resolve(2)；
+var p3 = Promise.resolve(3);
+Promise.all([p1, p2, p3]).then(function(results) {
+    console.log(results);  // [1, 2, 3]
+});
+```
 
 - Promise.race()
 
 > Promise.race 方法性质同 Promise.all 方法，使用方式也一样，但是有一点不同是在 Promise.race(["Promise1"，"Promise2"，"Promise3"]) 等到数组参数里面第一个 Promise 对象执行完成就返回执行结果（这里说的第一个不是第一个参数，也可能是第二个，是指第一个执行完成的 Promise 对象）。
-> 代码：Promise.race([new Promise(), new Promise(), new Promise()])；
+> 代码：
+```javascript
+Promise.race([new Promise(), new Promise(), new Promise()])；
+```
 
 - Promise.resolve()
 
 > 这是一种直接到达 Promise resolved 状态的快捷方式，并且创建返回一个 Promise 对象。
 > 代码：
-> Promise.resolve("acrens").then(function(name) {
-> console.log(name); // acrens
-> });
+```javascript
+Promise.resolve("acrens").then(function(name) {
+    console.log(name); // acrens
+});
+```
 
 - Promise.reject()
 
 > 同理，这是达到 Promise rejected 状态的快捷方式，并且创建返回一个进行 reject 的新 Promise 对象。如果传入的参数为一个 Promise 对象，则返回的是一个新的 Promise 对象（和 resolve 不同）。
-> 代码：Promise.reject(new Error("error"))；
+> 代码：
+```javascript
+Promise.reject(new Error("error"))；
+```
 
 ##### 对象方法：new Promise().then、new Promise().catch：
 
@@ -63,15 +73,17 @@ Promise 具有三种状态，分别为 pending（执行中）、resolved（被�
 
 > 用于注册 Promise 分别达到 resolved、rejected 状态时的回调函数，如：then(resolve, reject)，当达到 resolved 状态时，执行 resolve 方法，否则，执行 reject 方法；reject 函数可以不在此注册，可以使用 catch 注册（这也是注册 reject 方式的语法糖，更方便 Promise 链方法）；如果不需要注册 resolved 状态时的回调函数，then 方法第一个参数不可以省略，但是可以 then(undefined, reject) 这样书写。
 > 代码：
-> var promise = new Promise(function(resolve, reject) {
-> resolve(2);
-> });
-> 
-> promise.then(function(value) {
-> console.info('Task --------- ' + value); // Task  --------- 2
-> }).catch(function onRejected(error) {
-> console.error(error);
-> });
+```javascript
+var promise = new Promise(function(resolve, reject) {
+    resolve(2);
+});
+
+promise.then(function(value) {
+    console.info('Task --------- ' + value); // Task  --------- 2
+}).catch(function onRejected(error) {
+    console.error(error);
+});
+```
 
 - catch()
 
