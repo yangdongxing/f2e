@@ -7,8 +7,6 @@ author = "yaoyj"
 avatar = "yaoyj.jpg"
 +++
 
-
-# HTML 桌面消息通知
 HTML 桌面消息通知，指的是通过浏览器的 Notification 对象为用户在系统桌面设置和显示通知提醒。这样，用户就可以做自己的事情，而不用担心会错过一些消息。
 <!--more-->
 
