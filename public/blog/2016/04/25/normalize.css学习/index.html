@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>HTML5 drag and drop</title>
+    <title>Normalize.css学习</title>
     <meta charset="utf-8">
     <meta name='viewport' content='width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no' />
     
@@ -91,7 +91,7 @@
     </div>
     <div class="header">
         <a href="http://dxy-developer.github.io/f2e">
-            <p class="title J-title">HTML5 drag and drop</p>
+            <p class="title J-title">Normalize.css学习</p>
             <p class="title">回到首页</p>
             <p class="sub-title">DXY Tech&amp;Product Division</p>
             <hr />
@@ -102,165 +102,134 @@
     <div class="left">
         <div class="post markdown-body">
     <p class="post-info J-detail-option">
-        Author.<span class="J-author">yaoyj</span> ·
-        Tag.<a href="http://dxy-developer.github.io/f2e/tags/html5">HTML5</a> ·
-        Tue, Apr 5, 2016
+        Author.<span class="J-author">阿wing</span> ·
+        Tag.<a href="http://dxy-developer.github.io/f2e/tags/css">CSS</a> ·
+        Mon, Apr 25, 2016
     </p>
-    <div class="post-body J-hack-url" data-url="http://dxy-developer.github.io/f2e/post%5cyaoyj%5c20160405%5c">
+    <div class="post-body J-hack-url" data-url="http://dxy-developer.github.io/f2e/post%5cwing%5c2016-4-22%5c">
         
 
 <hr />
 
-<h4 id="拖放简介">拖放简介：</h4>
+<p>Normalize.css 只是一个很小的CSS文件，但它在默认的HTML元素样式上提供了跨浏览器的高度一致性。相比于传统的CSS reset，Normalize.css是一种现代的、为HTML5准备的优质替代方案。</p>
 
-<p>拖放操作的过程是怎样的？</p>
+<h4 id="综述">综述</h4>
 
-<blockquote>
-<p>允许用户在一个元素上点击并按住鼠标按钮，拖动它到别的位置，然后松开鼠标，元素停留在该位置。在拖动的过程中，被拖动元素以半透明的形式展现，并跟随鼠标指针移动。</p>
-</blockquote>
-
-<p>在早期的 IE4 中的网页上，只有文本和图片可以拖动，并且唯一有效的放置目标就是文本框。随着浏览器的发展，拖放功能也得到扩展，现在几乎网页中的任何元素都可以拖放，并且任何元素都可以作为放置目标。</p>
-
-<p>HTML5 就以 IE 的实例为基础制定了拖放规范。现对其主要内容做了整理。</p>
+<p>由于不同浏览器渲染Html元素时的各种默认样式不同，导致渲染页面时效果不一致，css Reset正是为了解决这一问题出现的。但是 css Reset 的激进派的，完全去掉浏览器默认的样式。
+所有的样式都由自己实现，即使跟浏览器默认样式一致。</p>
 
 <hr />
 
-<h4 id="拖放步骤">拖放步骤：</h4>
+<p>而Normalize.css是改良派,依赖于研究浏览器默认元素风格之间的差异，精确定位需要重置的样式。</p>
+
+<ul>
+<li>保护有用的浏览器默认样式而不是完全去掉它们</li>
+<li>为大部分HTML元素提供一般化的样式</li>
+<li>修复浏览器自身的bug并保证各浏览器的一致性。</li>
+</ul>
+
+<p>相比于传统的reset，Normalize.css是一种现代的、为HTML5准备的优质替代方案,目前像 Bootstrap Amaze UI等框架都在使用。</p>
+
+<ul>
+<li><a href="https://github.com/necolas/normalize.css">Normalize.css 项目地址</a></li>
+</ul>
+
+<h4 id="源码分析">源码分析</h4>
+
+<p>Css Reset发展至今，进过了几个版本。第一份css Reset应该是 YUI团队提供的,核心还是清除所有浏览器默认样式</p>
+
+<pre><code class="language-css">:link,:visited { text-decoration:none }
+ul,ol { list-style:none }
+h1,h2,h3,h4,h5,h6,pre,code { font-size:1em; }
+ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,
+fieldset,input{ margin:0; padding:0 }
+a img,:link img,:visited img { border:none }
+address { font-style:normal }
+</code></pre>
+
+<p>之后出现阿里的Kissy框架，自己定制了一份css Reset，这应该是国内第一份CSS Reset。我们使用的reset.css大部分都是拷贝这个版本。但是所有版本的 CSS Reset 作者 都叮嘱使用者
+&gt; 请根据具体需求，适量裁剪和修改后再使用。</p>
+
+<p>Normalize.css并没有完全去除默认样式，否则跟全部用div跟li有什么区别呢。改良的Normalize.css具体改了哪些地方，下面举几个例子</p>
+
+<pre><code class="language-css">/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11
+ * and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+
+/**
+ * Add the correct display in IE 9-.
+ * 1. Add the correct display in Edge, IE, and Firefox.
+ * 2. Add the correct display in IE.
+ */
+
+article,
+aside,
+details, /* 1 */
+figcaption,
+figure,
+footer,
+header,
+main, /* 2 */
+menu,
+nav,
+section,
+summary { /* 1 */
+  display: block;
+}
+</code></pre>
+
+<ul>
+<li>主要为低版本的IE们补充一些HTML5元素的正确显示方法。</li>
+</ul>
+
+<p>在遇到不识别的标签时，浏览器会解析称内联元素，
+但是测试了下并不能解决实际性的问题，IE8下还是不识别；主要可以统一各元素的显示方式。</p>
+
+<pre><code class="language-css">/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+</code></pre>
+
+<ul>
+<li>防止所有浏览器中的sub和sup影响行高，就把两者的line-height设为0，然后用top和bottom手动设置两者偏移量。</li>
+</ul>
+
+<h4 id="如何使用">如何使用</h4>
 
 <ol>
-<li>定义可拖放目标</li>
-<li>定义被拖动的数据</li>
-<li>定义拖动过程中鼠标指针旁边出现的反馈图片</li>
-<li>允许设置拖拽效果</li>
-<li>定义放置区域</li>
-<li>拖放结束时，完成数据交互等工作</li>
+<li>npm install normalize.css</li>
+<li>引入 normalize.css 源码并在此基础上构建，在必要的时候用你自己写的CSS覆盖默认值</li>
 </ol>
 
-<h4 id="帮助实现拖放的一些特性">帮助实现拖放的一些特性：</h4>
+<p>Normalize.css 被拆分为多个独立的部分，这样你就可以定制自己所需要的，可以选择性地移除掉不会用到部分。
+比如在移动端使用的时候，就可以把为了兼容IE的部分移除。</p>
 
-<ul>
-<li><strong>属性</strong>：<code>draggable</code>
+<h4 id="参考资料">参考资料</h4>
 
-<ul>
-<li>设为 true，则该元素可拖放</li>
-<li>在 html 中，图片、超链接、被选中文本，这些元素默认就是可拖拽，可以不用设置该属性</li>
-</ul></li>
-</ul>
-
-<pre><code class="language-html">&lt;div draggable=&quot;true&quot; ondragstart=&quot;event.dataTransfer.setData('text/plain', '这里是想要拖动的元素')&quot;&gt;
-  这里是想要拖动的元素
-&lt;/div&gt;
-</code></pre>
-
-<ul>
-<li><p><strong>事件</strong>：</p>
-
-<ul>
-<li>事件的目标是被拖动的元素
-
-<ul>
-<li><code>dragstart</code></li>
-<li><code>drag</code></li>
-<li><code>dragend</code></li>
-</ul></li>
-<li>事件的目标是作为放置目标（droptarget）的元素
-
-<ul>
-<li><code>dragenter</code></li>
-<li><code>dragover</code></li>
-<li><code>dragleave</code>/<code>drop</code></li>
-</ul></li>
-</ul></li>
-
-<li><p><strong>对象</strong>：<code>event.dataTransfer</code></p>
-
-<ul>
-<li>用于实现数据交换，可在拖放事件的事件处理程序中访问</li>
-<li>方法：<code>setData()</code>，设置拖放要传递的数据
-
-<ul>
-<li>参数1: text/URL，表示保存的数据类型（HTML5 允许各种 MIME 类型，但 IE 只支持着两种）</li>
-<li>参数2: 要保存的数据</li>
-</ul></li>
-<li>方法：<code>getData()</code>，获取拖放传递的数据，只能在 <code>drop</code> 事件处理程序中使用</li>
-<li>属性：<code>dropEffect</code>
-
-<ul>
-<li>值：none/move/copy/link，</li>
-<li>表示元素拖动到 droptarget 上时鼠标的效果</li>
-<li>必须在 ondragenter 事件中使用</li>
-</ul></li>
-<li>属性：<code>effectAllowed</code>
-
-<ul>
-<li>值：none/move/copt/link/all/&hellip;</li>
-<li>跟 dropeffect 搭配使用，表示允许拖动元素的哪种 dropeffect</li>
-</ul></li>
-</ul></li>
-</ul>
-
-<h4 id="代码示例">代码示例：</h4>
-
-<pre><code class="language-javascript">    $(被拖动元素).on(&quot;dragstart&quot;, function (e) {
-        /*开始拖拽源文本*/         
-        e.preventDefault();
-        e.dataTransfer.effectAllowed = &quot;move&quot;;
-        e.originalEvent.dataTransfer.setData(&quot;text&quot;, '要传递的数据');
-        return true;
-    });
-
-    $(被拖动元素).on(&quot;dragend&quot;,  function(ev) {
-        /*拖拽结束*/
-        ev.dataTransfer.clearData(&quot;text&quot;);
-        eleDrag = null;
-        return false
-    });
-
-    $(放置目标元素).on(&quot;dragover&quot;, function (e) {
-        /*拖拽元素在目标元素头上移动的时候*/
-        e.preventDefault();
-        return true;
-    });
-
-    $(放置目标元素).on(&quot;dragenter&quot;,  function(ev) {
-        /*拖拽元素进入目标元素头上的时候*/
-        return true;
-    });
-
-    $(放置目标元素).on(&quot;drop&quot;, function (e) {               
-        /*拖拽元素进入目标元素头上，同时鼠标松开的时候*/
-        var data = e.originalEvent.dataTransfer.getData(&quot;text&quot;);
-        /*阻止在Firefox中拖拽打开新标签*/
-        return false;
-    });
-</code></pre>
-
-<hr />
-
-<h4 id="注意点">注意点：</h4>
-
-<ul>
-<li>在 dragstart 事件中必须使用 <code>event.preventDefault()</code>，否则 drag 事件不能触发，也就不能实现拖拽</li>
-<li>在 dragover 事件中也必须使用 <code>event.preventDefault()</code>，否则 drop 事件不会触发</li>
-<li>需在 drop 事件中使用 <code>return false;</code>， 解决 Firefox 中拖拽元素会直接打开新标签的问题</li>
-<li>为了减少事件，可以在 dragenter 的时候绑定方法 ，而 dragleave 的时候删除方法</li>
-<li>在 dragover 上不要做数据处理，它类似mouseover，在拖动的过程中会不断触发，可能会导致浏览器崩溃</li>
-<li>drag 事件和 mouse 事件不能同时触发</li>
-</ul>
-
-<hr />
-
-<h4 id="兼容性">兼容性：</h4>
-
-<p>浏览器支持：IE10+、Firefox 4+、Safari 5+和Chrome。</p>
-
-<hr />
-
-<h4 id="参考文档">参考文档：</h4>
-
-<p><a href="https://developer.mozilla.org/zh-CN/docs/DragDrop/Drag_and_Drop">拖放操作</a></p>
-
-<p><a href="http://www.zhangxinxu.com/wordpress/2011/02/html5-drag-drop-%E6%8B%96%E6%8B%BD%E4%B8%8E%E6%8B%96%E6%94%BE%E7%AE%80%E4%BB%8B/">HTML5 drag &amp; drop 拖拽与拖放简介</a></p>
+<ol>
+<li><a href="https://segmentfault.com/a/1190000003025718">https://segmentfault.com/a/1190000003025718</a></li>
+<li><a href="http://jerryzou.com/posts/aboutNormalizeCss/">http://jerryzou.com/posts/aboutNormalizeCss/</a></li>
+</ol>
 
     </div>
 </div>
@@ -303,7 +272,7 @@
 
 
         
-<div class="ds-thread" data-thread-key="http://dxy-developer.github.io/f2e/blog/2016/04/05/html5-drag-and-drop/" data-title="HTML5 drag and drop" data-url="http://dxy-developer.github.io/f2e/blog/2016/04/05/html5-drag-and-drop/"></div>
+<div class="ds-thread" data-thread-key="http://dxy-developer.github.io/f2e/blog/2016/04/25/normalize.css%E5%AD%A6%E4%B9%A0/" data-title="Normalize.css学习" data-url="http://dxy-developer.github.io/f2e/blog/2016/04/25/normalize.css%E5%AD%A6%E4%B9%A0/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"dxy-developer"};
     (function() {

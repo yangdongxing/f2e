@@ -23,26 +23,26 @@
 
 &lt;hr /&gt;
 
-&lt;h3 id=&#34;what-promise-是什么:338de21552ba154b4fe3d06dbffb9887&#34;&gt;What（Promise 是什么）&lt;/h3&gt;
+&lt;h3 id=&#34;what-promise-是什么&#34;&gt;What（Promise 是什么）&lt;/h3&gt;
 
-&lt;h4 id=&#34;描述:338de21552ba154b4fe3d06dbffb9887&#34;&gt;描述&lt;/h4&gt;
+&lt;h4 id=&#34;描述&#34;&gt;描述&lt;/h4&gt;
 
 &lt;p&gt;Promise 是抽象异步处理对象以及对其进行各种操作的组件，而且 Promise 并不是从 JavaScript 中发祥的概念。&lt;/p&gt;
 
-&lt;h4 id=&#34;状态:338de21552ba154b4fe3d06dbffb9887&#34;&gt;状态&lt;/h4&gt;
+&lt;h4 id=&#34;状态&#34;&gt;状态&lt;/h4&gt;
 
 &lt;p&gt;Promise 具有三种状态，分别为 pending（执行中）、resolved（被接受）、rejected（被拒绝）。&lt;/p&gt;
 
-&lt;h4 id=&#34;方法:338de21552ba154b4fe3d06dbffb9887&#34;&gt;方法&lt;/h4&gt;
+&lt;h4 id=&#34;方法&#34;&gt;方法&lt;/h4&gt;
 
-&lt;h5 id=&#34;实例化:338de21552ba154b4fe3d06dbffb9887&#34;&gt;实例化：&lt;/h5&gt;
+&lt;h5 id=&#34;实例化&#34;&gt;实例化：&lt;/h5&gt;
 
 &lt;ul&gt;
 &lt;li&gt;var promise = new Promise(function(resolve, reject) {});&lt;/li&gt;
 &lt;li&gt;Promise.resolve() 等方法均可以直接返回一个新创建的 Promise 对象。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h5 id=&#34;静态方法-promise-all-promise-race-promise-resolve-promise-reject:338de21552ba154b4fe3d06dbffb9887&#34;&gt;静态方法：Promise.all、Promise.race、Promise.resolve、Promise.reject：&lt;/h5&gt;
+&lt;h5 id=&#34;静态方法-promise-all-promise-race-promise-resolve-promise-reject&#34;&gt;静态方法：Promise.all、Promise.race、Promise.resolve、Promise.reject：&lt;/h5&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Promise.all()&lt;/li&gt;
@@ -51,13 +51,15 @@
 &lt;blockquote&gt;
 &lt;p&gt;Promise.all 方法为 Promise 组件的静态方法，无需创建 Promise 对象就可以直接使用此方法来并行执行多个 Promise 对象，且在 Promise.all([&amp;ldquo;Promise1&amp;rdquo;，&amp;rdquo;Promise2&amp;rdquo;， &amp;ldquo;Promise2&amp;rdquo;])，如果在 all 方法参数的数组中有一个 Promise 对象执行失败即停止执行，返回结果需要等到数组对象执行完成才返回最后结果，结果为多个 Promise 对象返回值组成的数组。&lt;/p&gt;
 
-&lt;p&gt;代码：
-var p1 = Promise.resolve(1)；
+&lt;p&gt;代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var p1 = Promise.resolve(1)；
 var p2 = Promise.resolve(2)；
 var p3 = Promise.resolve(3);
 Promise.all([p1, p2, p3]).then(function(results) {
-console.log(results);  // [1, 2, 3]
-});&lt;/p&gt;
+    console.log(results);  // [1, 2, 3]
+});
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/blockquote&gt;
 
 &lt;ul&gt;
@@ -66,7 +68,10 @@ console.log(results);  // [1, 2, 3]
 
 &lt;blockquote&gt;
 &lt;p&gt;Promise.race 方法性质同 Promise.all 方法，使用方式也一样，但是有一点不同是在 Promise.race([&amp;ldquo;Promise1&amp;rdquo;，&amp;rdquo;Promise2&amp;rdquo;，&amp;rdquo;Promise3&amp;rdquo;]) 等到数组参数里面第一个 Promise 对象执行完成就返回执行结果（这里说的第一个不是第一个参数，也可能是第二个，是指第一个执行完成的 Promise 对象）。
-代码：Promise.race([new Promise(), new Promise(), new Promise()])；&lt;/p&gt;
+代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Promise.race([new Promise(), new Promise(), new Promise()])；
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/blockquote&gt;
 
 &lt;ul&gt;
@@ -75,10 +80,12 @@ console.log(results);  // [1, 2, 3]
 
 &lt;blockquote&gt;
 &lt;p&gt;这是一种直接到达 Promise resolved 状态的快捷方式，并且创建返回一个 Promise 对象。
-代码：
-Promise.resolve(&amp;ldquo;acrens&amp;rdquo;).then(function(name) {
-console.log(name); // acrens
-});&lt;/p&gt;
+代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Promise.resolve(&amp;quot;acrens&amp;quot;).then(function(name) {
+    console.log(name); // acrens
+});
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/blockquote&gt;
 
 &lt;ul&gt;
@@ -87,10 +94,13 @@ console.log(name); // acrens
 
 &lt;blockquote&gt;
 &lt;p&gt;同理，这是达到 Promise rejected 状态的快捷方式，并且创建返回一个进行 reject 的新 Promise 对象。如果传入的参数为一个 Promise 对象，则返回的是一个新的 Promise 对象（和 resolve 不同）。
-代码：Promise.reject(new Error(&amp;ldquo;error&amp;rdquo;))；&lt;/p&gt;
+代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Promise.reject(new Error(&amp;quot;error&amp;quot;))；
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/blockquote&gt;
 
-&lt;h5 id=&#34;对象方法-new-promise-then-new-promise-catch:338de21552ba154b4fe3d06dbffb9887&#34;&gt;对象方法：new Promise().then、new Promise().catch：&lt;/h5&gt;
+&lt;h5 id=&#34;对象方法-new-promise-then-new-promise-catch&#34;&gt;对象方法：new Promise().then、new Promise().catch：&lt;/h5&gt;
 
 &lt;ul&gt;
 &lt;li&gt;then()&lt;/li&gt;
@@ -98,16 +108,18 @@ console.log(name); // acrens
 
 &lt;blockquote&gt;
 &lt;p&gt;用于注册 Promise 分别达到 resolved、rejected 状态时的回调函数，如：then(resolve, reject)，当达到 resolved 状态时，执行 resolve 方法，否则，执行 reject 方法；reject 函数可以不在此注册，可以使用 catch 注册（这也是注册 reject 方式的语法糖，更方便 Promise 链方法）；如果不需要注册 resolved 状态时的回调函数，then 方法第一个参数不可以省略，但是可以 then(undefined, reject) 这样书写。
-代码：
-var promise = new Promise(function(resolve, reject) {
-resolve(2);
-});&lt;/p&gt;
+代码：&lt;/p&gt;
 
-&lt;p&gt;promise.then(function(value) {
-console.info(&amp;lsquo;Task &amp;mdash;&amp;mdash;&amp;mdash; &amp;rsquo; + value); // Task  &amp;mdash;&amp;mdash;&amp;mdash; 2
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var promise = new Promise(function(resolve, reject) {
+    resolve(2);
+});
+
+promise.then(function(value) {
+    console.info(&#39;Task --------- &#39; + value); // Task  --------- 2
 }).catch(function onRejected(error) {
-console.error(error);
-});&lt;/p&gt;
+    console.error(error);
+});
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/blockquote&gt;
 
 &lt;ul&gt;
@@ -121,7 +133,7 @@ console.error(error);
 
 &lt;hr /&gt;
 
-&lt;h3 id=&#34;how-promise-如何运行:338de21552ba154b4fe3d06dbffb9887&#34;&gt;How（Promise 如何运行）&lt;/h3&gt;
+&lt;h3 id=&#34;how-promise-如何运行&#34;&gt;How（Promise 如何运行）&lt;/h3&gt;
 
 &lt;p&gt;Promise 从实例化到执行完成可以参照下图并结合上述代码理解（只有认真地去理解这个流程图，才可以看到 Promise 的精髓，坏笑&amp;hellip;）：
 &lt;img src=&#34;../flow.png&#34; alt=&#34;执行流程&#34; /&gt;
@@ -129,7 +141,7 @@ console.error(error);
 
 &lt;hr /&gt;
 
-&lt;h3 id=&#34;why-promise-为什么会产生:338de21552ba154b4fe3d06dbffb9887&#34;&gt;Why（Promise 为什么会产生）&lt;/h3&gt;
+&lt;h3 id=&#34;why-promise-为什么会产生&#34;&gt;Why（Promise 为什么会产生）&lt;/h3&gt;
 
 &lt;p&gt;Promise 需要解决的问题也就是其产生的原因（废话）：&lt;/p&gt;
 
@@ -151,7 +163,7 @@ console.error(error);
 
 &lt;hr /&gt;
 
-&lt;h3 id=&#34;总结:338de21552ba154b4fe3d06dbffb9887&#34;&gt;总结&lt;/h3&gt;
+&lt;h3 id=&#34;总结&#34;&gt;总结&lt;/h3&gt;
 
 &lt;p&gt;在项目开发中，时常会使用到异步处理及代码多层嵌套，这对于后期理解和维护代码是一个“坑”，因此可以尝试使用 Promise 方式去解决代码给后期带来的负担。&lt;/p&gt;
 

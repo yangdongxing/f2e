@@ -28,7 +28,7 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/css">css</a>
-        <span>(4)</span>
+        <span>(5)</span>
     </li>
     
     <li>
@@ -38,7 +38,7 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/html5">html5</a>
-        <span>(1)</span>
+        <span>(2)</span>
     </li>
     
     <li>
@@ -72,6 +72,11 @@
     </li>
     
     <li>
+        <a href="http://dxy-developer.github.io/f2e/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">前端性能优化</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
         <a href="http://dxy-developer.github.io/f2e/tags/%E8%87%AA%E5%8A%A8%E6%8F%90%E4%BA%A4">自动提交</a>
         <span>(1)</span>
     </li>
@@ -101,7 +106,7 @@
         Tag.<a href="http://dxy-developer.github.io/f2e/tags/css">CSS</a> ·
         Thu, Mar 31, 2016
     </p>
-    <div class="post-body J-hack-url" data-url="http://dxy-developer.github.io/f2e/post/wangxt/2016033101/">
+    <div class="post-body J-hack-url" data-url="http://dxy-developer.github.io/f2e/post%5cwangxt%5c2016033101%5c">
         
 
 <p>最近处理了一个移动端的文章详情页面，产品的需求是要做到正文区块内的内容能够两端对齐。</p>
@@ -192,7 +197,7 @@ The first thing you'll want to do is to draw boxes around every component (and s
 <p>我们会发现不该换行的地方全被截断了。这可怎么办？看来问题是出在 <code>word-break: break-all</code> 上了。我们来看下这个属性的详细解释：</p>
 
 <blockquote>
-<h1 id="word-break:d680e8a854a7cbad6d490c445cba2eba">word-break</h1>
+<h1 id="word-break">word-break</h1>
 
 <p>The word-break CSS property is used to specify whether to break lines within words.
 * normal : Use the default line break rule.
@@ -207,7 +212,7 @@ The first thing you'll want to do is to draw boxes around every component (and s
 <p>但其实 <code>word-break</code> 有个只有 webkit/blink 引擎支持的属性，<code>break-wrod</code>。通过这个属性，我们可以让英文句子在正确的位置换行，但如果实在没有地方可以打断，会进行强制打断。但它是个非标准属性，通过 Google 可知，它的效果基本等同于 <code>word-wrap: break-word</code>。</p>
 
 <blockquote>
-<h1 id="word-wrap:d680e8a854a7cbad6d490c445cba2eba">word-wrap</h1>
+<h1 id="word-wrap">word-wrap</h1>
 
 <p>The word-wrap property is used to specify whether or not the browser may break lines within words in order to prevent overflow when an otherwise unbreakable string is too long to fit in its containing box.
 * normal : Indicates that lines may only break at normal word break points.
@@ -263,25 +268,29 @@ The first thing you'll want to do is to draw boxes around every component (and s
     
     function postVisitData() {
       var visit = new VisitTable();
-      visit.save({
-        link: URLLinkId,
-        author: author,
-        title: title
-      });
-    }
-
-    
-    function getCurrentData(link) {
       var query = new AV.Query('Visit');
-      query.equalTo('link', link);
-      query.find().then(function(results) {
-        var len = results.length;
-        $('.J-detail-option').append('· 浏览量. <span>' + len + '</span>');
+
+      query.equalTo('link', URLLinkId)
+      query.find().then(function(list) {
+        var count = 1;
+        if (list.length > 0) {
+          var item = list[0];
+          item.increment('visitCount');
+          item.save();
+          count = item.get('visitCount');
+        } else {
+          visit.increment('visitCount');
+          visit.save({
+            link: URLLinkId,
+            author: author,
+            title: title
+          });
+        }
+        $('.J-detail-option').append('· 浏览量. <span>' + count + '</span>');
       });
     }
 
     postVisitData();
-    getCurrentData(URLLinkId);
   });
 </script>
 
@@ -310,7 +319,7 @@ var duoshuoQuery = {short_name:"dxy-developer"};
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/css">css</a>
-        <span>(4)</span>
+        <span>(5)</span>
     </li>
     
     <li>
@@ -320,7 +329,7 @@ var duoshuoQuery = {short_name:"dxy-developer"};
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/html5">html5</a>
-        <span>(1)</span>
+        <span>(2)</span>
     </li>
     
     <li>
@@ -350,6 +359,11 @@ var duoshuoQuery = {short_name:"dxy-developer"};
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/webpack">webpack</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
+        <a href="http://dxy-developer.github.io/f2e/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">前端性能优化</a>
         <span>(1)</span>
     </li>
     

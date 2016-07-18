@@ -19,7 +19,7 @@
 
 &lt;hr /&gt;
 
-&lt;h4 id=&#34;表单:69d0cdd5a4d170d01d13dfad3dfdf29a&#34;&gt;表单&lt;/h4&gt;
+&lt;h4 id=&#34;表单&#34;&gt;表单&lt;/h4&gt;
 
 &lt;p&gt;这里先解释表单，相信大家看到这里已经知道是什么了；没错，这里说的表单就是 html 中的 form 表单。&lt;/p&gt;
 
@@ -32,7 +32,7 @@
 
 &lt;hr /&gt;
 
-&lt;h4 id=&#34;魔性:69d0cdd5a4d170d01d13dfad3dfdf29a&#34;&gt;魔性&lt;/h4&gt;
+&lt;h4 id=&#34;魔性&#34;&gt;魔性&lt;/h4&gt;
 
 &lt;p&gt;魔性给我们带来的感觉就是很神奇，为什么会这样；这里所说的魔性跟 form 提交相关联。&lt;/p&gt;
 
@@ -60,7 +60,7 @@ type = button 触发不提交，Chrome 默认为 type = submit 触发提交。&l
 
 &lt;hr /&gt;
 
-&lt;h4 id=&#34;解决方案:69d0cdd5a4d170d01d13dfad3dfdf29a&#34;&gt;解决方案&lt;/h4&gt;
+&lt;h4 id=&#34;解决方案&#34;&gt;解决方案&lt;/h4&gt;
 
 &lt;p&gt;在 form 里面再添加一个 input 输入框，type 不可以为 hidden，否则无效：
 &lt;img src=&#34;../share3.png&#34; alt=&#34;代码片段&#34; /&gt;&lt;/p&gt;

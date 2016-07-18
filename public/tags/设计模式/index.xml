@@ -17,17 +17,17 @@
       <guid>http://dxy-developer.github.io/f2e/blog/2016/04/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9C%A8javascript%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/</guid>
       <description>
 
-&lt;h3 id=&#34;设计模式:10d8aa81d13021669fdcd5a46901e0c0&#34;&gt;设计模式&lt;/h3&gt;
+&lt;h3 id=&#34;设计模式&#34;&gt;设计模式&lt;/h3&gt;
 
 &lt;p&gt;关于设计模式，文诌诌的描述定义我就不说了，大家问下度娘即可。&lt;/p&gt;
 
-&lt;h1 id=&#34;设计模式在javascript中的应用:10d8aa81d13021669fdcd5a46901e0c0&#34;&gt;设计模式在JavaScript中的应用&lt;/h1&gt;
+&lt;h1 id=&#34;设计模式在javascript中的应用&#34;&gt;设计模式在JavaScript中的应用&lt;/h1&gt;
 
 &lt;hr /&gt;
 
 &lt;p&gt;本文用大白话的形式描述下个人理解。首先“设计模式”翻译下就是在设计程序业务流的套路，这种“套路”都是前车之鉴，被历史反复实践和总结，所以还是值得学习了解的，毕竟每个程序员的代码不仅仅是让机器解释，而是给他人阅读的（让每个同行都能看的懂并能维护你的代码）！以下是以本人理解的设计模式在Javascript中应用描述：&lt;/p&gt;
 
-&lt;h3 id=&#34;1-单例模式:10d8aa81d13021669fdcd5a46901e0c0&#34;&gt;1.单例模式&lt;/h3&gt;
+&lt;h3 id=&#34;1-单例模式&#34;&gt;1.单例模式&lt;/h3&gt;
 
 &lt;p&gt;类中操作一个实例&lt;/p&gt;
 
@@ -43,7 +43,7 @@ var a=A(&amp;quot;hello&amp;quot;);
 var b=A(&amp;quot;world&amp;quot;);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;2-策略模式:10d8aa81d13021669fdcd5a46901e0c0&#34;&gt;2.策略模式&lt;/h3&gt;
+&lt;h3 id=&#34;2-策略模式&#34;&gt;2.策略模式&lt;/h3&gt;
 
 &lt;p&gt;使用分支判断&lt;/p&gt;
 
@@ -60,7 +60,7 @@ B(&amp;quot;hello&amp;quot;);
 B(&amp;quot;world&amp;quot;);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;3-代理模式:10d8aa81d13021669fdcd5a46901e0c0&#34;&gt;3.代理模式&lt;/h3&gt;
+&lt;h3 id=&#34;3-代理模式&#34;&gt;3.代理模式&lt;/h3&gt;
 
 &lt;p&gt;你调用的方法可能只是一个中间件&lt;/p&gt;
 
@@ -75,15 +75,15 @@ va d={f2:function(){
 d();
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;4-迭代器模式:10d8aa81d13021669fdcd5a46901e0c0&#34;&gt;4.迭代器模式&lt;/h3&gt;
+&lt;h3 id=&#34;4-迭代器模式&#34;&gt;4.迭代器模式&lt;/h3&gt;
 
 &lt;p&gt;循环遍历！for , while &amp;hellip;&lt;/p&gt;
 
-&lt;h3 id=&#34;5-发布-订阅模式:10d8aa81d13021669fdcd5a46901e0c0&#34;&gt;5.发布/订阅模式&lt;/h3&gt;
+&lt;h3 id=&#34;5-发布-订阅模式&#34;&gt;5.发布/订阅模式&lt;/h3&gt;
 
 &lt;p&gt;DOM事件 or 自定义事件&lt;/p&gt;
 
-&lt;h3 id=&#34;6-命令模式:10d8aa81d13021669fdcd5a46901e0c0&#34;&gt;6.命令模式&lt;/h3&gt;
+&lt;h3 id=&#34;6-命令模式&#34;&gt;6.命令模式&lt;/h3&gt;
 
 &lt;p&gt;将要执行的【方法】和【参数对象】一并传入到另一个方法中&lt;/p&gt;
 
@@ -101,7 +101,7 @@ e(function(e){
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;结语:10d8aa81d13021669fdcd5a46901e0c0&#34;&gt;结语&lt;/h2&gt;
+&lt;h2 id=&#34;结语&#34;&gt;结语&lt;/h2&gt;
 
 &lt;p&gt;设计模式就好比《三十六计》，不了解也能编码，只是编码后表述起来方便、专业些。仔细的人可能会发觉当设计一套语言或框架、类库时，设计模式都是理论基础！&lt;/p&gt;
 

@@ -6,8 +6,140 @@
     <description>Recent content in Css on 丁香园前端小分队</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Establishment · 丁香园前端</copyright>
-    <lastBuildDate>Tue, 05 Apr 2016 15:50:37 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 25 Apr 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://dxy-developer.github.io/f2e/tags/css/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Normalize.css学习</title>
+      <link>http://dxy-developer.github.io/f2e/blog/2016/04/25/normalize.css%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Mon, 25 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://dxy-developer.github.io/f2e/blog/2016/04/25/normalize.css%E5%AD%A6%E4%B9%A0/</guid>
+      <description>
+
+&lt;hr /&gt;
+
+&lt;p&gt;Normalize.css 只是一个很小的CSS文件，但它在默认的HTML元素样式上提供了跨浏览器的高度一致性。相比于传统的CSS reset，Normalize.css是一种现代的、为HTML5准备的优质替代方案。&lt;/p&gt;
+
+&lt;h4 id=&#34;综述&#34;&gt;综述&lt;/h4&gt;
+
+&lt;p&gt;由于不同浏览器渲染Html元素时的各种默认样式不同，导致渲染页面时效果不一致，css Reset正是为了解决这一问题出现的。但是 css Reset 的激进派的，完全去掉浏览器默认的样式。
+所有的样式都由自己实现，即使跟浏览器默认样式一致。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;而Normalize.css是改良派,依赖于研究浏览器默认元素风格之间的差异，精确定位需要重置的样式。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;保护有用的浏览器默认样式而不是完全去掉它们&lt;/li&gt;
+&lt;li&gt;为大部分HTML元素提供一般化的样式&lt;/li&gt;
+&lt;li&gt;修复浏览器自身的bug并保证各浏览器的一致性。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;相比于传统的reset，Normalize.css是一种现代的、为HTML5准备的优质替代方案,目前像 Bootstrap Amaze UI等框架都在使用。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/necolas/normalize.css&#34;&gt;Normalize.css 项目地址&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;源码分析&#34;&gt;源码分析&lt;/h4&gt;
+
+&lt;p&gt;Css Reset发展至今，进过了几个版本。第一份css Reset应该是 YUI团队提供的,核心还是清除所有浏览器默认样式&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;:link,:visited { text-decoration:none }
+ul,ol { list-style:none }
+h1,h2,h3,h4,h5,h6,pre,code { font-size:1em; }
+ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,
+fieldset,input{ margin:0; padding:0 }
+a img,:link img,:visited img { border:none }
+address { font-style:normal }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;之后出现阿里的Kissy框架，自己定制了一份css Reset，这应该是国内第一份CSS Reset。我们使用的reset.css大部分都是拷贝这个版本。但是所有版本的 CSS Reset 作者 都叮嘱使用者
+&amp;gt; 请根据具体需求，适量裁剪和修改后再使用。&lt;/p&gt;
+
+&lt;p&gt;Normalize.css并没有完全去除默认样式，否则跟全部用div跟li有什么区别呢。改良的Normalize.css具体改了哪些地方，下面举几个例子&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11
+ * and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+
+/**
+ * Add the correct display in IE 9-.
+ * 1. Add the correct display in Edge, IE, and Firefox.
+ * 2. Add the correct display in IE.
+ */
+
+article,
+aside,
+details, /* 1 */
+figcaption,
+figure,
+footer,
+header,
+main, /* 2 */
+menu,
+nav,
+section,
+summary { /* 1 */
+  display: block;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主要为低版本的IE们补充一些HTML5元素的正确显示方法。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;在遇到不识别的标签时，浏览器会解析称内联元素，
+但是测试了下并不能解决实际性的问题，IE8下还是不识别；主要可以统一各元素的显示方式。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;防止所有浏览器中的sub和sup影响行高，就把两者的line-height设为0，然后用top和bottom手动设置两者偏移量。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;如何使用&#34;&gt;如何使用&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;npm install normalize.css&lt;/li&gt;
+&lt;li&gt;引入 normalize.css 源码并在此基础上构建，在必要的时候用你自己写的CSS覆盖默认值&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Normalize.css 被拆分为多个独立的部分，这样你就可以定制自己所需要的，可以选择性地移除掉不会用到部分。
+比如在移动端使用的时候，就可以把为了兼容IE的部分移除。&lt;/p&gt;
+
+&lt;h4 id=&#34;参考资料&#34;&gt;参考资料&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000003025718&#34;&gt;https://segmentfault.com/a/1190000003025718&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jerryzou.com/posts/aboutNormalizeCss/&#34;&gt;http://jerryzou.com/posts/aboutNormalizeCss/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
     
     <item>
       <title>rem 的使用</title>
@@ -19,11 +151,11 @@
 
 &lt;hr /&gt;
 
-&lt;h3 id=&#34;背景:2cde4e82036d83186c99adfb52f054f4&#34;&gt;背景：&lt;/h3&gt;
+&lt;h3 id=&#34;背景&#34;&gt;背景：&lt;/h3&gt;
 
 &lt;p&gt;最近因为调查问卷的需求，需要在移动端整体缩放页面，故考虑使用 rem 。&lt;/p&gt;
 
-&lt;h3 id=&#34;简介:2cde4e82036d83186c99adfb52f054f4&#34;&gt;简介：&lt;/h3&gt;
+&lt;h3 id=&#34;简介&#34;&gt;简介：&lt;/h3&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;px 相对于显示器屏幕分辨率而言的。&lt;/p&gt;
@@ -33,9 +165,9 @@
 
 &lt;hr /&gt;
 
-&lt;h3 id=&#34;原因:2cde4e82036d83186c99adfb52f054f4&#34;&gt;原因：&lt;/h3&gt;
+&lt;h3 id=&#34;原因&#34;&gt;原因：&lt;/h3&gt;
 
-&lt;h4 id=&#34;为什么选择-rem-我的理由如下:2cde4e82036d83186c99adfb52f054f4&#34;&gt;为什么选择 rem ,我的理由如下：&lt;/h4&gt;
+&lt;h4 id=&#34;为什么选择-rem-我的理由如下&#34;&gt;为什么选择 rem ,我的理由如下：&lt;/h4&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;精准缩放，等比例适应所有屏幕
@@ -48,9 +180,9 @@
 &lt;li&gt;&lt;p&gt;易于维护修改&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;使用:2cde4e82036d83186c99adfb52f054f4&#34;&gt;使用：&lt;/h3&gt;
+&lt;h3 id=&#34;使用&#34;&gt;使用：&lt;/h3&gt;
 
-&lt;h4 id=&#34;动态赋值页面根元素-html-的字体大小:2cde4e82036d83186c99adfb52f054f4&#34;&gt;动态赋值页面根元素(html)的字体大小&lt;/h4&gt;
+&lt;h4 id=&#34;动态赋值页面根元素-html-的字体大小&#34;&gt;动态赋值页面根元素(html)的字体大小&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;(function (doc, win) {
     var docEl = doc.documentElement,
@@ -80,17 +212,17 @@
 
 &lt;p&gt;例如根元素(html)字体大小为 100 像素时，宽为 100 像素的 div，其样式设置为 width:1rem; 。&lt;/p&gt;
 
-&lt;h3 id=&#34;心得:2cde4e82036d83186c99adfb52f054f4&#34;&gt;心得：&lt;/h3&gt;
+&lt;h3 id=&#34;心得&#34;&gt;心得：&lt;/h3&gt;
 
 &lt;p&gt;1080 是设计图宽度，这样可以直接在图上量取数值，写在样式中。例如间距 40px ，赋值 0.4rem 。&lt;/p&gt;
 
 &lt;p&gt;chrome 支持的最小字体为 12px，所以设置为 100px，方便取值。&lt;/p&gt;
 
-&lt;h3 id=&#34;兼容:2cde4e82036d83186c99adfb52f054f4&#34;&gt;兼容：&lt;/h3&gt;
+&lt;h3 id=&#34;兼容&#34;&gt;兼容：&lt;/h3&gt;
 
 &lt;p&gt;&lt;img src=&#34;../rem.jpg&#34; alt=&#34;rem 兼容性&#34; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;坑:2cde4e82036d83186c99adfb52f054f4&#34;&gt;坑：&lt;/h3&gt;
+&lt;h3 id=&#34;坑&#34;&gt;坑：&lt;/h3&gt;
 
 &lt;p&gt;随着越来越多的项目使用，后面在此补上具体坑。&lt;/p&gt;
 </description>
@@ -128,11 +260,11 @@
 
 &lt;p&gt;目前主要有两种通过&lt;code&gt;CSS&lt;/code&gt;来自定义滚动条的样式，但也还是做不到兼容所有的浏览器。&lt;/p&gt;
 
-&lt;h3 id=&#34;1-在-webkit-中自定义滚动条:10d45869194ae5685e215916e5a80d1c&#34;&gt;1. 在&lt;code&gt;WebKit&lt;/code&gt;中自定义滚动条&lt;/h3&gt;
+&lt;h3 id=&#34;1-在-webkit-中自定义滚动条&#34;&gt;1. 在&lt;code&gt;WebKit&lt;/code&gt;中自定义滚动条&lt;/h3&gt;
 
 &lt;p&gt;通过伪元素和 &lt;a href=&#34;http://www.toobug.net/article/what_is_shadow_dom.html&#34;&gt;Shadow DOM&lt;/a&gt; 来实现，David Hyatt 2009 年就在 &lt;a href=&#34;https://webkit.org/blog/363/styling-scrollbars/&#34;&gt;WebKit 官网&lt;/a&gt;介绍过这种方法，并列出了&lt;a href=&#34;http://trac.webkit.org/export/41842/trunk/LayoutTests/scrollbars/overflow-scrollbar-combinations.html&#34;&gt;所有可能的组合&lt;/a&gt;。&lt;/p&gt;
 
-&lt;h4 id=&#34;1-1-伪元素所代表的不同部分:10d45869194ae5685e215916e5a80d1c&#34;&gt;1.1 伪元素所代表的不同部分&lt;/h4&gt;
+&lt;h4 id=&#34;1-1-伪元素所代表的不同部分&#34;&gt;1.1 伪元素所代表的不同部分&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;::-webkit-scrollbar              { /* 1 */ }
 ::-webkit-scrollbar-button       { /* 2 */ }
@@ -145,7 +277,7 @@
 
 &lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/huoteng/blog/master/media/custom-scrollbar/scrollbar-parts.png&#34; alt=&#34;Scrollbar Parts&#34; /&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;1-2-伪类所代表的不同状态:10d45869194ae5685e215916e5a80d1c&#34;&gt;1.2 伪类所代表的不同状态&lt;/h4&gt;
+&lt;h4 id=&#34;1-2-伪类所代表的不同状态&#34;&gt;1.2 伪类所代表的不同状态&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;:horizontal         //应用于水平滚动条
 :vertical           //应用于垂直滚动条
@@ -160,7 +292,7 @@
 :window-inactive    //应用于所有滚动条轨道，指示应用滚动条的某个页面容器(元素)是否当前被激活(在webkit最近的版本中，该伪类也可以用于`::selection`伪元素，Webkit团队有计划扩展它并推动成为一个标准的伪类)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;1-3-伪元素和伪类的组合使用:10d45869194ae5685e215916e5a80d1c&#34;&gt;1.3 伪元素和伪类的组合使用&lt;/h4&gt;
+&lt;h4 id=&#34;1-3-伪元素和伪类的组合使用&#34;&gt;1.3 伪元素和伪类的组合使用&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;::-webkit-scrollbar-track-piece:start {
    /* Select the top half (or left half) or scrollbar track individually */
@@ -175,7 +307,7 @@
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;1-4-简单示例:10d45869194ae5685e215916e5a80d1c&#34;&gt;1.4 简单示例&lt;/h4&gt;
+&lt;h4 id=&#34;1-4-简单示例&#34;&gt;1.4 简单示例&lt;/h4&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;配合&lt;code&gt;WebKit&lt;/code&gt;的伪类和伪元素，我们可以同时使用&lt;code&gt;:enabled&lt;/code&gt;，&lt;code&gt;:disabled&lt;/code&gt;，&lt;code&gt;:hover&lt;/code&gt;等伪类，也可以去应用一些&lt;code&gt;CSS&lt;/code&gt;属性，如渐变、圆角、gbba 等。具体可以看看官网给出的 &lt;a href=&#34;http://trac.webkit.org/export/41842/trunk/LayoutTests/scrollbars/overflow-scrollbar-combinations.html&#34;&gt;demo&lt;/a&gt;。&lt;/p&gt;
@@ -196,7 +328,7 @@
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;2-在-ie-中自定义滚动条:10d45869194ae5685e215916e5a80d1c&#34;&gt;2. 在&lt;code&gt;IE&lt;/code&gt;中自定义滚动条&lt;/h3&gt;
+&lt;h3 id=&#34;2-在-ie-中自定义滚动条&#34;&gt;2. 在&lt;code&gt;IE&lt;/code&gt;中自定义滚动条&lt;/h3&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;http://www.dengjie.com/temp/scroller.swf&#34;&gt;在线的可视化工具&lt;/a&gt;，简单好用。&lt;/p&gt;
@@ -212,7 +344,7 @@ scrollbar-track-color: color;       //立体滚动条背景颜色
 scrollbar-base-color:color;         //滚动条的基色
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;参考资料:10d45869194ae5685e215916e5a80d1c&#34;&gt;参考资料&lt;/h3&gt;
+&lt;h3 id=&#34;参考资料&#34;&gt;参考资料&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://css-tricks.com/custom-scrollbars-in-webkit&#34;&gt;Custom Scrollbars in WebKit&lt;/a&gt;&lt;/li&gt;
@@ -317,7 +449,7 @@ The first thing you&#39;ll want to do is to draw boxes around every component (a
 &lt;p&gt;我们会发现不该换行的地方全被截断了。这可怎么办？看来问题是出在 &lt;code&gt;word-break: break-all&lt;/code&gt; 上了。我们来看下这个属性的详细解释：&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;h1 id=&#34;word-break:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;word-break&lt;/h1&gt;
+&lt;h1 id=&#34;word-break&#34;&gt;word-break&lt;/h1&gt;
 
 &lt;p&gt;The word-break CSS property is used to specify whether to break lines within words.
 * normal : Use the default line break rule.
@@ -332,7 +464,7 @@ The first thing you&#39;ll want to do is to draw boxes around every component (a
 &lt;p&gt;但其实 &lt;code&gt;word-break&lt;/code&gt; 有个只有 webkit/blink 引擎支持的属性，&lt;code&gt;break-wrod&lt;/code&gt;。通过这个属性，我们可以让英文句子在正确的位置换行，但如果实在没有地方可以打断，会进行强制打断。但它是个非标准属性，通过 Google 可知，它的效果基本等同于 &lt;code&gt;word-wrap: break-word&lt;/code&gt;。&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;h1 id=&#34;word-wrap:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;word-wrap&lt;/h1&gt;
+&lt;h1 id=&#34;word-wrap&#34;&gt;word-wrap&lt;/h1&gt;
 
 &lt;p&gt;The word-wrap property is used to specify whether or not the browser may break lines within words in order to prevent overflow when an otherwise unbreakable string is too long to fit in its containing box.
 * normal : Indicates that lines may only break at normal word break points.
@@ -389,7 +521,7 @@ The first thing you&#39;ll want to do is to draw boxes around every component (a
 
 &lt;p&gt;CSS 作为 Web 的基础部分，极其容易上手。但是 CSS 并不算的上是一门编程语言，在语言能力上略显薄弱，往往导致整体的维护性变差。但是这并没有使得大家停止对 CSS 的探索，从命名规范，目录架构，预处理器(如&lt;code&gt;SASS&lt;/code&gt;)，后处理器（&lt;code&gt;PostCSS&lt;/code&gt;），模块化等等的方向上，努力把 CSS 变得更好。&lt;/p&gt;
 
-&lt;h3 id=&#34;关于自我历程:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;关于自我历程&lt;/h3&gt;
+&lt;h3 id=&#34;关于自我历程&#34;&gt;关于自我历程&lt;/h3&gt;
 
 &lt;p&gt;其实我自己并没有系统的学习过 CSS（虽然我现在也不知道如何系统的学习），看了几个视频，扫了下中文版的 API，然后就开始了切图生涯，很多的知识点也都是后来一些零散的博客中了解到的。这过程中，的的确确踩过不少的坑，有的填了，有的继续祸害着项目里其它的同学。也导致我在很长的时段时间里都是走在一个混乱无序的 CSS 书写当中。&lt;/p&gt;
 
@@ -415,17 +547,17 @@ The first thing you&#39;ll want to do is to draw boxes around every component (a
 
 &lt;p&gt;采用类似 &lt;code&gt;BEM/SUIT&lt;/code&gt; 等等的命名方式等等。&lt;/p&gt;
 
-&lt;h3 id=&#34;现有的技术选择:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;现有的技术选择&lt;/h3&gt;
+&lt;h3 id=&#34;现有的技术选择&#34;&gt;现有的技术选择&lt;/h3&gt;
 
 &lt;p&gt;其实我们在平时应该或多或少的接触过一些 &lt;code&gt;SASS&lt;/code&gt;, &lt;code&gt;Compass&lt;/code&gt;, &lt;code&gt;BEM&lt;/code&gt;, &lt;code&gt;SMACSS&lt;/code&gt;, &lt;code&gt;OOCSS&lt;/code&gt; 的概念与设计模式。当然并没有一种解决方案是绝对的，合适当前的项目就可以了。&lt;/p&gt;
 
-&lt;h4 id=&#34;bem:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;BEM&lt;/h4&gt;
+&lt;h4 id=&#34;bem&#34;&gt;BEM&lt;/h4&gt;
 
 &lt;p&gt;用于解决项目命名规则问题。BEM 通过已&lt;code&gt;block(块)&lt;/code&gt;，&lt;code&gt;element(元素)&lt;/code&gt;，&lt;code&gt;modifier(修饰符)&lt;/code&gt; 的概念，使用连接符串联父级块作为前缀，来实现功能模块命名的唯一性。有兴趣的同学可以看一下 &lt;a href=&#34;http://www.w3cplus.com/css/the-history-of-the-bem-methodology.html&#34;&gt;BEM的进化史&lt;/a&gt;。发现一句话并不太好表述清楚，想要具体了解的同学可以移步&lt;a href=&#34;https://en.bem.info/&#34;&gt;官网&lt;/a&gt;。&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;BEM&lt;/code&gt; 这种唯一性以及元素间的平级展开，往往在稍微复杂一点的项目里，就会把名字命名的很长很长。目前也有很多是在 &lt;code&gt;BEM&lt;/code&gt; 的基础上衍生出来的一些方式(如 &lt;code&gt;SUIT&lt;/code&gt;)。&lt;/p&gt;
 
-&lt;h4 id=&#34;oocss-object-oriented-css:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;OOCSS （Object Oriented CSS）&lt;/h4&gt;
+&lt;h4 id=&#34;oocss-object-oriented-css&#34;&gt;OOCSS （Object Oriented CSS）&lt;/h4&gt;
 
 &lt;p&gt;面向对象 CSS。是一种已面向对象的维护方式去管理组织 CSS 代码。其哲学理念是模块化，功能单一性，关注点分离。&lt;/p&gt;
 
@@ -438,26 +570,26 @@ The first thing you&#39;ll want to do is to draw boxes around every component (a
 
 &lt;p&gt;&lt;code&gt;OOCSS&lt;/code&gt; 与 &lt;code&gt;SASS&lt;/code&gt; 结合是一个不错的选择，充分强大。&lt;/p&gt;
 
-&lt;h4 id=&#34;smacss-scalable-and-modular-architecture-for-css:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;SMACSS(Scalable and Modular Architecture for CSS)&lt;/h4&gt;
+&lt;h4 id=&#34;smacss-scalable-and-modular-architecture-for-css&#34;&gt;SMACSS(Scalable and Modular Architecture for CSS)&lt;/h4&gt;
 
 &lt;p&gt;可扩展和模块化 CSS。
 把 CSS 样式划分为若干个不同类别的文件，如基础，布局，模块，主题等等。在加上一些特有前缀的组合。&lt;/p&gt;
 
-&lt;h4 id=&#34;acss-atomic-css:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;ACSS (Atomic CSS)&lt;/h4&gt;
+&lt;h4 id=&#34;acss-atomic-css&#34;&gt;ACSS (Atomic CSS)&lt;/h4&gt;
 
 &lt;p&gt;原子化 CSS。遵循关注点分离原则。&lt;/p&gt;
 
-&lt;h3 id=&#34;css-模块化:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;CSS 模块化&lt;/h3&gt;
+&lt;h3 id=&#34;css-模块化&#34;&gt;CSS 模块化&lt;/h3&gt;
 
 &lt;p&gt;随着 &lt;code&gt;React&lt;/code&gt; 的迅速引爆，其它关于 CSS 的另一种使用方式也在兴起。将样式在 JS 中定义。借助 &lt;code&gt;require/import&lt;/code&gt; 而解决了 CSS 中的命名空间的问题，使得单文件变得简单清晰。而通过组合，也可以实现快速的重复利用。甚至有些 CSS 可以单独与组件去绑定。&lt;/p&gt;
 
 &lt;p&gt;以及其它的一些方式。上述的方式，是比较让我眼前一亮的感觉。&lt;/p&gt;
 
-&lt;h3 id=&#34;未来走向:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;未来走向&lt;/h3&gt;
+&lt;h3 id=&#34;未来走向&#34;&gt;未来走向&lt;/h3&gt;
 
 &lt;p&gt;待补充&amp;hellip;&lt;/p&gt;
 
-&lt;h3 id=&#34;扩展阅读:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;扩展阅读&lt;/h3&gt;
+&lt;h3 id=&#34;扩展阅读&#34;&gt;扩展阅读&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://glenmaddern.com/articles/css-modules&#34;&gt;CSS模块&lt;/a&gt;&lt;a href=&#34;http://www.w3cplus.com/css/css-modules.html&#34;&gt;(中文翻译版)&lt;/a&gt;&lt;/li&gt;

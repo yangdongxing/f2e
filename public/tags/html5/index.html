@@ -28,7 +28,7 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/css">css</a>
-        <span>(4)</span>
+        <span>(5)</span>
     </li>
     
     <li>
@@ -38,7 +38,7 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/html5">html5</a>
-        <span>(1)</span>
+        <span>(2)</span>
     </li>
     
     <li>
@@ -68,6 +68,11 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/webpack">webpack</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
+        <a href="http://dxy-developer.github.io/f2e/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">前端性能优化</a>
         <span>(1)</span>
     </li>
     
@@ -107,6 +112,40 @@
         <img src="http://dxy-developer.github.io/f2e/media/yaoyj.jpg" />
         
 
+        <a class="J-link" href="http://dxy-developer.github.io/f2e/blog/2016/07/06/html-%E6%A1%8C%E9%9D%A2%E6%B6%88%E6%81%AF%E9%80%9A%E7%9F%A5/">HTML 桌面消息通知</a>
+    </h1>
+
+    <p class="post-info">
+        Author.<span>yaoyj</span> ·
+        Tag.<a href="http://dxy-developer.github.io/f2e/tags/html5">HTML5</a> ·
+        Wed, Jul 6, 2016
+    </p>
+
+    <div class="post-body markdown-body J-hack-url" data-url="http://dxy-developer.github.io/f2e/post%5cyaoyj%5c20160706%5c">
+        
+        <p>HTML 桌面消息通知，指的是通过浏览器的 Notification 对象为用户在系统桌面设置和显示通知提醒。这样，用户就可以做自己的事情，而不用担心会错过一些消息。</p>
+
+        
+    </div>
+
+    
+    <p class="post-more">
+        <a href="http://dxy-developer.github.io/f2e/blog/2016/07/06/html-%E6%A1%8C%E9%9D%A2%E6%B6%88%E6%81%AF%E9%80%9A%E7%9F%A5/">查看更多…</a>
+    </p>
+    
+</div>
+
+    
+    <div class="post">
+    <h1 class="post-title">
+
+        
+        
+
+        
+        <img src="http://dxy-developer.github.io/f2e/media/yaoyj.jpg" />
+        
+
         <a class="J-link" href="http://dxy-developer.github.io/f2e/blog/2016/04/05/html5-drag-and-drop/">HTML5 drag and drop</a>
     </h1>
 
@@ -116,11 +155,11 @@
         Tue, Apr 5, 2016
     </p>
 
-    <div class="post-body markdown-body J-hack-url" data-url="http://dxy-developer.github.io/f2e/post/yaoyj/20160405/">
+    <div class="post-body markdown-body J-hack-url" data-url="http://dxy-developer.github.io/f2e/post%5cyaoyj%5c20160405%5c">
         
         <hr />
 
-<h4 id="拖放简介:1736164b2264d1395a37ad0ce62d38a4">拖放简介：</h4>
+<h4 id="拖放简介">拖放简介：</h4>
 
 <p>拖放操作的过程是怎样的？</p>
 
@@ -147,25 +186,31 @@
 
 <script>
   
-  function renderVisit(link, dom) {
+  function renderVisit() {
     var query = new AV.Query('Visit');
-    query.equalTo('link', link);
-    query.find().then(function(res) {
-      var len = res.length || 0;
-      dom.append('· 浏览量. <span>' + len + '</span>');
+    query.limit(1000);
+    query.find().then(function(list) {
+      var treeMap = {};
+      list.forEach(function(item) {
+        var keyLink = item.get('link'),
+            count = item.get('visitCount');
+        treeMap[keyLink] = count;
+      });
+
+        $('.J-list .post').each(function() {
+          var a = document.createElement('a');
+          var el = $(this),
+              href = el.find('.J-link').attr('href'),
+              dom = el.find('.post-info');
+
+          a.href = href;
+          var link = a.pathname;
+          var len = treeMap[link] || 0;
+          dom.append('· 浏览量. <span>' + len + '</span>');
+        });
     });
   }
-
-  $('.J-list .post').each(function() {
-    var a = document.createElement('a');
-    var el = $(this),
-        href = el.find('.J-link').attr('href'),
-        dom = el.find('.post-info');
-
-    a.href = href;
-    var link = a.pathname;
-    renderVisit(link, dom);
-  });
+  renderVisit();
 </script>
 
     </div>
@@ -177,7 +222,7 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/css">css</a>
-        <span>(4)</span>
+        <span>(5)</span>
     </li>
     
     <li>
@@ -187,7 +232,7 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/html5">html5</a>
-        <span>(1)</span>
+        <span>(2)</span>
     </li>
     
     <li>
@@ -221,6 +266,11 @@
     </li>
     
     <li>
+        <a href="http://dxy-developer.github.io/f2e/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">前端性能优化</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
         <a href="http://dxy-developer.github.io/f2e/tags/%E8%87%AA%E5%8A%A8%E6%8F%90%E4%BA%A4">自动提交</a>
         <span>(1)</span>
     </li>
@@ -239,6 +289,23 @@
     <h3>文章列表</h3>
     <div class="posts">
         
+        
+        <div class="post">
+            <span class="post-title">
+                
+
+                
+                <img src="http://dxy-developer.github.io/f2e/media/yaoyj.jpg" />
+                
+
+                <a href="http://dxy-developer.github.io/f2e/blog/2016/07/06/html-%E6%A1%8C%E9%9D%A2%E6%B6%88%E6%81%AF%E9%80%9A%E7%9F%A5/">HTML 桌面消息通知</a>
+            </span>
+            <span class="post-info">
+                Author.<span>yaoyj</span> ·
+                Tag.<a href="http://dxy-developer.github.io/f2e/tags/html5">HTML5</a> ·
+                Wed, Jul 6, 2016
+            </span>
+        </div>
         
         <div class="post">
             <span class="post-title">
