@@ -28,7 +28,7 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/css">css</a>
-        <span>(4)</span>
+        <span>(5)</span>
     </li>
     
     <li>
@@ -38,7 +38,7 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/html5">html5</a>
-        <span>(1)</span>
+        <span>(2)</span>
     </li>
     
     <li>
@@ -68,6 +68,11 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/webpack">webpack</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
+        <a href="http://dxy-developer.github.io/f2e/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">前端性能优化</a>
         <span>(1)</span>
     </li>
     
@@ -101,20 +106,20 @@
         Tag.<a href="http://dxy-developer.github.io/f2e/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a> ·
         Mon, Apr 4, 2016
     </p>
-    <div class="post-body J-hack-url" data-url="http://dxy-developer.github.io/f2e/post/uojo/">
+    <div class="post-body J-hack-url" data-url="http://dxy-developer.github.io/f2e/post%5cuojo%5c">
         
 
-<h3 id="设计模式:10d8aa81d13021669fdcd5a46901e0c0">设计模式</h3>
+<h3 id="设计模式">设计模式</h3>
 
 <p>关于设计模式，文诌诌的描述定义我就不说了，大家问下度娘即可。</p>
 
-<h1 id="设计模式在javascript中的应用:10d8aa81d13021669fdcd5a46901e0c0">设计模式在JavaScript中的应用</h1>
+<h1 id="设计模式在javascript中的应用">设计模式在JavaScript中的应用</h1>
 
 <hr />
 
 <p>本文用大白话的形式描述下个人理解。首先“设计模式”翻译下就是在设计程序业务流的套路，这种“套路”都是前车之鉴，被历史反复实践和总结，所以还是值得学习了解的，毕竟每个程序员的代码不仅仅是让机器解释，而是给他人阅读的（让每个同行都能看的懂并能维护你的代码）！以下是以本人理解的设计模式在Javascript中应用描述：</p>
 
-<h3 id="1-单例模式:10d8aa81d13021669fdcd5a46901e0c0">1.单例模式</h3>
+<h3 id="1-单例模式">1.单例模式</h3>
 
 <p>类中操作一个实例</p>
 
@@ -130,7 +135,7 @@ var a=A(&quot;hello&quot;);
 var b=A(&quot;world&quot;);
 </code></pre>
 
-<h3 id="2-策略模式:10d8aa81d13021669fdcd5a46901e0c0">2.策略模式</h3>
+<h3 id="2-策略模式">2.策略模式</h3>
 
 <p>使用分支判断</p>
 
@@ -147,7 +152,7 @@ B(&quot;hello&quot;);
 B(&quot;world&quot;);
 </code></pre>
 
-<h3 id="3-代理模式:10d8aa81d13021669fdcd5a46901e0c0">3.代理模式</h3>
+<h3 id="3-代理模式">3.代理模式</h3>
 
 <p>你调用的方法可能只是一个中间件</p>
 
@@ -162,15 +167,15 @@ va d={f2:function(){
 d();
 </code></pre>
 
-<h3 id="4-迭代器模式:10d8aa81d13021669fdcd5a46901e0c0">4.迭代器模式</h3>
+<h3 id="4-迭代器模式">4.迭代器模式</h3>
 
 <p>循环遍历！for , while &hellip;</p>
 
-<h3 id="5-发布-订阅模式:10d8aa81d13021669fdcd5a46901e0c0">5.发布/订阅模式</h3>
+<h3 id="5-发布-订阅模式">5.发布/订阅模式</h3>
 
 <p>DOM事件 or 自定义事件</p>
 
-<h3 id="6-命令模式:10d8aa81d13021669fdcd5a46901e0c0">6.命令模式</h3>
+<h3 id="6-命令模式">6.命令模式</h3>
 
 <p>将要执行的【方法】和【参数对象】一并传入到另一个方法中</p>
 
@@ -188,7 +193,7 @@ e(function(e){
 
 <hr />
 
-<h2 id="结语:10d8aa81d13021669fdcd5a46901e0c0">结语</h2>
+<h2 id="结语">结语</h2>
 
 <p>设计模式就好比《三十六计》，不了解也能编码，只是编码后表述起来方便、专业些。仔细的人可能会发觉当设计一套语言或框架、类库时，设计模式都是理论基础！</p>
 
@@ -213,25 +218,29 @@ A：条条大道通罗马，只要<strong>编码有规律可循</strong>，且�
     
     function postVisitData() {
       var visit = new VisitTable();
-      visit.save({
-        link: URLLinkId,
-        author: author,
-        title: title
-      });
-    }
-
-    
-    function getCurrentData(link) {
       var query = new AV.Query('Visit');
-      query.equalTo('link', link);
-      query.find().then(function(results) {
-        var len = results.length;
-        $('.J-detail-option').append('· 浏览量. <span>' + len + '</span>');
+
+      query.equalTo('link', URLLinkId)
+      query.find().then(function(list) {
+        var count = 1;
+        if (list.length > 0) {
+          var item = list[0];
+          item.increment('visitCount');
+          item.save();
+          count = item.get('visitCount');
+        } else {
+          visit.increment('visitCount');
+          visit.save({
+            link: URLLinkId,
+            author: author,
+            title: title
+          });
+        }
+        $('.J-detail-option').append('· 浏览量. <span>' + count + '</span>');
       });
     }
 
     postVisitData();
-    getCurrentData(URLLinkId);
   });
 </script>
 
@@ -260,7 +269,7 @@ var duoshuoQuery = {short_name:"dxy-developer"};
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/css">css</a>
-        <span>(4)</span>
+        <span>(5)</span>
     </li>
     
     <li>
@@ -270,7 +279,7 @@ var duoshuoQuery = {short_name:"dxy-developer"};
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/html5">html5</a>
-        <span>(1)</span>
+        <span>(2)</span>
     </li>
     
     <li>
@@ -300,6 +309,11 @@ var duoshuoQuery = {short_name:"dxy-developer"};
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/webpack">webpack</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
+        <a href="http://dxy-developer.github.io/f2e/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">前端性能优化</a>
         <span>(1)</span>
     </li>
     

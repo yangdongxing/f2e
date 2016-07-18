@@ -28,7 +28,7 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/css">css</a>
-        <span>(4)</span>
+        <span>(5)</span>
     </li>
     
     <li>
@@ -38,7 +38,7 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/html5">html5</a>
-        <span>(1)</span>
+        <span>(2)</span>
     </li>
     
     <li>
@@ -72,6 +72,11 @@
     </li>
     
     <li>
+        <a href="http://dxy-developer.github.io/f2e/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">前端性能优化</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
         <a href="http://dxy-developer.github.io/f2e/tags/%E8%87%AA%E5%8A%A8%E6%8F%90%E4%BA%A4">自动提交</a>
         <span>(1)</span>
     </li>
@@ -101,10 +106,10 @@
         Tag.<a href="http://dxy-developer.github.io/f2e/tags/webpack">Webpack</a> ·
         Sat, Mar 26, 2016
     </p>
-    <div class="post-body J-hack-url" data-url="http://dxy-developer.github.io/f2e/post/lizy/201603/">
+    <div class="post-body J-hack-url" data-url="http://dxy-developer.github.io/f2e/post%5clizy%5c201603%5c">
         
 
-<h1 id="前言:bbd2682ef8c1818378c1ee610c9ff5a9">前言</h1>
+<h1 id="前言">前言</h1>
 
 <p>以下内容为小帅在学习Webpack过程中整理的笔记。持续完善中&hellip;</p>
 
@@ -112,7 +117,7 @@
 
 <hr />
 
-<h1 id="webpack是什么:bbd2682ef8c1818378c1ee610c9ff5a9">Webpack是什么</h1>
+<h1 id="webpack是什么">Webpack是什么</h1>
 
 <p>简而言之，Webpack是一个模块化管理和打包前端资源的工具。</p>
 
@@ -125,7 +130,7 @@
 <p>通过加载器（loader）的转换，任何形式的资源都可以视作模块，
 比如 CommonJs 模块、 AMD 模块、 ES6 模块、CSS、图片、 JSON、Coffeescript、 LESS 等。</p>
 
-<h2 id="webpack的目标:bbd2682ef8c1818378c1ee610c9ff5a9">Webpack的目标</h2>
+<h2 id="webpack的目标">Webpack的目标</h2>
 
 <ul>
 <li>把依赖树拆成可按需加载的块</li>
@@ -137,31 +142,31 @@
 <li>适合大型项目</li>
 </ul>
 
-<h2 id="webpack的特别之处:bbd2682ef8c1818378c1ee610c9ff5a9">webpack的特别之处</h2>
+<h2 id="webpack的特别之处">webpack的特别之处</h2>
 
-<h3 id="代码拆分:bbd2682ef8c1818378c1ee610c9ff5a9">代码拆分</h3>
+<h3 id="代码拆分">代码拆分</h3>
 
 <p>webpack 的依赖树中有同步和异步两种依赖方式。其中，异步模块将会被拆成一个新的块，
 并且在被优化后，生成一个对应的文件。</p>
 
-<h3 id="加载器:bbd2682ef8c1818378c1ee610c9ff5a9">加载器</h3>
+<h3 id="加载器">加载器</h3>
 
 <p>webpack 本身只支持处理 JavaScript，但可以通过加载器来把别的资源转为 JavaScript。
 因此，每个资源都被当作一个模块。</p>
 
-<h3 id="智能解析:bbd2682ef8c1818378c1ee610c9ff5a9">智能解析</h3>
+<h3 id="智能解析">智能解析</h3>
 
 <p>webpack 有一个基本支持所有第三方库的智能解析器，甚至还支持带有表达式的依赖表述法，
 如 require(&ldquo;./templates/&rdquo; + name + &ldquo;.jade&rdquo;)。支持最常用的 CommonJs 和 AMD 这两种模块风格。</p>
 
-<h3 id="插件系统:bbd2682ef8c1818378c1ee610c9ff5a9">插件系统</h3>
+<h3 id="插件系统">插件系统</h3>
 
 <p>webpack 有一个很出色的插件系统，甚至大部分内置功能都是基于这个插件系统而来的。
 这个插件系统允许你根据需要来自定义 webpack，以及通过开源的方式来分发通用插件。</p>
 
 <hr />
 
-<h1 id="创建webpack的动机:bbd2682ef8c1818378c1ee610c9ff5a9">创建Webpack的动机</h1>
+<h1 id="创建webpack的动机">创建Webpack的动机</h1>
 
 <p>如今的网站正在朝着Web app演化，具体体现在：</p>
 
@@ -175,7 +180,7 @@
 
 <p>如此多的代码需要被组织起来。模块系统给我们提供了把代码拆分成模块的可能。</p>
 
-<h2 id="现有的常用的模块系统风格:bbd2682ef8c1818378c1ee610c9ff5a9">现有的常用的模块系统风格</h2>
+<h2 id="现有的常用的模块系统风格">现有的常用的模块系统风格</h2>
 
 <ul>
 <li><code>&lt;script&gt;</code> 标签方式（无模块系统）</li>
@@ -184,7 +189,7 @@
 <li>ES6 模块</li>
 </ul>
 
-<h3 id="标签方式-无模块系统:bbd2682ef8c1818378c1ee610c9ff5a9">标签方式（无模块系统）</h3>
+<h3 id="标签方式-无模块系统">标签方式（无模块系统）</h3>
 
 <p>这是在不使用模块系统的前提下来管理模块代码库的方式。</p>
 
@@ -206,7 +211,7 @@
 大项目中列表越来越长而难以维护</p>
 </blockquote>
 
-<h3 id="commonjs-同步-require:bbd2682ef8c1818378c1ee610c9ff5a9">CommonJs：同步 require</h3>
+<h3 id="commonjs-同步-require">CommonJs：同步 require</h3>
 
 <p>这是node.js使用的方式</p>
 
@@ -233,7 +238,7 @@ npm 上已经有很多这种模块
 不能并行请求多个模块</p>
 </blockquote>
 
-<h3 id="amd-异步-require:bbd2682ef8c1818378c1ee610c9ff5a9">AMD：异步 require</h3>
+<h3 id="amd-异步-require">AMD：异步 require</h3>
 
 <p>因为 CommonJs 的同步 require 方案不适合如浏览器等环境，所以有了异步的定义和导出模块方案。例如：require.js</p>
 
@@ -257,7 +262,7 @@ return someExportedValue;
 有不同的方案</p>
 </blockquote>
 
-<h3 id="es6-模块:bbd2682ef8c1818378c1ee610c9ff5a9">ES6 模块</h3>
+<h3 id="es6-模块">ES6 模块</h3>
 
 <p>EcmaScript6 给 JavaScript 增加了模块系统。</p>
 
@@ -280,7 +285,7 @@ module &quot;localModule&quot; {}
 这种风格的模块还很少</p>
 </blockquote>
 
-<h2 id="模块的加载方式:bbd2682ef8c1818378c1ee610c9ff5a9">模块的加载方式</h2>
+<h2 id="模块的加载方式">模块的加载方式</h2>
 
 <p>因为模块是在客户端执行的，所以首先需要把模块从服务端加载到浏览器。</p>
 
@@ -293,7 +298,7 @@ module &quot;localModule&quot; {}
 
 <p>这两种方案都被广泛使用，但都不是最佳的。</p>
 
-<h3 id="一个模块一个请求:bbd2682ef8c1818378c1ee610c9ff5a9">一个模块一个请求</h3>
+<h3 id="一个模块一个请求">一个模块一个请求</h3>
 
 <p>优点：</p>
 
@@ -307,7 +312,7 @@ module &quot;localModule&quot; {}
 <p>过多请求导致负载过多，延迟过大，初始化慢</p>
 </blockquote>
 
-<h3 id="所有模块一个请求:bbd2682ef8c1818378c1ee610c9ff5a9">所有模块一个请求</h3>
+<h3 id="所有模块一个请求">所有模块一个请求</h3>
 
 <p>优点：</p>
 
@@ -321,7 +326,7 @@ module &quot;localModule&quot; {}
 <p>不需要或还不需要的模块也被加载了</p>
 </blockquote>
 
-<h3 id="分块加载:bbd2682ef8c1818378c1ee610c9ff5a9">分块加载</h3>
+<h3 id="分块加载">分块加载</h3>
 
 <p>在大多数情况下，各种极端方案的相互妥协会得到一个更好地方案。</p>
 
@@ -341,7 +346,7 @@ module &quot;localModule&quot; {}
 
 <p>更多可参考<a href="https://github.com/liunian/webpack-doc/blob/master/code-splitting.md">代码拆分</a>。</p>
 
-<h2 id="为何仅打包-javascript:bbd2682ef8c1818378c1ee610c9ff5a9">为何仅打包 JavaScript？</h2>
+<h2 id="为何仅打包-javascript">为何仅打包 JavaScript？</h2>
 
 <p>为什么一个模块系统只能帮助开发者打包（模块化）JavaScript？实际上我们还有很多别的静态资源需要处理，如：</p>
 
@@ -371,7 +376,7 @@ require(&quot;./template.jade&quot;);
 require(&quot;./image.png&quot;);
 </code></pre>
 
-<h2 id="静态分析:bbd2682ef8c1818378c1ee610c9ff5a9">静态分析</h2>
+<h2 id="静态分析">静态分析</h2>
 
 <p>在编译模块时，会尝试用静态分析来获取依赖关系。</p>
 
@@ -379,28 +384,28 @@ require(&quot;./image.png&quot;);
 
 <p>不同的代码库往往使用不同的风格，其中不少的风格还是比较怪异的……</p>
 
-<h3 id="解决问题的策略:bbd2682ef8c1818378c1ee610c9ff5a9">解决问题的策略</h3>
+<h3 id="解决问题的策略">解决问题的策略</h3>
 
 <p>一个好的解析器应当支持绝大多数的现存代码。如果开发者用了一些不寻常的方法，那么解析器应该提供一个兼容性最好的解决方案。</p>
 
 <hr />
 
-<h1 id="webpack安装:bbd2682ef8c1818378c1ee610c9ff5a9">Webpack安装</h1>
+<h1 id="webpack安装">Webpack安装</h1>
 
-<h2 id="node-js:bbd2682ef8c1818378c1ee610c9ff5a9">node.js</h2>
+<h2 id="node-js">node.js</h2>
 
 <p><a href="https://nodejs.org/en/">安装node.js</a></p>
 
 <p>node.js自带了一个叫做npm的包管理工具</p>
 
-<h2 id="webpack:bbd2682ef8c1818378c1ee610c9ff5a9">Webpack</h2>
+<h2 id="webpack">Webpack</h2>
 
 <p>我们使用npm安装Webpack</p>
 
 <pre><code>$ npm install webpack -g    
 </code></pre>
 
-<h2 id="在项目中使用webpack:bbd2682ef8c1818378c1ee610c9ff5a9">在项目中使用Webpack</h2>
+<h2 id="在项目中使用webpack">在项目中使用Webpack</h2>
 
 <p>最好的方法是把 webpack 作为项目的依赖，这样，每个项目都可以使用自己所需要的版本而不必依赖于全局的 webpack。</p>
 
@@ -421,7 +426,7 @@ require(&quot;./image.png&quot;);
 <pre><code>npm install webpack --save-dev --registry=https://registry.npm.taobao.org
 </code></pre>
 
-<h2 id="webpack版本选择:bbd2682ef8c1818378c1ee610c9ff5a9">Webpack版本选择</h2>
+<h2 id="webpack版本选择">Webpack版本选择</h2>
 
 <p>webpack 有稳定版和 beta 版两个可用的版本，其中，beta 版本在版本号中添加了 -beta 的标识。
 beta 版本可能带有很多不稳定变更或实验性的功能，并且未完全测试。
@@ -430,21 +435,21 @@ beta 版本可能带有很多不稳定变更或实验性的功能，并且未完
 <pre><code>$ npm install webpack@1.2.x --save-dev
 </code></pre>
 
-<h2 id="webpack开发者工具:bbd2682ef8c1818378c1ee610c9ff5a9">Webpack开发者工具</h2>
+<h2 id="webpack开发者工具">Webpack开发者工具</h2>
 
 <pre><code>npm install webpack-dev-server --save-dev 
 </code></pre>
 
-<h2 id="复制如下代码到命令行执行-可快速安装:bbd2682ef8c1818378c1ee610c9ff5a9">复制如下代码到命令行执行，可快速安装</h2>
+<h2 id="复制如下代码到命令行执行-可快速安装">复制如下代码到命令行执行，可快速安装</h2>
 
 <pre><code>npm install webpack webpack-dev-server --save-dev --registry=https://registry.npm.taobao.org
 </code></pre>
 
 <hr />
 
-<h1 id="使用webpack:bbd2682ef8c1818378c1ee610c9ff5a9">使用Webpack</h1>
+<h1 id="使用webpack">使用Webpack</h1>
 
-<h2 id="基本使用方式:bbd2682ef8c1818378c1ee610c9ff5a9">基本使用方式</h2>
+<h2 id="基本使用方式">基本使用方式</h2>
 
 <p>最基本的使用webpack的方式是在命令行中输入webpack相关的命令并执行，
 此时webpack 会分析入口文件（entry.js）来找寻依赖文件。这些依赖文件（又称之为模块）会包括到 bundle.js 中。
@@ -483,7 +488,7 @@ webpack 会给每个模块一个唯一的 id，然后在 bundle.js 中通过该 
 }
 </code></pre>
 
-<h2 id="设置-webpack-dev-server:bbd2682ef8c1818378c1ee610c9ff5a9">设置 webpack-dev-server</h2>
+<h2 id="设置-webpack-dev-server">设置 webpack-dev-server</h2>
 
 <p>如果需要一直输入 npm run build 确实是一件非常无聊的事情，</p>
 
@@ -514,14 +519,14 @@ webpack 会给每个模块一个唯一的 id，然后在 bundle.js 中通过该 
 
 <p>访问 <a href="http://localhost:8080">http://localhost:8080</a> 会看到效果</p>
 
-<h2 id="webpack-config-js:bbd2682ef8c1818378c1ee610c9ff5a9">webpack.config.js</h2>
+<h2 id="webpack-config-js">webpack.config.js</h2>
 
 <p>在项目根目录手动创建名为webpack.config.js的配置文件,</p>
 
 <p>Webpack 在执行的时候，除了在命令行传入参数，还可以通过指定的配置文件来执行。
 默认情况下，会搜索当前目录的 webpack.config.js 文件。</p>
 
-<h2 id="浏览器自动刷新:bbd2682ef8c1818378c1ee610c9ff5a9">浏览器自动刷新</h2>
+<h2 id="浏览器自动刷新">浏览器自动刷新</h2>
 
 <p>webpack-dev-server阻止了 webpack 生成结果文件到硬盘，而是直接通过内存来提供服务</p>
 
@@ -558,7 +563,7 @@ module.exports = {
 
 <p>现在应用就可以在文件修改之后自动刷新了</p>
 
-<h2 id="默认自动刷新方式:bbd2682ef8c1818378c1ee610c9ff5a9">默认自动刷新方式</h2>
+<h2 id="默认自动刷新方式">默认自动刷新方式</h2>
 
 <p>在上面我们创建了 index.html 文件来获取更多的自由和控制，这样在<a href="http://localhost:8080/就可以自动刷新。">http://localhost:8080/就可以自动刷新。</a></p>
 
@@ -569,11 +574,11 @@ webpack 命令会尝试加载当前目录下的 webpack.config.js 文件。</p>
 
 <hr />
 
-<h1 id="加载器-1:bbd2682ef8c1818378c1ee610c9ff5a9">加载器</h1>
+<h1 id="加载器-1">加载器</h1>
 
 <p>加载器是把一个资源文件作为入参转换为另一个资源文件的 node.js 函数。</p>
 
-<h2 id="安装加载器:bbd2682ef8c1818378c1ee610c9ff5a9">安装加载器</h2>
+<h2 id="安装加载器">安装加载器</h2>
 
 <p>如果加载器发布在 npm 上，那么可以通过下面的两个命令来安装</p>
 
@@ -581,11 +586,11 @@ webpack 命令会尝试加载当前目录下的 webpack.config.js 文件。</p>
 $ npm install xxx-loader --save-dev
 </code></pre>
 
-<h2 id="加载器用法:bbd2682ef8c1818378c1ee610c9ff5a9">加载器用法</h2>
+<h2 id="加载器用法">加载器用法</h2>
 
 <p>请参见<a href="https://github.com/lizhiyao/learn_webpack_react">在项目中使用webpack+react+es6</a></p>
 
-<h1 id="参考:bbd2682ef8c1818378c1ee610c9ff5a9">参考</h1>
+<h1 id="参考">参考</h1>
 
 <p><a href="http://webpack.github.io/docs/">Webpack Document</a></p>
 
@@ -612,25 +617,29 @@ $ npm install xxx-loader --save-dev
     
     function postVisitData() {
       var visit = new VisitTable();
-      visit.save({
-        link: URLLinkId,
-        author: author,
-        title: title
-      });
-    }
-
-    
-    function getCurrentData(link) {
       var query = new AV.Query('Visit');
-      query.equalTo('link', link);
-      query.find().then(function(results) {
-        var len = results.length;
-        $('.J-detail-option').append('· 浏览量. <span>' + len + '</span>');
+
+      query.equalTo('link', URLLinkId)
+      query.find().then(function(list) {
+        var count = 1;
+        if (list.length > 0) {
+          var item = list[0];
+          item.increment('visitCount');
+          item.save();
+          count = item.get('visitCount');
+        } else {
+          visit.increment('visitCount');
+          visit.save({
+            link: URLLinkId,
+            author: author,
+            title: title
+          });
+        }
+        $('.J-detail-option').append('· 浏览量. <span>' + count + '</span>');
       });
     }
 
     postVisitData();
-    getCurrentData(URLLinkId);
   });
 </script>
 
@@ -659,7 +668,7 @@ var duoshuoQuery = {short_name:"dxy-developer"};
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/css">css</a>
-        <span>(4)</span>
+        <span>(5)</span>
     </li>
     
     <li>
@@ -669,7 +678,7 @@ var duoshuoQuery = {short_name:"dxy-developer"};
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/html5">html5</a>
-        <span>(1)</span>
+        <span>(2)</span>
     </li>
     
     <li>
@@ -699,6 +708,11 @@ var duoshuoQuery = {short_name:"dxy-developer"};
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/webpack">webpack</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
+        <a href="http://dxy-developer.github.io/f2e/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">前端性能优化</a>
         <span>(1)</span>
     </li>
     

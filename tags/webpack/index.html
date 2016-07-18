@@ -28,7 +28,7 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/css">css</a>
-        <span>(4)</span>
+        <span>(5)</span>
     </li>
     
     <li>
@@ -38,7 +38,7 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/html5">html5</a>
-        <span>(1)</span>
+        <span>(2)</span>
     </li>
     
     <li>
@@ -68,6 +68,11 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/webpack">webpack</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
+        <a href="http://dxy-developer.github.io/f2e/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">前端性能优化</a>
         <span>(1)</span>
     </li>
     
@@ -116,7 +121,7 @@
         Sat, Mar 26, 2016
     </p>
 
-    <div class="post-body markdown-body J-hack-url" data-url="http://dxy-developer.github.io/f2e/post/lizy/201603/">
+    <div class="post-body markdown-body J-hack-url" data-url="http://dxy-developer.github.io/f2e/post%5clizy%5c201603%5c">
         
         前言 以下内容为小帅在学习Webpack过程中整理的笔记。持续完善中&hellip; Demo的Github地址 Webpack是什么 简而言之，W
         
@@ -134,25 +139,31 @@
 
 <script>
   
-  function renderVisit(link, dom) {
+  function renderVisit() {
     var query = new AV.Query('Visit');
-    query.equalTo('link', link);
-    query.find().then(function(res) {
-      var len = res.length || 0;
-      dom.append('· 浏览量. <span>' + len + '</span>');
+    query.limit(1000);
+    query.find().then(function(list) {
+      var treeMap = {};
+      list.forEach(function(item) {
+        var keyLink = item.get('link'),
+            count = item.get('visitCount');
+        treeMap[keyLink] = count;
+      });
+
+        $('.J-list .post').each(function() {
+          var a = document.createElement('a');
+          var el = $(this),
+              href = el.find('.J-link').attr('href'),
+              dom = el.find('.post-info');
+
+          a.href = href;
+          var link = a.pathname;
+          var len = treeMap[link] || 0;
+          dom.append('· 浏览量. <span>' + len + '</span>');
+        });
     });
   }
-
-  $('.J-list .post').each(function() {
-    var a = document.createElement('a');
-    var el = $(this),
-        href = el.find('.J-link').attr('href'),
-        dom = el.find('.post-info');
-
-    a.href = href;
-    var link = a.pathname;
-    renderVisit(link, dom);
-  });
+  renderVisit();
 </script>
 
     </div>
@@ -164,7 +175,7 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/css">css</a>
-        <span>(4)</span>
+        <span>(5)</span>
     </li>
     
     <li>
@@ -174,7 +185,7 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/html5">html5</a>
-        <span>(1)</span>
+        <span>(2)</span>
     </li>
     
     <li>
@@ -204,6 +215,11 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/webpack">webpack</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
+        <a href="http://dxy-developer.github.io/f2e/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">前端性能优化</a>
         <span>(1)</span>
     </li>
     

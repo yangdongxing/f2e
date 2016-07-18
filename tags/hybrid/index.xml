@@ -37,7 +37,7 @@
 &lt;p&gt;支持全量更新，增量更新&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&#34;设计:10d8aa81d13021669fdcd5a46901e0c0&#34;&gt;设计&lt;/h2&gt;
+&lt;h2 id=&#34;设计&#34;&gt;设计&lt;/h2&gt;
 
 &lt;p&gt;资源增量更新机制是在如下前提下设计的&lt;/p&gt;
 
@@ -54,13 +54,13 @@
 &lt;li&gt;客户端根据配置文件，获取相应的增量包，进行patch&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;diff-patch:10d8aa81d13021669fdcd5a46901e0c0&#34;&gt;diff&amp;amp;patch&lt;/h2&gt;
+&lt;h2 id=&#34;diff-patch&#34;&gt;diff&amp;amp;patch&lt;/h2&gt;
 
 &lt;p&gt;找 node, swift, java都支持的 diff&amp;amp;patch 第三方库好麻烦。&lt;/p&gt;
 
 &lt;p&gt;最终采用的方案将diff的粒度增大到文件。根据文件内容的hash值是否不同，来决定是否进行文件的全量更新。因此最终的diff&amp;amp;patch算法是简单文件内容比较和文件增、删、替换操作。虽然不是最好的，但是它足够简单，实用。&lt;/p&gt;
 
-&lt;h2 id=&#34;gulp插件-https-github-com-alexayan-gulp-assets-incremental-update:10d8aa81d13021669fdcd5a46901e0c0&#34;&gt;&lt;a href=&#34;https://github.com/alexayan/gulp-assets-incremental-update&#34;&gt;gulp插件&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;gulp插件-https-github-com-alexayan-gulp-assets-incremental-update&#34;&gt;&lt;a href=&#34;https://github.com/alexayan/gulp-assets-incremental-update&#34;&gt;gulp插件&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;通过前端构建工具使版本方便的发布&lt;/p&gt;
 

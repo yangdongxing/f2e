@@ -28,7 +28,7 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/css">css</a>
-        <span>(4)</span>
+        <span>(5)</span>
     </li>
     
     <li>
@@ -38,7 +38,7 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/html5">html5</a>
-        <span>(1)</span>
+        <span>(2)</span>
     </li>
     
     <li>
@@ -68,6 +68,11 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/webpack">webpack</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
+        <a href="http://dxy-developer.github.io/f2e/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">前端性能优化</a>
         <span>(1)</span>
     </li>
     
@@ -101,12 +106,12 @@
         Tag.<a href="http://dxy-developer.github.io/f2e/tags/seo">SEO</a> ·
         Tue, Apr 5, 2016
     </p>
-    <div class="post-body J-hack-url" data-url="http://dxy-developer.github.io/f2e/post/wing/2016-03-31/">
+    <div class="post-body J-hack-url" data-url="http://dxy-developer.github.io/f2e/post%5cwing%5c2016-03-31%5c">
         
 
 <hr />
 
-<h4 id="描述:5c2892a0d76e5366d84133d0430603b3">描述</h4>
+<h4 id="描述">描述</h4>
 
 <p>关于 SEO，百度百科给出的定义是：指在了解搜索引擎自然排名机制的基础上，对网站进行内部及外部的调整优化，改进网站在搜索引擎中关键词的自然排名，获得更多的展现量，吸引更多目标客户点击访问网站，从而达到网络营销及品牌建设的目标。</p>
 
@@ -116,7 +121,7 @@
 
 <hr />
 
-<h4 id="页面结构优化:5c2892a0d76e5366d84133d0430603b3">页面结构优化</h4>
+<h4 id="页面结构优化">页面结构优化</h4>
 
 <p>SEO 本身涉及的范围非常广，就前端而言最先应该考虑的就是网页的结构化，《百度搜索引擎优化指南2.0》指出理想的网站结构应该是更扁平一些，从首页到内容页的层次尽量少，这样搜索引擎处理起来，会更简单。</p>
 
@@ -134,7 +139,7 @@
 <li><p>图片的优化，可以在img的alt标签，适当增加关键字</p></li>
 </ol>
 
-<h4 id="单页面应用如何做seo优化:5c2892a0d76e5366d84133d0430603b3">单页面应用如何做SEO优化</h4>
+<h4 id="单页面应用如何做seo优化">单页面应用如何做SEO优化</h4>
 
 <p>越来越多的网站采用 SPA 应用，给用户更好的体验，让用户在 web 感受 natvie 的速度和流畅。
 但是由于这种方式数据都需要通过 AJAX 同步、提交，而搜索搜索引擎抓取的内容，需要有完整的HTML和内容，所以并不能很好的支持搜索。</p>
@@ -149,7 +154,7 @@ Google发现URL里有#!符号，例如 example.com/#!/detail/1，于是 Google �
 <li><p>像Angular/React 这样前端框架可以使用 <a href="https://prerender.io/">Prerender</a>。</p></li>
 </ol>
 
-<h4 id="参考资料:5c2892a0d76e5366d84133d0430603b3">参考资料</h4>
+<h4 id="参考资料">参考资料</h4>
 
 <ul>
 <li><p><a href="http://www.uml.org.cn/html/201212264.asp">http://www.uml.org.cn/html/201212264.asp</a></p></li>
@@ -174,25 +179,29 @@ Google发现URL里有#!符号，例如 example.com/#!/detail/1，于是 Google �
     
     function postVisitData() {
       var visit = new VisitTable();
-      visit.save({
-        link: URLLinkId,
-        author: author,
-        title: title
-      });
-    }
-
-    
-    function getCurrentData(link) {
       var query = new AV.Query('Visit');
-      query.equalTo('link', link);
-      query.find().then(function(results) {
-        var len = results.length;
-        $('.J-detail-option').append('· 浏览量. <span>' + len + '</span>');
+
+      query.equalTo('link', URLLinkId)
+      query.find().then(function(list) {
+        var count = 1;
+        if (list.length > 0) {
+          var item = list[0];
+          item.increment('visitCount');
+          item.save();
+          count = item.get('visitCount');
+        } else {
+          visit.increment('visitCount');
+          visit.save({
+            link: URLLinkId,
+            author: author,
+            title: title
+          });
+        }
+        $('.J-detail-option').append('· 浏览量. <span>' + count + '</span>');
       });
     }
 
     postVisitData();
-    getCurrentData(URLLinkId);
   });
 </script>
 
@@ -221,7 +230,7 @@ var duoshuoQuery = {short_name:"dxy-developer"};
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/css">css</a>
-        <span>(4)</span>
+        <span>(5)</span>
     </li>
     
     <li>
@@ -231,7 +240,7 @@ var duoshuoQuery = {short_name:"dxy-developer"};
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/html5">html5</a>
-        <span>(1)</span>
+        <span>(2)</span>
     </li>
     
     <li>
@@ -261,6 +270,11 @@ var duoshuoQuery = {short_name:"dxy-developer"};
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/webpack">webpack</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
+        <a href="http://dxy-developer.github.io/f2e/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">前端性能优化</a>
         <span>(1)</span>
     </li>
     
