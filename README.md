@@ -1,4 +1,4 @@
-## 前端博客项目
+# 前端博客项目
 
 ### 初始化项目
 clone 本项目 git@gitlab.dxy.net:f2e/blog-hugo.git。
