@@ -1,0 +1,2019 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 丁香园前端小分队</title>
+    <link>http://dxy-developer.github.io/f2e/post/</link>
+    <description>Recent content in Posts on 丁香园前端小分队</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Establishment · 丁香园前端</copyright>
+    <lastBuildDate>Wed, 06 Jul 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://dxy-developer.github.io/f2e/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>HTML 桌面消息通知</title>
+      <link>http://dxy-developer.github.io/f2e/blog/2016/07/06/html-%E6%A1%8C%E9%9D%A2%E6%B6%88%E6%81%AF%E9%80%9A%E7%9F%A5/</link>
+      <pubDate>Wed, 06 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://dxy-developer.github.io/f2e/blog/2016/07/06/html-%E6%A1%8C%E9%9D%A2%E6%B6%88%E6%81%AF%E9%80%9A%E7%9F%A5/</guid>
+      <description>
+
+&lt;p&gt;HTML 桌面消息通知，指的是通过浏览器的 Notification 对象为用户在系统桌面设置和显示通知提醒。这样，用户就可以做自己的事情，而不用担心会错过一些消息。&lt;/p&gt;
+
+&lt;h3 id=&#34;如何使用&#34;&gt;如何使用？&lt;/h3&gt;
+
+&lt;h5 id=&#34;首先向用户获取在当前网站展示系统通知的权限&#34;&gt;首先向用户获取在当前网站展示系统通知的权限&lt;/h5&gt;
+
+&lt;p&gt;获取这个权限一般在网站在初始化的时候完成，使用 &lt;code&gt;Notification.requestPermission()&lt;/code&gt;方法&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    Notification.requestPermission().then(function(status) {
+        // 根据 status 的值做一些事情 
+        if (Notification.permission !== status) {
+            Notification.permission = status;
+        }
+    });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;返回的 status 为字符串，有三个值&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;denied (用户拒绝了通知的显示)&lt;/li&gt;
+&lt;li&gt;granted (用户允许了通知的显示)&lt;/li&gt;
+&lt;li&gt;default (默认为 default，也就是需要询问用户是否授权，浏览器的表现和 denied 一样)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&#34;之后-就可以用-notification-构造函数建一条新的通知&#34;&gt;之后，就可以用&lt;code&gt;Notification()&lt;/code&gt;构造函数建一条新的通知&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;    var notification = new Notification(title, options);    
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;这里的 title 是必传的&lt;/li&gt;
+&lt;li&gt;options 是可选的一个对象，它规定了文本的方向、通知的内容、通知的图标等等&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;属性&#34;&gt;属性&lt;/h3&gt;
+
+&lt;h5 id=&#34;静态属性-notification-permission&#34;&gt;静态属性：&lt;code&gt;Notification.permission&lt;/code&gt;&lt;/h5&gt;
+
+&lt;p&gt;表明当前通知显示的授权状态，值可能为：denied、granted、default&lt;/p&gt;
+
+&lt;h5 id=&#34;只读属性&#34;&gt;只读属性：&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;dir (文字方向，经测试都不支持)&lt;/li&gt;
+&lt;li&gt;lang (语言)&lt;/li&gt;
+&lt;li&gt;body (消息体)&lt;/li&gt;
+&lt;li&gt;tag (标签)&lt;/li&gt;
+&lt;li&gt;icon (图标地址)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这些属性，可以在创建消息的时候，作为 options 的属性传入 Notificaiton 函数。&lt;/p&gt;
+
+&lt;p&gt;重点提一下tag属性，它用于给相同类别的消息做标记，如果在短时间内有很多消息，系统会只显示tag标记的消息中最新的一条&lt;/p&gt;
+
+&lt;h3 id=&#34;事件处理&#34;&gt;事件处理&lt;/h3&gt;
+
+&lt;p&gt;Notification.onclick()/onshow()/onerror()/onclose()&lt;/p&gt;
+
+&lt;p&gt;通常情况下，onclick事件用的比较多，比如点击消息后跳转到特定页面&lt;/p&gt;
+
+&lt;h3 id=&#34;方法&#34;&gt;方法&lt;/h3&gt;
+
+&lt;h5 id=&#34;静态方法&#34;&gt;静态方法：&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Notification.requestPermission() ——只能被用户行为调用，比如页面加载或用户点击&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&#34;实例方法-仅在notification实例或其prototype中有效&#34;&gt;实例方法（仅在Notification实例或其prototype中有效）：&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Notification.close()&lt;/li&gt;
+&lt;li&gt;继承自EventTarget接口：addEventListener()/removeEventListener()/dispatchEvnet()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;举个&#34;&gt;举个🌰&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;    // 页面加载时，获取权限
+    if (window.Notification &amp;amp;&amp;amp; Notification.permission !== &amp;quot;granted&amp;quot;) {
+        Notification.requestPermission(function (status) {
+            if (Notification.permission !== status) {
+                Notification.permission = status;
+            }
+        });
+    }
+    function notifyMe() {
+        // 判断浏览器是否支持Nitifocaiton
+        if (!(&amp;quot;Notification&amp;quot; in window)) {
+            alert(&amp;quot;This browser does not support desktop notification&amp;quot;);
+        // 判断用户是否已经准许了发送桌面通知
+        } else if (window.Notification &amp;amp;&amp;amp; Notification.permission === &#39;granted&#39;) {
+        // 如果准许了，我们就发送一条消息
+            var n = new Notification(&#39;Hi!&#39;, {
+                body: &#39;hi, this is body&#39;
+            });
+        // 如果用户没有准许，我们需要向用户获取权限
+        } else if (window.Notification &amp;amp;&amp;amp; Notification.permission !== &#39;denied&#39;) {
+            Notification.requestPermission(function(status) {
+                if (Notification.permission !== status) {
+                    Notification.permission = status;
+                }
+                if (status === &#39;granted&#39;) {
+                    var n = new Notification(&#39;Hi!&#39;, {
+                    body: &#39;hi, this is body&#39;
+                    });
+                } else {
+                    alert(&#39;Hi!&#39;);
+                }
+            });
+        } else {
+            alert(&#39;Hi!&#39;);
+        }
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;（在我的 Mac 下 Chrome 中测试时，不能弹出通知，Firefox 和 Safari 都可以，但是别的电脑的 Chrome 中可以。原因我没有查到，希望查到的小伙伴告诉我一下～）&lt;/p&gt;
+
+&lt;h3 id=&#34;浏览器兼容性&#34;&gt;浏览器兼容性&lt;/h3&gt;
+
+&lt;p&gt;现代浏览器都支持基本的属性和方法，除了 IE。具体属性和方法的支持情况，可见参考资料&lt;/p&gt;
+
+&lt;p&gt;下面是 Nick Desaulniers 编写的一个可以向前向后兼容各种版本的实现&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    function sendNotification (title, options) {
+      // Memoize based on feature detection.
+      if (&amp;quot;Notification&amp;quot; in window) {
+        sendNotification = function (title, options) {
+          return new Notification(title, options);
+        };
+      } else if (&amp;quot;mozNotification&amp;quot; in navigator) {
+        sendNotification = function (title, options) {
+          // Gecko &amp;lt; 22
+          return navigator.mozNotification
+                   .createNotification(title, options.body, options.icon)
+                   .show();
+        };
+      } else {
+        sendNotification = function (title, options) {
+          alert(title + &amp;quot;: &amp;quot; + options.body);
+        };
+      }
+      return sendNotification(title, options);
+    };
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&#34;chrome-备忘&#34;&gt;Chrome 备忘&lt;/h5&gt;
+
+&lt;p&gt;在 Chrome 22 版本之前，如果要使用通知需要旧的带前缀版本的规范 ，并且使用navigator.webkitNotifications 对象创建一个新的通知实例。&lt;/p&gt;
+
+&lt;p&gt;在 Chrome 32 版本之前，不支持 Notification.permission 属性。&lt;/p&gt;
+
+&lt;p&gt;在Chrome 42 版本之前，不支持 service worker。&lt;/p&gt;
+
+&lt;p&gt;从chrome 49版本开始，匿名模式下的notifications不能运行。&lt;/p&gt;
+
+&lt;h5 id=&#34;safari-备忘&#34;&gt;Safari 备忘&lt;/h5&gt;
+
+&lt;p&gt;Safari 在 Safari 6 版本开始支持通知，但是只能在 Mac OSX 10.8+ (Mountain Lion) 中使用。&lt;/p&gt;
+
+&lt;h3 id=&#34;参考资料&#34;&gt;参考资料&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/API/notification&#34;&gt;Notification - Web Api 接口&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/API/notification/Using_Web_Notifications&#34;&gt;使用 Web Notification&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>浅谈网站性能之前端性能优化</title>
+      <link>http://dxy-developer.github.io/f2e/blog/2016/07/03/%E6%B5%85%E8%B0%88%E7%BD%91%E7%AB%99%E6%80%A7%E8%83%BD%E4%B9%8B%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Sun, 03 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://dxy-developer.github.io/f2e/blog/2016/07/03/%E6%B5%85%E8%B0%88%E7%BD%91%E7%AB%99%E6%80%A7%E8%83%BD%E4%B9%8B%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</guid>
+      <description>
+
+&lt;p&gt;性能优化的目的无非是减少用户流量消耗，提升用户首屏体验，提升用户访问速度，让用户专注内容本身。&lt;/p&gt;
+
+&lt;h4 id=&#34;前端性能优化&#34;&gt;前端性能优化&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;减少 HTTP 请求数量&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;基本原理：在浏览器与服务器进行通信时，主要是通过 HTTP 进行通信。浏览器与服务器需要经过三次握手，每次握手需要花费大量时间。而且不同浏览器对资源文件并发请求数量有限（&lt;a href=&#34;http://www.stevesouders.com/blog/2008/03/20/roundup-on-parallel-connections/&#34;&gt;不同浏览器允许并发数&lt;/a&gt;），一旦 HTTP 请求数量达到一定数量，资源请求就存在等待状态，这是很致命的，因此减少 HTTP 的请求数量可以很大程度上对网站性能进行优化。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1. CSS Sprites：国内俗称 CSS 精灵，这是将多张图片合并成一张图片达到减少 HTTP 请求的一种解决方案，可以通过 CSS background 属性来访问图片内容。这种方案同时还可以减少图片总字节数，节省命名词汇量（由命名多张图片文件变成一张，哈哈哈）。
+
+2. 合并 CSS 和 JS 文件：现在前端有很多工程化打包工具，如：grunt、gulp、webpack等。为了减少 HTTP 请求数量，可以通过这些工具再发布前将多个 CSS 或者 多个 JS 合并成一个文件。
+
+3. 采用 lazyLoad：俗称懒加载，可以控制网页上的内容在一开始无需加载，不需要发请求，等到用户操作真正需要的时候立即加载出内容。这样就控制了网页资源一次性请求数量。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;控制资源文件加载优先级&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;基本原理：说到这里就需要知道浏览器加载 HTML 内容的原理，浏览器在加载 HTML 内容时，是将 HTML 内容从上至下依次解析，解析到 link 或者 script 标签就会加载 href 或者 src 对应链接内容，为了第一时间展示页面给用户，就需要将 CSS 提前加载，不要受 JS 加载影响。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1. 遵循原则：主要文件放在 head 内部，次要文件放在 body 底部。一般情况下都是 CSS 在头部，JS 在底部。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;利用浏览器缓存&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;基本原理：浏览器缓存分强缓存和协商缓存，他们是将网络资源存储在本地，等待下次请求该资源时，如果命中就不需要到服务器重新请求该资源，直接在本地读取该资源。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1. 强缓存：在 web 服务器返回的响应中添加 Expires 和 Cache-Control Header。
+
+2. 协商缓存：通过【Last-Modified，If-Modified-Since】和【ETag、If-None-Match】这两对 Header 分别管理。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;使用 CDN&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;基本原理：CDN的全称是Content Delivery Network，即&lt;a href=&#34;http://zsvalue.com/201405/foundation-of-cdn-%E3%80%8Acdn%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3%E3%80%8Bnote/&#34;&gt;内容分发网络&lt;/a&gt;。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;减少重排（Reflow）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;基本原理：重排是 DOM 的变化影响到了元素的几何属性（宽和高），浏览器会重新计算元素的几何属性，会使渲染树中受到影响的部分失效，浏览器会验证 DOM 树上的所有其它结点的 visibility 属性，这也是 Reflow 低效的原因。如果 Reflow 的过于频繁，CPU 使用率就会急剧上升。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1. 减少 Reflow，如果需要在 DOM 操作时添加样式，尽量使用 增加 class 属性，而不是通过 style 操作样式。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;减少 DOM 操作&lt;/li&gt;
+&lt;li&gt;图标使用 IconFont 替换&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;花絮&#34;&gt;花絮&lt;/h4&gt;
+
+&lt;p&gt;在开始提笔写这篇博客前就遇到了一个很棘手的问题，这篇博客标题叫什么，思考了一会，我心里冒出了三个答案：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;浅谈网站性能优化&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;第一个标题网站性能优化，一看标题可以理解为是讲网站性能，而且是对网站进行优化，描述的是一种解决方案，然而网站性能包括的太多了，超出了我的知识范畴，所以放弃。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;浅谈网站性能之前端性能优化&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;第二个标题正适我怀，答题概括了我本期博客内容，既有性能介绍，又有前端性能优化解决方案。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;浅谈前端性能优化&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;第三个标题前端性能优化，心想这不就是我要写的内容嘛，等我写完内容发现，不对，我写的内容不仅仅是解决方案，好包括的其他内容，所以放弃。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;以上内容仅为个人理解，如果本内容大家觉得哪里写的不对，望大家指出，供一起讨论。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Normalize.css学习</title>
+      <link>http://dxy-developer.github.io/f2e/blog/2016/04/25/normalize.css%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Mon, 25 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://dxy-developer.github.io/f2e/blog/2016/04/25/normalize.css%E5%AD%A6%E4%B9%A0/</guid>
+      <description>
+
+&lt;hr /&gt;
+
+&lt;p&gt;Normalize.css 只是一个很小的CSS文件，但它在默认的HTML元素样式上提供了跨浏览器的高度一致性。相比于传统的CSS reset，Normalize.css是一种现代的、为HTML5准备的优质替代方案。&lt;/p&gt;
+
+&lt;h4 id=&#34;综述&#34;&gt;综述&lt;/h4&gt;
+
+&lt;p&gt;由于不同浏览器渲染Html元素时的各种默认样式不同，导致渲染页面时效果不一致，css Reset正是为了解决这一问题出现的。但是 css Reset 的激进派的，完全去掉浏览器默认的样式。
+所有的样式都由自己实现，即使跟浏览器默认样式一致。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;而Normalize.css是改良派,依赖于研究浏览器默认元素风格之间的差异，精确定位需要重置的样式。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;保护有用的浏览器默认样式而不是完全去掉它们&lt;/li&gt;
+&lt;li&gt;为大部分HTML元素提供一般化的样式&lt;/li&gt;
+&lt;li&gt;修复浏览器自身的bug并保证各浏览器的一致性。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;相比于传统的reset，Normalize.css是一种现代的、为HTML5准备的优质替代方案,目前像 Bootstrap Amaze UI等框架都在使用。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/necolas/normalize.css&#34;&gt;Normalize.css 项目地址&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;源码分析&#34;&gt;源码分析&lt;/h4&gt;
+
+&lt;p&gt;Css Reset发展至今，进过了几个版本。第一份css Reset应该是 YUI团队提供的,核心还是清除所有浏览器默认样式&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;:link,:visited { text-decoration:none }
+ul,ol { list-style:none }
+h1,h2,h3,h4,h5,h6,pre,code { font-size:1em; }
+ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,
+fieldset,input{ margin:0; padding:0 }
+a img,:link img,:visited img { border:none }
+address { font-style:normal }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;之后出现阿里的Kissy框架，自己定制了一份css Reset，这应该是国内第一份CSS Reset。我们使用的reset.css大部分都是拷贝这个版本。但是所有版本的 CSS Reset 作者 都叮嘱使用者
+&amp;gt; 请根据具体需求，适量裁剪和修改后再使用。&lt;/p&gt;
+
+&lt;p&gt;Normalize.css并没有完全去除默认样式，否则跟全部用div跟li有什么区别呢。改良的Normalize.css具体改了哪些地方，下面举几个例子&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11
+ * and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+
+/**
+ * Add the correct display in IE 9-.
+ * 1. Add the correct display in Edge, IE, and Firefox.
+ * 2. Add the correct display in IE.
+ */
+
+article,
+aside,
+details, /* 1 */
+figcaption,
+figure,
+footer,
+header,
+main, /* 2 */
+menu,
+nav,
+section,
+summary { /* 1 */
+  display: block;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;主要为低版本的IE们补充一些HTML5元素的正确显示方法。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;在遇到不识别的标签时，浏览器会解析称内联元素，
+但是测试了下并不能解决实际性的问题，IE8下还是不识别；主要可以统一各元素的显示方式。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;防止所有浏览器中的sub和sup影响行高，就把两者的line-height设为0，然后用top和bottom手动设置两者偏移量。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;如何使用&#34;&gt;如何使用&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;npm install normalize.css&lt;/li&gt;
+&lt;li&gt;引入 normalize.css 源码并在此基础上构建，在必要的时候用你自己写的CSS覆盖默认值&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Normalize.css 被拆分为多个独立的部分，这样你就可以定制自己所需要的，可以选择性地移除掉不会用到部分。
+比如在移动端使用的时候，就可以把为了兼容IE的部分移除。&lt;/p&gt;
+
+&lt;h4 id=&#34;参考资料&#34;&gt;参考资料&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000003025718&#34;&gt;https://segmentfault.com/a/1190000003025718&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://jerryzou.com/posts/aboutNormalizeCss/&#34;&gt;http://jerryzou.com/posts/aboutNormalizeCss/&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>初探 Promise</title>
+      <link>http://dxy-developer.github.io/f2e/blog/2016/04/18/%E5%88%9D%E6%8E%A2-promise/</link>
+      <pubDate>Mon, 18 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://dxy-developer.github.io/f2e/blog/2016/04/18/%E5%88%9D%E6%8E%A2-promise/</guid>
+      <description>
+
+&lt;p&gt;曾经有伟人说过，对于一件新鲜事物，如果需要搞明白他，就会有以下三个步骤：What、How、Why（学习、思维三部曲 或 叫做学习黄金圈）；而对于很多人，在学习一门技术时，都停留在 What 阶段，到使用时就不知道如何使用，就算使用了也不知道为什么要用。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../whw.png&#34; alt=&#34;黄金圈&#34; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;what-promise-是什么&#34;&gt;What（Promise 是什么）&lt;/h3&gt;
+
+&lt;h4 id=&#34;描述&#34;&gt;描述&lt;/h4&gt;
+
+&lt;p&gt;Promise 是抽象异步处理对象以及对其进行各种操作的组件，而且 Promise 并不是从 JavaScript 中发祥的概念。&lt;/p&gt;
+
+&lt;h4 id=&#34;状态&#34;&gt;状态&lt;/h4&gt;
+
+&lt;p&gt;Promise 具有三种状态，分别为 pending（执行中）、resolved（被接受）、rejected（被拒绝）。&lt;/p&gt;
+
+&lt;h4 id=&#34;方法&#34;&gt;方法&lt;/h4&gt;
+
+&lt;h5 id=&#34;实例化&#34;&gt;实例化：&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;var promise = new Promise(function(resolve, reject) {});&lt;/li&gt;
+&lt;li&gt;Promise.resolve() 等方法均可以直接返回一个新创建的 Promise 对象。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&#34;静态方法-promise-all-promise-race-promise-resolve-promise-reject&#34;&gt;静态方法：Promise.all、Promise.race、Promise.resolve、Promise.reject：&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Promise.all()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Promise.all 方法为 Promise 组件的静态方法，无需创建 Promise 对象就可以直接使用此方法来并行执行多个 Promise 对象，且在 Promise.all([&amp;ldquo;Promise1&amp;rdquo;，&amp;rdquo;Promise2&amp;rdquo;， &amp;ldquo;Promise2&amp;rdquo;])，如果在 all 方法参数的数组中有一个 Promise 对象执行失败即停止执行，返回结果需要等到数组对象执行完成才返回最后结果，结果为多个 Promise 对象返回值组成的数组。&lt;/p&gt;
+
+&lt;p&gt;代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var p1 = Promise.resolve(1)；
+var p2 = Promise.resolve(2)；
+var p3 = Promise.resolve(3);
+Promise.all([p1, p2, p3]).then(function(results) {
+    console.log(results);  // [1, 2, 3]
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Promise.race()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Promise.race 方法性质同 Promise.all 方法，使用方式也一样，但是有一点不同是在 Promise.race([&amp;ldquo;Promise1&amp;rdquo;，&amp;rdquo;Promise2&amp;rdquo;，&amp;rdquo;Promise3&amp;rdquo;]) 等到数组参数里面第一个 Promise 对象执行完成就返回执行结果（这里说的第一个不是第一个参数，也可能是第二个，是指第一个执行完成的 Promise 对象）。
+代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Promise.race([new Promise(), new Promise(), new Promise()])；
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Promise.resolve()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;这是一种直接到达 Promise resolved 状态的快捷方式，并且创建返回一个 Promise 对象。
+代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Promise.resolve(&amp;quot;acrens&amp;quot;).then(function(name) {
+    console.log(name); // acrens
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Promise.reject()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;同理，这是达到 Promise rejected 状态的快捷方式，并且创建返回一个进行 reject 的新 Promise 对象。如果传入的参数为一个 Promise 对象，则返回的是一个新的 Promise 对象（和 resolve 不同）。
+代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;Promise.reject(new Error(&amp;quot;error&amp;quot;))；
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;h5 id=&#34;对象方法-new-promise-then-new-promise-catch&#34;&gt;对象方法：new Promise().then、new Promise().catch：&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;then()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;用于注册 Promise 分别达到 resolved、rejected 状态时的回调函数，如：then(resolve, reject)，当达到 resolved 状态时，执行 resolve 方法，否则，执行 reject 方法；reject 函数可以不在此注册，可以使用 catch 注册（这也是注册 reject 方式的语法糖，更方便 Promise 链方法）；如果不需要注册 resolved 状态时的回调函数，then 方法第一个参数不可以省略，但是可以 then(undefined, reject) 这样书写。
+代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var promise = new Promise(function(resolve, reject) {
+    resolve(2);
+});
+
+promise.then(function(value) {
+    console.info(&#39;Task --------- &#39; + value); // Task  --------- 2
+}).catch(function onRejected(error) {
+    console.error(error);
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;catch()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;catch 方法在此就不多赘述，其只是注册 rejected 状态回调函数的语法糖。
+代码：（参照上面 then 方法代码示例）。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;how-promise-如何运行&#34;&gt;How（Promise 如何运行）&lt;/h3&gt;
+
+&lt;p&gt;Promise 从实例化到执行完成可以参照下图并结合上述代码理解（只有认真地去理解这个流程图，才可以看到 Promise 的精髓，坏笑&amp;hellip;）：
+&lt;img src=&#34;../flow.png&#34; alt=&#34;执行流程&#34; /&gt;
+注意：fulfill 就相当 resolved 状态。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;why-promise-为什么会产生&#34;&gt;Why（Promise 为什么会产生）&lt;/h3&gt;
+
+&lt;p&gt;Promise 需要解决的问题也就是其产生的原因（废话）：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;异步问题&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;用异步的方式来表达异步的代码是艰难的，甚至很难用我们的大脑来理解。（事件轮询、并发模式）&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;回调地狱&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;并不是简单地理解为代码嵌套，编辑器代码缩进空格；还包括代码的控制转移（如在回调之前进行的第三方调用，控制权转交给第三方）。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;总结&#34;&gt;总结&lt;/h3&gt;
+
+&lt;p&gt;在项目开发中，时常会使用到异步处理及代码多层嵌套，这对于后期理解和维护代码是一个“坑”，因此可以尝试使用 Promise 方式去解决代码给后期带来的负担。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.web-tinker.com/search/Promise%20%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/1.html&#34;&gt;https://www.web-tinker.com/search/Promise%20%E6%8A%80%E6%9C%AF%E7%BB%86%E8%8A%82/1.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://liubin.org/promises-book/#introduction&#34;&gt;http://liubin.org/promises-book/#introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.zhangxinxu.com/wordpress/2014/02/es6-javascript-promise-%E6%84%9F%E6%80%A7%E8%AE%A4%E7%9F%A5/&#34;&gt;http://www.zhangxinxu.com/wordpress/2014/02/es6-javascript-promise-%E6%84%9F%E6%80%A7%E8%AE%A4%E7%9F%A5/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.sitepoint.com/overview-javascript-promises/&#34;&gt;http://www.sitepoint.com/overview-javascript-promises/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.getify.com/promises-part-1/&#34;&gt;http://blog.getify.com/promises-part-1/&lt;/a&gt; （译文：&lt;a href=&#34;https://segmentfault.com/a/1190000000586666）&#34;&gt;https://segmentfault.com/a/1190000000586666）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise&#34;&gt;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;注：下一篇更新 Promise 扩展阅读版&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>rem 的使用</title>
+      <link>http://dxy-developer.github.io/f2e/blog/2016/04/05/rem-%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 05 Apr 2016 15:50:37 +0800</pubDate>
+      
+      <guid>http://dxy-developer.github.io/f2e/blog/2016/04/05/rem-%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;背景&#34;&gt;背景：&lt;/h3&gt;
+
+&lt;p&gt;最近因为调查问卷的需求，需要在移动端整体缩放页面，故考虑使用 rem 。&lt;/p&gt;
+
+&lt;h3 id=&#34;简介&#34;&gt;简介：&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;px 相对于显示器屏幕分辨率而言的。&lt;/p&gt;
+&lt;p&gt;em 相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。&lt;/p&gt;
+&lt;p&gt;rem 相对于根元素的字体大小的单位。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;原因&#34;&gt;原因：&lt;/h3&gt;
+
+&lt;h4 id=&#34;为什么选择-rem-我的理由如下&#34;&gt;为什么选择 rem ,我的理由如下：&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;精准缩放，等比例适应所有屏幕
+&lt;p&gt;不少页面采用流体布局或者百分比来设置宽度间距，高度被定死。当设备宽度较大时，页面会被横向拉长，变形。同时过多的百分比，对设计造成阻碍，兼容也比较难调。当页面采用响应式设计的时候，虽然能够很好的兼容不同手机，但是维护成本相继增大，大量的媒体查询样式难以管理，并且只有在固定的几个分辨率下才能有最好的体验。&lt;/p&gt;
+&lt;p&gt;还有种粗暴的方式就是直接 viewport 缩放，不过实测有的时候感觉画面某部分会糊，并且页面部分高度不足的情况下强行缩放，会造成手机上页面只占很小的高度，甚至不超过手机屏幕的高度，很难控制外观样式。&lt;/p&gt;
+&lt;p&gt;最后，rem 就是很好的选择了。移动端兼容良好，所有的长度都根据根元素的字体大小值来改变，根元素的字体大小只要跟随屏幕大小动态变化，就可以精准缩放页面且画面保真。&lt;/p&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;移动端兼容性良好，使用简单&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;易于维护修改&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;使用&#34;&gt;使用：&lt;/h3&gt;
+
+&lt;h4 id=&#34;动态赋值页面根元素-html-的字体大小&#34;&gt;动态赋值页面根元素(html)的字体大小&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;(function (doc, win) {
+    var docEl = doc.documentElement,
+    resizeEvt = &#39;orientationchange&#39; in window ? &#39;orientationchange&#39; : &#39;resize&#39;;
+
+    var recalc = function () {
+        var width = docEl.clientWidth;
+
+        if (width &amp;gt; 640) {
+            width = 640 ;
+        }
+        if (width &amp;lt; 320) {
+            width = 320 ;
+        }
+
+        docEl.style.fontSize = 100 * (width / 1080) + &#39;px&#39;;     //1080 是设计图的宽度  
+      };
+    recalc();
+
+
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+})(document, window);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;页面引入这段脚本，再根据实际设计图取值，给相应的部位设置 css。&lt;/p&gt;
+
+&lt;p&gt;例如根元素(html)字体大小为 100 像素时，宽为 100 像素的 div，其样式设置为 width:1rem; 。&lt;/p&gt;
+
+&lt;h3 id=&#34;心得&#34;&gt;心得：&lt;/h3&gt;
+
+&lt;p&gt;1080 是设计图宽度，这样可以直接在图上量取数值，写在样式中。例如间距 40px ，赋值 0.4rem 。&lt;/p&gt;
+
+&lt;p&gt;chrome 支持的最小字体为 12px，所以设置为 100px，方便取值。&lt;/p&gt;
+
+&lt;h3 id=&#34;兼容&#34;&gt;兼容：&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;../rem.jpg&#34; alt=&#34;rem 兼容性&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;坑&#34;&gt;坑：&lt;/h3&gt;
+
+&lt;p&gt;随着越来越多的项目使用，后面在此补上具体坑。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>HTML5 drag and drop</title>
+      <link>http://dxy-developer.github.io/f2e/blog/2016/04/05/html5-drag-and-drop/</link>
+      <pubDate>Tue, 05 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://dxy-developer.github.io/f2e/blog/2016/04/05/html5-drag-and-drop/</guid>
+      <description>
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;拖放简介&#34;&gt;拖放简介：&lt;/h4&gt;
+
+&lt;p&gt;拖放操作的过程是怎样的？&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;允许用户在一个元素上点击并按住鼠标按钮，拖动它到别的位置，然后松开鼠标，元素停留在该位置。在拖动的过程中，被拖动元素以半透明的形式展现，并跟随鼠标指针移动。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;在早期的 IE4 中的网页上，只有文本和图片可以拖动，并且唯一有效的放置目标就是文本框。随着浏览器的发展，拖放功能也得到扩展，现在几乎网页中的任何元素都可以拖放，并且任何元素都可以作为放置目标。&lt;/p&gt;
+
+&lt;p&gt;HTML5 就以 IE 的实例为基础制定了拖放规范。现对其主要内容做了整理。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;拖放步骤&#34;&gt;拖放步骤：&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;定义可拖放目标&lt;/li&gt;
+&lt;li&gt;定义被拖动的数据&lt;/li&gt;
+&lt;li&gt;定义拖动过程中鼠标指针旁边出现的反馈图片&lt;/li&gt;
+&lt;li&gt;允许设置拖拽效果&lt;/li&gt;
+&lt;li&gt;定义放置区域&lt;/li&gt;
+&lt;li&gt;拖放结束时，完成数据交互等工作&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;帮助实现拖放的一些特性&#34;&gt;帮助实现拖放的一些特性：&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;属性&lt;/strong&gt;：&lt;code&gt;draggable&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;设为 true，则该元素可拖放&lt;/li&gt;
+&lt;li&gt;在 html 中，图片、超链接、被选中文本，这些元素默认就是可拖拽，可以不用设置该属性&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div draggable=&amp;quot;true&amp;quot; ondragstart=&amp;quot;event.dataTransfer.setData(&#39;text/plain&#39;, &#39;这里是想要拖动的元素&#39;)&amp;quot;&amp;gt;
+  这里是想要拖动的元素
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;事件&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;事件的目标是被拖动的元素
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;dragstart&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;drag&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dragend&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;事件的目标是作为放置目标（droptarget）的元素
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;dragenter&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dragover&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dragleave&lt;/code&gt;/&lt;code&gt;drop&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;对象&lt;/strong&gt;：&lt;code&gt;event.dataTransfer&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;用于实现数据交换，可在拖放事件的事件处理程序中访问&lt;/li&gt;
+&lt;li&gt;方法：&lt;code&gt;setData()&lt;/code&gt;，设置拖放要传递的数据
+
+&lt;ul&gt;
+&lt;li&gt;参数1: text/URL，表示保存的数据类型（HTML5 允许各种 MIME 类型，但 IE 只支持着两种）&lt;/li&gt;
+&lt;li&gt;参数2: 要保存的数据&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;方法：&lt;code&gt;getData()&lt;/code&gt;，获取拖放传递的数据，只能在 &lt;code&gt;drop&lt;/code&gt; 事件处理程序中使用&lt;/li&gt;
+&lt;li&gt;属性：&lt;code&gt;dropEffect&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;值：none/move/copy/link，&lt;/li&gt;
+&lt;li&gt;表示元素拖动到 droptarget 上时鼠标的效果&lt;/li&gt;
+&lt;li&gt;必须在 ondragenter 事件中使用&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;属性：&lt;code&gt;effectAllowed&lt;/code&gt;
+
+&lt;ul&gt;
+&lt;li&gt;值：none/move/copt/link/all/&amp;hellip;&lt;/li&gt;
+&lt;li&gt;跟 dropeffect 搭配使用，表示允许拖动元素的哪种 dropeffect&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;代码示例&#34;&gt;代码示例：&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;    $(被拖动元素).on(&amp;quot;dragstart&amp;quot;, function (e) {
+        /*开始拖拽源文本*/         
+        e.preventDefault();
+        e.dataTransfer.effectAllowed = &amp;quot;move&amp;quot;;
+        e.originalEvent.dataTransfer.setData(&amp;quot;text&amp;quot;, &#39;要传递的数据&#39;);
+        return true;
+    });
+
+    $(被拖动元素).on(&amp;quot;dragend&amp;quot;,  function(ev) {
+        /*拖拽结束*/
+        ev.dataTransfer.clearData(&amp;quot;text&amp;quot;);
+        eleDrag = null;
+        return false
+    });
+
+    $(放置目标元素).on(&amp;quot;dragover&amp;quot;, function (e) {
+        /*拖拽元素在目标元素头上移动的时候*/
+        e.preventDefault();
+        return true;
+    });
+
+    $(放置目标元素).on(&amp;quot;dragenter&amp;quot;,  function(ev) {
+        /*拖拽元素进入目标元素头上的时候*/
+        return true;
+    });
+
+    $(放置目标元素).on(&amp;quot;drop&amp;quot;, function (e) {               
+        /*拖拽元素进入目标元素头上，同时鼠标松开的时候*/
+        var data = e.originalEvent.dataTransfer.getData(&amp;quot;text&amp;quot;);
+        /*阻止在Firefox中拖拽打开新标签*/
+        return false;
+    });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;注意点&#34;&gt;注意点：&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在 dragstart 事件中必须使用 &lt;code&gt;event.preventDefault()&lt;/code&gt;，否则 drag 事件不能触发，也就不能实现拖拽&lt;/li&gt;
+&lt;li&gt;在 dragover 事件中也必须使用 &lt;code&gt;event.preventDefault()&lt;/code&gt;，否则 drop 事件不会触发&lt;/li&gt;
+&lt;li&gt;需在 drop 事件中使用 &lt;code&gt;return false;&lt;/code&gt;， 解决 Firefox 中拖拽元素会直接打开新标签的问题&lt;/li&gt;
+&lt;li&gt;为了减少事件，可以在 dragenter 的时候绑定方法 ，而 dragleave 的时候删除方法&lt;/li&gt;
+&lt;li&gt;在 dragover 上不要做数据处理，它类似mouseover，在拖动的过程中会不断触发，可能会导致浏览器崩溃&lt;/li&gt;
+&lt;li&gt;drag 事件和 mouse 事件不能同时触发&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;兼容性&#34;&gt;兼容性：&lt;/h4&gt;
+
+&lt;p&gt;浏览器支持：IE10+、Firefox 4+、Safari 5+和Chrome。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;参考文档&#34;&gt;参考文档：&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/DragDrop/Drag_and_Drop&#34;&gt;拖放操作&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.zhangxinxu.com/wordpress/2011/02/html5-drag-drop-%E6%8B%96%E6%8B%BD%E4%B8%8E%E6%8B%96%E6%94%BE%E7%AE%80%E4%BB%8B/&#34;&gt;HTML5 drag &amp;amp; drop 拖拽与拖放简介&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SEO学习笔记</title>
+      <link>http://dxy-developer.github.io/f2e/blog/2016/04/05/seo%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Tue, 05 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://dxy-developer.github.io/f2e/blog/2016/04/05/seo%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <description>
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;描述&#34;&gt;描述&lt;/h4&gt;
+
+&lt;p&gt;关于 SEO，百度百科给出的定义是：指在了解搜索引擎自然排名机制的基础上，对网站进行内部及外部的调整优化，改进网站在搜索引擎中关键词的自然排名，获得更多的展现量，吸引更多目标客户点击访问网站，从而达到网络营销及品牌建设的目标。&lt;/p&gt;
+
+&lt;p&gt;百度通过一个叫做 Baiduspider 的程序抓取互联网上的网页，经过处理后建入索引中。目前 Baiduspider 只能读懂文本内容，flash、图片等非文本内容暂时不能处理，放置在 flash、图片中的文字，百度无法识别。&lt;/p&gt;
+
+&lt;p&gt;SEO 的策略主要包括关键词优化、对网站结构和 SEO 整站优化及 SEO 整站优化吧内容的优化、注重内链和外链的优化等。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;页面结构优化&#34;&gt;页面结构优化&lt;/h4&gt;
+
+&lt;p&gt;SEO 本身涉及的范围非常广，就前端而言最先应该考虑的就是网页的结构化，《百度搜索引擎优化指南2.0》指出理想的网站结构应该是更扁平一些，从首页到内容页的层次尽量少，这样搜索引擎处理起来，会更简单。&lt;/p&gt;
+
+&lt;p&gt;正确使用 HTML 标签，搜索引擎在搜索内容时，根据 tag 就可以清楚知道每个部分的内容是什么，可以搜索到准确的资料和资讯。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;header 标签。header tag 能够明确地告诉搜索引擎，这里面的内容是重要的。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;唯一的 h1 标题。h1 在 SEO 中权重时非常重要的， 除了 h1 标签,其他的标签可以用多个,但不能泛滥。h2 标签一般用于栏目,h3 以后的标签优化效果比较低,但在组织内容结构上,可以用得上。H1&amp;gt;h2&amp;gt;h3… 在 SEO 权重中是逐渐递减的&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;article 标签，article tag 是 HTML5 新增加的这些 tag 中，对 SEO 影响最大的一个。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;section 标签，对SEO比较合适的方案是将你所呈现的内容的每个标题用 section 将其分割出来。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;图片的优化，可以在img的alt标签，适当增加关键字&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;单页面应用如何做seo优化&#34;&gt;单页面应用如何做SEO优化&lt;/h4&gt;
+
+&lt;p&gt;越来越多的网站采用 SPA 应用，给用户更好的体验，让用户在 web 感受 natvie 的速度和流畅。
+但是由于这种方式数据都需要通过 AJAX 同步、提交，而搜索搜索引擎抓取的内容，需要有完整的HTML和内容，所以并不能很好的支持搜索。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;为了解决这个问题，Google 提出了&amp;rdquo;井号+感叹号&amp;rdquo;的结构。
+Google发现URL里有#!符号，例如 example.com/#!/detail/1，于是 Google 开始抓取 example.com/?_escaped&lt;em&gt;fragment&lt;/em&gt;=/detail/1；
+这种方式除了丑，还要生成一份 html 静态页面；除了兼容性好一些，并没有什么可推荐的。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;使用 HTML5 History API。window.history.pushState(null null, url):使用这个方法在浏览器的 History 对象中，添加一条记录。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;像Angular/React 这样前端框架可以使用 &lt;a href=&#34;https://prerender.io/&#34;&gt;Prerender&lt;/a&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&#34;参考资料&#34;&gt;参考资料&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://www.uml.org.cn/html/201212264.asp&#34;&gt;http://www.uml.org.cn/html/201212264.asp&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://www.astralweb.com.tw/the-best-seo-practices-for-front-end-coding/&#34;&gt;http://www.astralweb.com.tw/the-best-seo-practices-for-front-end-coding/&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://isux.tencent.com/seo-for-single-page-applications.html&#34;&gt;https://isux.tencent.com/seo-for-single-page-applications.html&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://www.ruanyifeng.com/blog/2013/07/how_to_make_search_engines_find_ajax_content.html&#34;&gt;http://www.ruanyifeng.com/blog/2013/07/how_to_make_search_engines_find_ajax_content.html&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>经验杂谈 - 魔性表单</title>
+      <link>http://dxy-developer.github.io/f2e/blog/2016/04/05/%E7%BB%8F%E9%AA%8C%E6%9D%82%E8%B0%88---%E9%AD%94%E6%80%A7%E8%A1%A8%E5%8D%95/</link>
+      <pubDate>Tue, 05 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://dxy-developer.github.io/f2e/blog/2016/04/05/%E7%BB%8F%E9%AA%8C%E6%9D%82%E8%B0%88---%E9%AD%94%E6%80%A7%E8%A1%A8%E5%8D%95/</guid>
+      <description>
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;表单&#34;&gt;表单&lt;/h4&gt;
+
+&lt;p&gt;这里先解释表单，相信大家看到这里已经知道是什么了；没错，这里说的表单就是 html 中的 form 表单。&lt;/p&gt;
+
+&lt;p&gt;HTML5 中 form 做了一些优化，比如增加 novalidate 属性，可以控制 form 无需校验提交；给 form 内部 input 增加 required 属性，结合 validate 既可以控制表单必填字段校验，又无需写 js 代码校验。&lt;/p&gt;
+
+&lt;p&gt;HTML5 自动校验截图：
+&lt;img src=&#34;../share1.png&#34; alt=&#34;表单验证&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在这里在特别说明下 form 的 enctype 属性；用于设置表单提交数据的编码，默认编码格式：application/x-www-form-urlencoded，在发送前会对所有字符进行编码；当为值 multipart/form-data 时，并不对字符进行编码，一般在文件上传时一定要使用该类型；另外还有一个不经常使用的值：text/plain，提交数据会以存文本形式编码，且不包含格式字符。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;魔性&#34;&gt;魔性&lt;/h4&gt;
+
+&lt;p&gt;魔性给我们带来的感觉就是很神奇，为什么会这样；这里所说的魔性跟 form 提交相关联。&lt;/p&gt;
+
+&lt;p&gt;在一次项目开发中，曾经碰到这样的问题，在一个页面上有一个 input 输入框，同时有一个提交按钮，input 需要支持 enter 按键提交，并且提交之前需要 JS 校验。
+&lt;img src=&#34;../share2.png&#34; alt=&#34;表单提交&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时，我正在调试 enter keyup input 输入框，死活都不进入我的 keyup 事件监听函数里，后面就开始进行了扫盲行动，在某搜索引擎输入关键字 &amp;ldquo;form 自动提交&amp;rdquo;关键词，难题迎刃而解。&lt;/p&gt;
+
+&lt;p&gt;在没有 JS 处理的情况下，form 有以下一些表单提交方式：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;如果 form 表单里有 type 为 submit 的按钮存在，不管 form 内部有一个文本框还是多个文本框都会触发按钮提交生效。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;如果按钮不是 input，而是用 button，并且没有加 type，IE 下默认为&lt;br /&gt;
+type = button 触发不提交，Chrome 默认为 type = submit 触发提交。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;对于其它表单元素，如 textarea、select、radio、checkbox 不影响触发规则。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;最奇怪的是如果有 type=&amp;ldquo;image&amp;rdquo; 的 input 效果等同于 type=&amp;ldquo;submit&amp;rdquo;。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;如果 form 表单里面只有一个 type=&amp;ldquo;text&amp;rdquo; 的 input 文本框，不管按钮是什么type，回车键都会自动提交 form（我遇到的问题）。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&#34;解决方案&#34;&gt;解决方案&lt;/h4&gt;
+
+&lt;p&gt;在 form 里面再添加一个 input 输入框，type 不可以为 hidden，否则无效：
+&lt;img src=&#34;../share3.png&#34; alt=&#34;代码片段&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在最底部我添加了一个 input 输入框 type=&amp;ldquo;text&amp;rdquo;。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>hybrid资源包增量更新机制</title>
+      <link>http://dxy-developer.github.io/f2e/blog/2016/04/04/hybrid%E8%B5%84%E6%BA%90%E5%8C%85%E5%A2%9E%E9%87%8F%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6/</link>
+      <pubDate>Mon, 04 Apr 2016 06:32:51 +0000</pubDate>
+      
+      <guid>http://dxy-developer.github.io/f2e/blog/2016/04/04/hybrid%E8%B5%84%E6%BA%90%E5%8C%85%E5%A2%9E%E9%87%8F%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6/</guid>
+      <description>
+
+&lt;p&gt;从&lt;code&gt;丁香医生&lt;/code&gt;app决定使用&lt;code&gt;hybrid&lt;/code&gt;到现在已有一段时间。前端资源包的大小接近&lt;code&gt;360KB&lt;/code&gt;。并且pm会不时的提出一些小的需求，可能是一些样式的调整，也可能是新的活动页面，因此发布十分频繁。&lt;/p&gt;
+
+&lt;p&gt;丁香医生hybrid开发遇到的问题&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;频繁的发布，很小的改动，尺寸不断增加的资源包。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;丁香医生hybrid开发资源更新机制的现状&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;使用原始的全量更新,即每一次发布，对于终端用户都必须下载完整的资源包，尽管资源包的变动很小。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;面对以上问题和现状，需要新的资源更新机制。他的核心功能是&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;支持全量更新，增量更新&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;设计&#34;&gt;设计&lt;/h2&gt;
+
+&lt;p&gt;资源增量更新机制是在如下前提下设计的&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;没有后台程序员提供支持。（跨部门推一个方案感觉很麻烦）&lt;/li&gt;
+&lt;li&gt;尽量简单。(开发，部署)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;最终的增量更新机制如下&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;由前端进行历代版本资源包的diff，生成不同版本之间的增量包（增量包为变动的文件和变动详情配置文件的压缩包）&lt;/li&gt;
+&lt;li&gt;使用已有的前端资源发布机制进行资源的发布&lt;/li&gt;
+&lt;li&gt;客户端根据配置文件，获取相应的增量包，进行patch&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;diff-patch&#34;&gt;diff&amp;amp;patch&lt;/h2&gt;
+
+&lt;p&gt;找 node, swift, java都支持的 diff&amp;amp;patch 第三方库好麻烦。&lt;/p&gt;
+
+&lt;p&gt;最终采用的方案将diff的粒度增大到文件。根据文件内容的hash值是否不同，来决定是否进行文件的全量更新。因此最终的diff&amp;amp;patch算法是简单文件内容比较和文件增、删、替换操作。虽然不是最好的，但是它足够简单，实用。&lt;/p&gt;
+
+&lt;h2 id=&#34;gulp插件-https-github-com-alexayan-gulp-assets-incremental-update&#34;&gt;&lt;a href=&#34;https://github.com/alexayan/gulp-assets-incremental-update&#34;&gt;gulp插件&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;通过前端构建工具使版本方便的发布&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;npm install gulp-assets-incremental-update --save-dev&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;//gulpfile.js
+require(&#39;gulp-assets-incremental-update&#39;)(gulp, {
+    publish_folder : publish_folder,//资源发布目录
+    name : &#39;article_detail.zip&#39;,//zip包名
+    assets_folder : assets, //本地资源目录
+    base_url : base_url //线上资源路径 {base_url}/1/2/{name}
+});
+
+gulp.task(&#39;publish&#39;, [&#39;assets-incremental-update&#39;] , function(){});
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;gulp publish&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>CSS 自定义滚动条</title>
+      <link>http://dxy-developer.github.io/f2e/blog/2016/04/04/css-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%BB%9A%E5%8A%A8%E6%9D%A1/</link>
+      <pubDate>Mon, 04 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://dxy-developer.github.io/f2e/blog/2016/04/04/css-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%BB%9A%E5%8A%A8%E6%9D%A1/</guid>
+      <description>
+
+&lt;p&gt;最近遇到的一个需求，由于移动端空间有限，表格不能完整显示，为了让用户知道可以通过左右滑动来查看表格的完整信息，PM 希望能模拟一个水平滚动条来提醒用户。具体需求如下（或者您也可以查看线上实例，&lt;a href=&#34;http://hz.dxy.com&#34;&gt;丁香诊所&lt;/a&gt; → 医疗团队 → 排班信息）：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;PC 端效果&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/huoteng/blog/master/media/custom-scrollbar/duty-info-pc.png&#34; alt=&#34;排版信息 - PC&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;移动端效果&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/huoteng/blog/master/media/custom-scrollbar/duty-info-mobile.png&#34; alt=&#34;排版信息 - Mobile&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;移动端效果（期望）&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/huoteng/blog/master/media/custom-scrollbar/duty-info-mobile-scroll.png&#34; alt=&#34;排版信息 - Mobile Expect&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;要解决这个问题，我们可以去使用一些开源的滚动条插件，或者自己模拟。但是为了这么一个小功能就额外引用插件，而且为了保证设计上没有违和感，或许连同&lt;code&gt;HTML&lt;/code&gt;和&lt;code&gt;CSS&lt;/code&gt;也得跟着一起调整，未免小题大做了。&lt;/p&gt;
+
+&lt;p&gt;目前主要有两种通过&lt;code&gt;CSS&lt;/code&gt;来自定义滚动条的样式，但也还是做不到兼容所有的浏览器。&lt;/p&gt;
+
+&lt;h3 id=&#34;1-在-webkit-中自定义滚动条&#34;&gt;1. 在&lt;code&gt;WebKit&lt;/code&gt;中自定义滚动条&lt;/h3&gt;
+
+&lt;p&gt;通过伪元素和 &lt;a href=&#34;http://www.toobug.net/article/what_is_shadow_dom.html&#34;&gt;Shadow DOM&lt;/a&gt; 来实现，David Hyatt 2009 年就在 &lt;a href=&#34;https://webkit.org/blog/363/styling-scrollbars/&#34;&gt;WebKit 官网&lt;/a&gt;介绍过这种方法，并列出了&lt;a href=&#34;http://trac.webkit.org/export/41842/trunk/LayoutTests/scrollbars/overflow-scrollbar-combinations.html&#34;&gt;所有可能的组合&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h4 id=&#34;1-1-伪元素所代表的不同部分&#34;&gt;1.1 伪元素所代表的不同部分&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;::-webkit-scrollbar              { /* 1 */ }
+::-webkit-scrollbar-button       { /* 2 */ }
+::-webkit-scrollbar-track        { /* 3 */ }
+::-webkit-scrollbar-track-piece  { /* 4 */ }
+::-webkit-scrollbar-thumb        { /* 5 */ }
+::-webkit-scrollbar-corner       { /* 6 */ }
+::-webkit-resizer                { /* 7 */ }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/huoteng/blog/master/media/custom-scrollbar/scrollbar-parts.png&#34; alt=&#34;Scrollbar Parts&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;1-2-伪类所代表的不同状态&#34;&gt;1.2 伪类所代表的不同状态&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;:horizontal         //应用于水平滚动条
+:vertical           //应用于垂直滚动条
+:decrement          //应用于按钮和内层轨道，用来指示按钮或内层轨道是否会减小视窗的位置(如，垂直滚动条的上面，水平滚动条的左边)
+:increment          //应用于按钮和内层轨道，用来指示按钮或内层轨道是否会增大视窗的位置(如，垂直滚动条的下面，水平滚动条的右边)
+:start              //应用于按钮和滑块，用来定义对象是否放到滑块的前面
+:end                //应用于按钮和滑块，用来定义对象是否放到滑块的后面
+:double-button      //应用于按钮和内层轨道，用来判断一个按钮是不是放在滚动条同一端一对按钮中的一个，对于内层轨道来说，它表示内层轨道是否紧靠一对按钮
+:single-button      //应用于判断一个按钮是否自己独立的在滚动条的一端，对内层轨道来说，它表示内层轨道是否紧靠一个`single-button`
+:no-button          //应用于内层轨道，表示内层轨道是否要滚动到滚动条的终端，如，滚动条两端没有按钮
+:corner-present     //应用于所有滚动条轨道，指示滚动条圆角是否显示
+:window-inactive    //应用于所有滚动条轨道，指示应用滚动条的某个页面容器(元素)是否当前被激活(在webkit最近的版本中，该伪类也可以用于`::selection`伪元素，Webkit团队有计划扩展它并推动成为一个标准的伪类)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;1-3-伪元素和伪类的组合使用&#34;&gt;1.3 伪元素和伪类的组合使用&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;::-webkit-scrollbar-track-piece:start {
+   /* Select the top half (or left half) or scrollbar track individually */
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+   /* Select the thumb when the browser window isn&#39;t in focus */
+}
+
+::-webkit-scrollbar-button:horizontal:decrement:hover {
+   /* Select the down or left scroll button when it&#39;s being hovered by the mouse */
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;1-4-简单示例&#34;&gt;1.4 简单示例&lt;/h4&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;配合&lt;code&gt;WebKit&lt;/code&gt;的伪类和伪元素，我们可以同时使用&lt;code&gt;:enabled&lt;/code&gt;，&lt;code&gt;:disabled&lt;/code&gt;，&lt;code&gt;:hover&lt;/code&gt;等伪类，也可以去应用一些&lt;code&gt;CSS&lt;/code&gt;属性，如渐变、圆角、gbba 等。具体可以看看官网给出的 &lt;a href=&#34;http://trac.webkit.org/export/41842/trunk/LayoutTests/scrollbars/overflow-scrollbar-combinations.html&#34;&gt;demo&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;2-在-ie-中自定义滚动条&#34;&gt;2. 在&lt;code&gt;IE&lt;/code&gt;中自定义滚动条&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.dengjie.com/temp/scroller.swf&#34;&gt;在线的可视化工具&lt;/a&gt;，简单好用。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;scrollbar-arrow-color: color;       //三角箭头的颜色
+scrollbar-face-color: color;        //立体滚动条的颜色，包括箭头部分的背景色
+scrollbar-3dlight-color: color;     //立体滚动条亮边的颜色
+scrollbar-highlight-color: color;   //滚动条的高亮颜色
+scrollbar-shadow-color: color;      //立体滚动条阴影的颜色
+scrollbar-darkshadow-color: color;  //立体滚动条外阴影的颜色
+scrollbar-track-color: color;       //立体滚动条背景颜色
+scrollbar-base-color:color;         //滚动条的基色
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;参考资料&#34;&gt;参考资料&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://css-tricks.com/custom-scrollbars-in-webkit&#34;&gt;Custom Scrollbars in WebKit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.toobug.net/article/what_is_shadow_dom.html&#34;&gt;[译] 什么是Shadow DOM？&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>设计模式在JavaScript中的应用</title>
+      <link>http://dxy-developer.github.io/f2e/blog/2016/04/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9C%A8javascript%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Mon, 04 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://dxy-developer.github.io/f2e/blog/2016/04/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9C%A8javascript%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/</guid>
+      <description>
+
+&lt;h3 id=&#34;设计模式&#34;&gt;设计模式&lt;/h3&gt;
+
+&lt;p&gt;关于设计模式，文诌诌的描述定义我就不说了，大家问下度娘即可。&lt;/p&gt;
+
+&lt;h1 id=&#34;设计模式在javascript中的应用&#34;&gt;设计模式在JavaScript中的应用&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;本文用大白话的形式描述下个人理解。首先“设计模式”翻译下就是在设计程序业务流的套路，这种“套路”都是前车之鉴，被历史反复实践和总结，所以还是值得学习了解的，毕竟每个程序员的代码不仅仅是让机器解释，而是给他人阅读的（让每个同行都能看的懂并能维护你的代码）！以下是以本人理解的设计模式在Javascript中应用描述：&lt;/p&gt;
+
+&lt;h3 id=&#34;1-单例模式&#34;&gt;1.单例模式&lt;/h3&gt;
+
+&lt;p&gt;类中操作一个实例&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function c1(){};
+function A(){
+    if(!this.instance){
+       this.instance = new c1();
+    }
+    return this.instance
+}
+
+var a=A(&amp;quot;hello&amp;quot;);
+var b=A(&amp;quot;world&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;2-策略模式&#34;&gt;2.策略模式&lt;/h3&gt;
+
+&lt;p&gt;使用分支判断&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function B(name){
+if(!name==&amp;quot;hello&amp;quot;){
+    return &amp;quot;a&amp;quot;;
+}
+if(!name==&amp;quot;world&amp;quot;){
+    return &amp;quot;b&amp;quot;;
+}
+}
+
+B(&amp;quot;hello&amp;quot;);
+B(&amp;quot;world&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;3-代理模式&#34;&gt;3.代理模式&lt;/h3&gt;
+
+&lt;p&gt;你调用的方法可能只是一个中间件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var c={f1:function(){
+
+}}
+
+va d={f2:function(){
+    c.f1();
+}}
+
+d();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;4-迭代器模式&#34;&gt;4.迭代器模式&lt;/h3&gt;
+
+&lt;p&gt;循环遍历！for , while &amp;hellip;&lt;/p&gt;
+
+&lt;h3 id=&#34;5-发布-订阅模式&#34;&gt;5.发布/订阅模式&lt;/h3&gt;
+
+&lt;p&gt;DOM事件 or 自定义事件&lt;/p&gt;
+
+&lt;h3 id=&#34;6-命令模式&#34;&gt;6.命令模式&lt;/h3&gt;
+
+&lt;p&gt;将要执行的【方法】和【参数对象】一并传入到另一个方法中&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var e=function(fn,arg){
+    fn(arg);
+}
+e(function(e){
+    alert(e);
+},&amp;quot;hello&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;其它：组合模式，模版方法模式，享元模式，职责链模式，中介者模式，装饰者模式，状态模式，适配器模式&amp;hellip;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;结语&#34;&gt;结语&lt;/h2&gt;
+
+&lt;p&gt;设计模式就好比《三十六计》，不了解也能编码，只是编码后表述起来方便、专业些。仔细的人可能会发觉当设计一套语言或框架、类库时，设计模式都是理论基础！&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Q：经常有人问为什么要用这种设计模式编码？
+A：条条大道通罗马，只要&lt;strong&gt;编码有规律可循&lt;/strong&gt;，且能解决需求就可以了。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;作者 &lt;a href=&#34;http://weibo.com/uojo&#34;&gt;@uojo&lt;/a&gt;
+2016年04月04日&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>处理移动端文章两端对齐的一点微小经验</title>
+      <link>http://dxy-developer.github.io/f2e/blog/2016/03/31/mobile-article-align-justify-minor-experience/</link>
+      <pubDate>Thu, 31 Mar 2016 17:23:13 +0800</pubDate>
+      
+      <guid>http://dxy-developer.github.io/f2e/blog/2016/03/31/mobile-article-align-justify-minor-experience/</guid>
+      <description>
+
+&lt;p&gt;最近处理了一个移动端的文章详情页面，产品的需求是要做到正文区块内的内容能够两端对齐。&lt;/p&gt;
+
+&lt;p&gt;在这里分享实现过程中一点微小的经验。&lt;/p&gt;
+
+&lt;p&gt;注：以下演示均未添加浏览器 prefix，请各位自行添加。推荐使用 &lt;a href=&#34;https://github.com/postcss/autoprefixer&#34;&gt;autoprefixer&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;以下代码均在 webkit/blink 引擎浏览器下测试，未考虑 Gecko。&lt;/p&gt;
+
+&lt;p&gt;先来构造一个最小 demo：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;article class=&amp;quot;content&amp;quot;&amp;gt;
+   &amp;lt;p&amp;gt;
+      政黨或了底乎實運外球便易華公你物實。人病說？容不排。  中有那童節完放回什這，麼題容。問酒後但感臺？人機資良他主金同樣合車後們義質境不經對都專天林息密了和去中我聲……間言分的門同、三行方之友一濟才？？面球發一一看消示個以麼期造，我金民家不心直能，理方斯生那不近理製室示每連態生和片得人會美……是山求寫南工，沒元身山統熱現研後我心出筆息不。件談是條國求重：  也為活國到後得常命經求？
+   &amp;lt;/p&amp;gt;
+&amp;lt;/article&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.content {
+    width: 50%;
+    background: #fff;
+    margin: 50px auto;
+}
+
+.content p {
+    padding: 5px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;大概是这么一个效果：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/812DE944B087ABDAE674280AA7019BA8.png&#34; alt=&#34;1.png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;看着还好嘛，不过仔细看会发现右边确实不太整齐。为了善待强迫症，让我们加上两端对齐的 css。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;p {
+    text-align: justify;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/A60CA2C1C3A39C6D9FB24E0C5743F6C6.png&#34; alt=&#34;2.png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;搞定。不过这个属性在 Firefox 下对中文标点的支持有点问题，由于我们是处理移动端，就暂且按下不表。&lt;/p&gt;
+
+&lt;p&gt;但是等等，如果有很长的英文溢出怎么办？&lt;/p&gt;
+
+&lt;p&gt;比如说这样：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;...
+&amp;lt;p&amp;gt;
+    WTFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+&amp;lt;/p&amp;gt;
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/35EAC982FD1C45BB53549A686EABC90F.png&#34; alt=&#34;3.png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;立马就破功了。这个时候我们一般会加什么属性？&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;overflow: hidden&lt;/code&gt; : 隐藏超出部分&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;word-break: break-all&lt;/code&gt; : 强制超过容器的部分换行&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;好，那我们都加上：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;p {
+    text-align: justify;
+    overflow: hidden;
+    word-break: break-all;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/BD66B650252DA552276571522723D63E.png&#34; alt=&#34;4.png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;好，溢出问题也解决了。这下总可以交差了吧？等等，让我们看下如果是一篇真正的英文文章会出现什么情况：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;...
+&amp;lt;p&amp;gt;
+The first thing you&#39;ll want to do is to draw boxes around every component (and subcomponent) in the mock and give them all names. If you&#39;re working with a designer, they may have already done this, so go talk to them! Their Photoshop layer names may end up being the names of your React components!
+&amp;lt;/p&amp;gt;
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/DBA8F9BDE0818B335A20A021EB2D18E6.png&#34; alt=&#34;5.png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我们会发现不该换行的地方全被截断了。这可怎么办？看来问题是出在 &lt;code&gt;word-break: break-all&lt;/code&gt; 上了。我们来看下这个属性的详细解释：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;h1 id=&#34;word-break&#34;&gt;word-break&lt;/h1&gt;
+
+&lt;p&gt;The word-break CSS property is used to specify whether to break lines within words.
+* normal : Use the default line break rule.
+* break-all : Word breaks may be inserted between any character for non-CJK (Chinese/Japanese/Korean) text.
+* keep-all : Don&amp;rsquo;t allow word breaks for CJK text.  Non-CJK text behavior is the same as for normal.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/CSS/word-break&#34;&gt;word-break - CSS | MDN&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;break-all&lt;/code&gt; 表示所有的非中日韩字符间都可能被换行，这就有点麻烦了。任意换行的英文非常难读，因此要想个办法处理才行。&lt;/p&gt;
+
+&lt;p&gt;但其实 &lt;code&gt;word-break&lt;/code&gt; 有个只有 webkit/blink 引擎支持的属性，&lt;code&gt;break-wrod&lt;/code&gt;。通过这个属性，我们可以让英文句子在正确的位置换行，但如果实在没有地方可以打断，会进行强制打断。但它是个非标准属性，通过 Google 可知，它的效果基本等同于 &lt;code&gt;word-wrap: break-word&lt;/code&gt;。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;h1 id=&#34;word-wrap&#34;&gt;word-wrap&lt;/h1&gt;
+
+&lt;p&gt;The word-wrap property is used to specify whether or not the browser may break lines within words in order to prevent overflow when an otherwise unbreakable string is too long to fit in its containing box.
+* normal : Indicates that lines may only break at normal word break points.
+* break-wrod : Indicates that normally unbreakable words may be broken at arbitrary points if there are no otherwise acceptable break points in the line.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/CSS/word-wrap&#34;&gt;word-wrap - CSS | MDN&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;我们使用这个属性来替代 &lt;code&gt;word-break&lt;/code&gt; 来看看效果。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;p {
+    text-align: justify;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/F94AFBC735957DD932C300CBE758D922.png&#34; alt=&#34;6.png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;进行到这里我们基本上已经达成了目的。但如果你还想对英文做进一步的优化的话，可以考虑添加 &lt;code&gt;hyphens: auto&lt;/code&gt; 这个属性。这样英文单词会在必要的时候添加连字符换行，可以避免有时为了在空格处换行造成的每行词间距疏密差距过大的问题。&lt;/p&gt;
+
+&lt;p&gt;由于这个属性对中文没有作用，而且兼容性不佳（移动端暂时只在 Safari 中有作用）因此以用得比较少，这里也不多做介绍，各位可以看看效果。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;p {
+    text-align: justify;
+    overflow: hidden;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;../images/C71770943A12A21B8FAE28C8150FF99E.png&#34; alt=&#34;7.png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;要注意的是，&lt;code&gt;hyphens: auto&lt;/code&gt; 是会根据 &lt;code&gt;lang&lt;/code&gt; 属性中的语言来调整添加连字符的策略的，因此如果我们的网页 &lt;code&gt;html&lt;/code&gt; 元素中写的是 &lt;code&gt;lang=&amp;quot;zh-CN&amp;quot;&lt;/code&gt; ，那么这个属性完全不会有效果，因此需要换成 &lt;code&gt;lang=&amp;quot;en&amp;quot;&lt;/code&gt;。如果不想更换整个页面的语言申明的话，也可以在需要使用这个属性的元素上单独添加 &lt;code&gt;lang&lt;/code&gt; 属性。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;p lang=&amp;quot;en&amp;quot;&amp;gt;xxx&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/CSS/hyphens&#34;&gt;hyphens - CSS | MDN&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://codepen.io/wxt2005/pen/pywoqR?editors=1100&#34;&gt;最终 demo&lt;/a&gt;（请在 webkit/blink 引擎浏览器下打开）&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>webpack学习笔记</title>
+      <link>http://dxy-developer.github.io/f2e/blog/2016/03/26/webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 26 Mar 2016 17:18:13 +0800</pubDate>
+      
+      <guid>http://dxy-developer.github.io/f2e/blog/2016/03/26/webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <description>
+
+&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
+
+&lt;p&gt;以下内容为小帅在学习Webpack过程中整理的笔记。持续完善中&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/lizhiyao/learn_webpack&#34;&gt;Demo的Github地址&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;webpack是什么&#34;&gt;Webpack是什么&lt;/h1&gt;
+
+&lt;p&gt;简而言之，Webpack是一个模块化管理和打包前端资源的工具。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;what-is-webpack.png&#34; alt=&#34;webpack&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源，&lt;/p&gt;
+
+&lt;p&gt;还可以将按需加载的模块进行代码分隔，等到实际需要的时候再异步加载。&lt;/p&gt;
+
+&lt;p&gt;通过加载器（loader）的转换，任何形式的资源都可以视作模块，
+比如 CommonJs 模块、 AMD 模块、 ES6 模块、CSS、图片、 JSON、Coffeescript、 LESS 等。&lt;/p&gt;
+
+&lt;h2 id=&#34;webpack的目标&#34;&gt;Webpack的目标&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;把依赖树拆成可按需加载的块&lt;/li&gt;
+&lt;li&gt;让初始化加载时间尽可能地少&lt;/li&gt;
+&lt;li&gt;每个静态资源都是一个模块&lt;/li&gt;
+&lt;li&gt;模块化集成第三方库&lt;/li&gt;
+&lt;li&gt;尽可能地自定义打包器的每一部分&lt;/li&gt;
+&lt;li&gt;尽可能地自定义打包器的每一部分&lt;/li&gt;
+&lt;li&gt;适合大型项目&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;webpack的特别之处&#34;&gt;webpack的特别之处&lt;/h2&gt;
+
+&lt;h3 id=&#34;代码拆分&#34;&gt;代码拆分&lt;/h3&gt;
+
+&lt;p&gt;webpack 的依赖树中有同步和异步两种依赖方式。其中，异步模块将会被拆成一个新的块，
+并且在被优化后，生成一个对应的文件。&lt;/p&gt;
+
+&lt;h3 id=&#34;加载器&#34;&gt;加载器&lt;/h3&gt;
+
+&lt;p&gt;webpack 本身只支持处理 JavaScript，但可以通过加载器来把别的资源转为 JavaScript。
+因此，每个资源都被当作一个模块。&lt;/p&gt;
+
+&lt;h3 id=&#34;智能解析&#34;&gt;智能解析&lt;/h3&gt;
+
+&lt;p&gt;webpack 有一个基本支持所有第三方库的智能解析器，甚至还支持带有表达式的依赖表述法，
+如 require(&amp;ldquo;./templates/&amp;rdquo; + name + &amp;ldquo;.jade&amp;rdquo;)。支持最常用的 CommonJs 和 AMD 这两种模块风格。&lt;/p&gt;
+
+&lt;h3 id=&#34;插件系统&#34;&gt;插件系统&lt;/h3&gt;
+
+&lt;p&gt;webpack 有一个很出色的插件系统，甚至大部分内置功能都是基于这个插件系统而来的。
+这个插件系统允许你根据需要来自定义 webpack，以及通过开源的方式来分发通用插件。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;创建webpack的动机&#34;&gt;创建Webpack的动机&lt;/h1&gt;
+
+&lt;p&gt;如今的网站正在朝着Web app演化，具体体现在：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在一个页面中包含越来越多的JavaScript代码&lt;/li&gt;
+&lt;li&gt;我们可以在现代的浏览器中做更多的事情&lt;/li&gt;
+&lt;li&gt;即使一个页面中有着越来越多的代码，但是几乎不会再进行整个页面的刷新&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;以上这几点会导致客户端（浏览器端）有着大量的代码。&lt;/p&gt;
+
+&lt;p&gt;如此多的代码需要被组织起来。模块系统给我们提供了把代码拆分成模块的可能。&lt;/p&gt;
+
+&lt;h2 id=&#34;现有的常用的模块系统风格&#34;&gt;现有的常用的模块系统风格&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; 标签方式（无模块系统）&lt;/li&gt;
+&lt;li&gt;CommonJs&lt;/li&gt;
+&lt;li&gt;AMD 及其变种&lt;/li&gt;
+&lt;li&gt;ES6 模块&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;标签方式-无模块系统&#34;&gt;标签方式（无模块系统）&lt;/h3&gt;
+
+&lt;p&gt;这是在不使用模块系统的前提下来管理模块代码库的方式。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;script src=&amp;quot;libary1.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;quot;libary2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;quot;plugin1.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;quot;module1.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;quot;module2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;模块导出接口到全局对象中，如 window 对象，也通过全局对象来访问依赖模块的接口。&lt;/p&gt;
+
+&lt;p&gt;普遍的问题&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;全局变量冲突
+强依赖加载顺序
+开发者需要解决模块和库的依赖关系
+大项目中列表越来越长而难以维护&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;commonjs-同步-require&#34;&gt;CommonJs：同步 require&lt;/h3&gt;
+
+&lt;p&gt;这是node.js使用的方式&lt;/p&gt;
+
+&lt;p&gt;这种方式使用同步的 require 来加载依赖并且通过给 exports 添加属性或给 module.exports 赋值来导出接口。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;require(&amp;quot;module&amp;quot;);
+require(&amp;quot;../file.js&amp;quot;);
+exports.doStuff = function() {};
+module.exports = someValue;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;优点&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;重用服务端模块
+npm 上已经有很多这种模块
+简单且易于使用&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;缺点&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;网络请求不适用于同步请求，更适合异步请求
+不能并行请求多个模块&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;amd-异步-require&#34;&gt;AMD：异步 require&lt;/h3&gt;
+
+&lt;p&gt;因为 CommonJs 的同步 require 方案不适合如浏览器等环境，所以有了异步的定义和导出模块方案。例如：require.js&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;require([&amp;quot;module&amp;quot;, &amp;quot;../file&amp;quot;], function(module, file) { /* ... */ });
+define(&amp;quot;mymodule&amp;quot;, [&amp;quot;dep1&amp;quot;, &amp;quot;dep2&amp;quot;], function(d1, d2) {
+return someExportedValue;
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;优点&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;适合异步网络请求方式
+并行加载多模块&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;缺点&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;更多的编码，更难阅读和编写
+有不同的方案&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;es6-模块&#34;&gt;ES6 模块&lt;/h3&gt;
+
+&lt;p&gt;EcmaScript6 给 JavaScript 增加了模块系统。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import &amp;quot;jquery&amp;quot;;
+export function doStuff() {}
+module &amp;quot;localModule&amp;quot; {}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;优点&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;易于静态分析（Typescript）
+未来的标准&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;缺点&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;浏览器原生支持需要时间（Babel）
+这种风格的模块还很少&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;模块的加载方式&#34;&gt;模块的加载方式&lt;/h2&gt;
+
+&lt;p&gt;因为模块是在客户端执行的，所以首先需要把模块从服务端加载到浏览器。&lt;/p&gt;
+
+&lt;p&gt;关于模块加载，有两个极端的方案：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;一个模块一个请求&lt;/li&gt;
+&lt;li&gt;所有模块一个请求&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这两种方案都被广泛使用，但都不是最佳的。&lt;/p&gt;
+
+&lt;h3 id=&#34;一个模块一个请求&#34;&gt;一个模块一个请求&lt;/h3&gt;
+
+&lt;p&gt;优点：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;按需加载&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;缺点：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;过多请求导致负载过多，延迟过大，初始化慢&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;所有模块一个请求&#34;&gt;所有模块一个请求&lt;/h3&gt;
+
+&lt;p&gt;优点：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;更少的负载，更少的延迟&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;缺点：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;不需要或还不需要的模块也被加载了&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;分块加载&#34;&gt;分块加载&lt;/h3&gt;
+
+&lt;p&gt;在大多数情况下，各种极端方案的相互妥协会得到一个更好地方案。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;编译模块时，把模块拆成更小的块（chunks）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这样，将得到多个更小的请求。模块的每个块（chunks）将是按需加载，初始请求中不包含完整的代码库，从而可以更小。&lt;/p&gt;
+
+&lt;p&gt;「拆分点」是可选的，并且可以由开发者自定义。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;可以组成一个大的代码库&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;注：此思路来自&lt;a href=&#34;http://www.gwtproject.org/doc/latest/DevGuideCodeSplitting.html&#34;&gt;GWT&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;更多可参考&lt;a href=&#34;https://github.com/liunian/webpack-doc/blob/master/code-splitting.md&#34;&gt;代码拆分&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h2 id=&#34;为何仅打包-javascript&#34;&gt;为何仅打包 JavaScript？&lt;/h2&gt;
+
+&lt;p&gt;为什么一个模块系统只能帮助开发者打包（模块化）JavaScript？实际上我们还有很多别的静态资源需要处理，如：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;样式&lt;/li&gt;
+&lt;li&gt;图片&lt;/li&gt;
+&lt;li&gt;web 字体&lt;/li&gt;
+&lt;li&gt;html 模板&lt;/li&gt;
+&lt;li&gt;其他静态资源（.txt .pdf等）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;另外还有一些预编译资源：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;typescript/coffeescript -&amp;gt; javascript&lt;/li&gt;
+&lt;li&gt;less/sass -&amp;gt; css&lt;/li&gt;
+&lt;li&gt;jade -&amp;gt; 生成模板的 javascript&lt;/li&gt;
+&lt;li&gt;i18n 文件 -&amp;gt; 别的资源&lt;/li&gt;
+&lt;li&gt;其他&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这些应该同样的使用才对，如：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;require(&amp;quot;./style.css&amp;quot;);
+require(&amp;quot;./style.less&amp;quot;);
+require(&amp;quot;./template.jade&amp;quot;);
+require(&amp;quot;./image.png&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;静态分析&#34;&gt;静态分析&lt;/h2&gt;
+
+&lt;p&gt;在编译模块时，会尝试用静态分析来获取依赖关系。&lt;/p&gt;
+
+&lt;p&gt;一般来说，这只能找到没有表达式的简单形式，但像 require(&amp;ldquo;./template/&amp;rdquo; + templateName + &amp;ldquo;.jade&amp;rdquo;) 确实一种常见的用法。&lt;/p&gt;
+
+&lt;p&gt;不同的代码库往往使用不同的风格，其中不少的风格还是比较怪异的……&lt;/p&gt;
+
+&lt;h3 id=&#34;解决问题的策略&#34;&gt;解决问题的策略&lt;/h3&gt;
+
+&lt;p&gt;一个好的解析器应当支持绝大多数的现存代码。如果开发者用了一些不寻常的方法，那么解析器应该提供一个兼容性最好的解决方案。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;webpack安装&#34;&gt;Webpack安装&lt;/h1&gt;
+
+&lt;h2 id=&#34;node-js&#34;&gt;node.js&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://nodejs.org/en/&#34;&gt;安装node.js&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;node.js自带了一个叫做npm的包管理工具&lt;/p&gt;
+
+&lt;h2 id=&#34;webpack&#34;&gt;Webpack&lt;/h2&gt;
+
+&lt;p&gt;我们使用npm安装Webpack&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ npm install webpack -g    
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;在项目中使用webpack&#34;&gt;在项目中使用Webpack&lt;/h2&gt;
+
+&lt;p&gt;最好的方法是把 webpack 作为项目的依赖，这样，每个项目都可以使用自己所需要的版本而不必依赖于全局的 webpack。&lt;/p&gt;
+
+&lt;p&gt;通过 npm 来创建一个 package.json 文件：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ npm init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果不把项目发布到 npm 上，在执行 &lt;code&gt;npm init&lt;/code&gt; 命令中要求回答的问题的答案则不是很重要。&lt;/p&gt;
+
+&lt;p&gt;使用下面的命令来安装 webpack 并把其添加到 packeage.json 中：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ npm install webpack --save-dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;由于网络问题安装失败的朋友可以使用如下命令进行安装：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install webpack --save-dev --registry=https://registry.npm.taobao.org
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;webpack版本选择&#34;&gt;Webpack版本选择&lt;/h2&gt;
+
+&lt;p&gt;webpack 有稳定版和 beta 版两个可用的版本，其中，beta 版本在版本号中添加了 -beta 的标识。
+beta 版本可能带有很多不稳定变更或实验性的功能，并且未完全测试。
+可查看变更记录来看各版本的差别。正式项目中应该使用稳定版本。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ npm install webpack@1.2.x --save-dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;webpack开发者工具&#34;&gt;Webpack开发者工具&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install webpack-dev-server --save-dev 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;复制如下代码到命令行执行-可快速安装&#34;&gt;复制如下代码到命令行执行，可快速安装&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install webpack webpack-dev-server --save-dev --registry=https://registry.npm.taobao.org
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;使用webpack&#34;&gt;使用Webpack&lt;/h1&gt;
+
+&lt;h2 id=&#34;基本使用方式&#34;&gt;基本使用方式&lt;/h2&gt;
+
+&lt;p&gt;最基本的使用webpack的方式是在命令行中输入webpack相关的命令并执行，
+此时webpack 会分析入口文件（entry.js）来找寻依赖文件。这些依赖文件（又称之为模块）会包括到 bundle.js 中。
+webpack 会给每个模块一个唯一的 id，然后在 bundle.js 中通过该 id 来访问对应的模块。
+启动时，只会执行入口模块。一个短小的运行时提供了 require 函数，在引用模块时会执行依赖模块。&lt;/p&gt;
+
+&lt;p&gt;如果项目变得越来越大，编译耗时将会越来越长。
+所以，我们希望能够展示一些进度条，同时增加颜色&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ webpack --progress --colors
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们并不希望每一个变更都需要去手动编译，则可以通过以下命令来改善。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ webpack --watch --progress --colors 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这样，webpack 会缓存未变更的模块而输出变更的模块。&lt;/p&gt;
+
+&lt;p&gt;开启 webpack 监控模式后，webpack 会给所有文件添加用于编译的文件监控。
+如果有任何变更，将会触发编译。
+当缓存开启时，webpack 会在内存中保存所有模块内容并在没变更时直接重用。&lt;/p&gt;
+
+&lt;p&gt;但在实际项目中，一般不会这样使用。&lt;/p&gt;
+
+&lt;p&gt;通常会结合npm命令来在项目中使用Webpack。&lt;/p&gt;
+
+&lt;p&gt;npm 是一个非常好用的用来编译的指令，我们把webpack编译步骤放到 npm run build 中。
+通过 npm 我们可以不用去担心项目中使用了什么技术，
+你只要调用这个指令就可以了，只要你在 package.json 中设置 scripts 的值就可以了。&lt;/p&gt;
+
+&lt;p&gt;把下面的内容添加到 package.json中。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;quot;scripts&amp;quot;: {
+   &amp;quot;build&amp;quot;: &amp;quot;webpack&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;设置-webpack-dev-server&#34;&gt;设置 webpack-dev-server&lt;/h2&gt;
+
+&lt;p&gt;如果需要一直输入 npm run build 确实是一件非常无聊的事情，&lt;/p&gt;
+
+&lt;p&gt;幸运的是，我们可以把让他安静的运行，让我们设置 webpack-dev-server。&lt;/p&gt;
+
+&lt;p&gt;安装webpack-dev-server&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm i webpack-dev-server --save-dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;把下面的内容添加到 package.json中。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+    &amp;quot;scripts&amp;quot;: {
+        &amp;quot;build&amp;quot;: &amp;quot;webpack&amp;quot;,
+        &amp;quot;dev&amp;quot;: &amp;quot;webpack-dev-server --devtool eval --progress --colors --hot --content-base build&amp;quot;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;webpack-dev-server - 在 localhost:8080 建立一个 Web 服务器
+&amp;ndash;devtool eval - 为你的代码创建源地址。当有任何报错的时候可以让你更加精确地定位到文件和行号
+&amp;ndash;progress - 显示合并代码进度
+&amp;ndash;colors - 命令行中显示颜色
+&amp;ndash;content-base build - 指向设置的输出目录&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;访问 &lt;a href=&#34;http://localhost:8080&#34;&gt;http://localhost:8080&lt;/a&gt; 会看到效果&lt;/p&gt;
+
+&lt;h2 id=&#34;webpack-config-js&#34;&gt;webpack.config.js&lt;/h2&gt;
+
+&lt;p&gt;在项目根目录手动创建名为webpack.config.js的配置文件,&lt;/p&gt;
+
+&lt;p&gt;Webpack 在执行的时候，除了在命令行传入参数，还可以通过指定的配置文件来执行。
+默认情况下，会搜索当前目录的 webpack.config.js 文件。&lt;/p&gt;
+
+&lt;h2 id=&#34;浏览器自动刷新&#34;&gt;浏览器自动刷新&lt;/h2&gt;
+
+&lt;p&gt;webpack-dev-server阻止了 webpack 生成结果文件到硬盘，而是直接通过内存来提供服务&lt;/p&gt;
+
+&lt;p&gt;当运行 webpack-dev-server 的时候，它会监听你的文件修改。当项目重新合并之后，会通知浏览器刷新。&lt;/p&gt;
+
+&lt;p&gt;为了能够触发这样的行为，你需要把你的 index.html 放到 build/ 文件夹下，&lt;/p&gt;
+
+&lt;p&gt;然后，需要在index.html中增加一个脚本当发生改动的时候去自动刷新应用：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+    &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;/&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+    &amp;lt;script src=&amp;quot;http://localhost:8080/webpack-dev-server.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&amp;quot;bundle.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在webpack.config.js配置中增加一个入口点&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var path = require(&#39;path&#39;);
+
+module.exports = {
+    entry: [&#39;webpack/hot/dev-server&#39;, path.resolve(__dirname, &#39;app/main.js&#39;)],
+    output: {
+        path: path.resolve(__dirname, &#39;build&#39;),
+        filename: &#39;bundle.js&#39;,
+    },
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;现在应用就可以在文件修改之后自动刷新了&lt;/p&gt;
+
+&lt;h2 id=&#34;默认自动刷新方式&#34;&gt;默认自动刷新方式&lt;/h2&gt;
+
+&lt;p&gt;在上面我们创建了 index.html 文件来获取更多的自由和控制，这样在&lt;a href=&#34;http://localhost:8080/就可以自动刷新。&#34;&gt;http://localhost:8080/就可以自动刷新。&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;另一种方式是不需要创建index.html, 直接访问&lt;a href=&#34;http://localhost:8080/webpack-dev-server/bundle&#34;&gt;http://localhost:8080/webpack-dev-server/bundle&lt;/a&gt; 运行应用。&lt;/p&gt;
+
+&lt;p&gt;这会触发一个默认的我们不能控制的 index.html ，它同样会触发一个允许iFrame中显示重合并的过程。
+webpack 命令会尝试加载当前目录下的 webpack.config.js 文件。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;加载器-1&#34;&gt;加载器&lt;/h1&gt;
+
+&lt;p&gt;加载器是把一个资源文件作为入参转换为另一个资源文件的 node.js 函数。&lt;/p&gt;
+
+&lt;h2 id=&#34;安装加载器&#34;&gt;安装加载器&lt;/h2&gt;
+
+&lt;p&gt;如果加载器发布在 npm 上，那么可以通过下面的两个命令来安装&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ npm install xxx-loader --save
+$ npm install xxx-loader --save-dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;加载器用法&#34;&gt;加载器用法&lt;/h2&gt;
+
+&lt;p&gt;请参见&lt;a href=&#34;https://github.com/lizhiyao/learn_webpack_react&#34;&gt;在项目中使用webpack+react+es6&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://webpack.github.io/docs/&#34;&gt;Webpack Document&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://zhaoda.net/webpack-handbook/index.html&#34;&gt;Webpack 中文指南&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/liunian/webpack-doc/blob/master/SUMMARY.md&#34;&gt;webpack-doc&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://zhuanlan.zhihu.com/p/20367175&#34;&gt;Webpack傻瓜式指南（一）&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://zhuanlan.zhihu.com/p/20397902&#34;&gt;Webpack傻瓜指南（二）开发和部署技巧&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://zhuanlan.zhihu.com/p/20522487&#34;&gt;Webpack傻瓜指南（三）和React配合开发&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>CSS哲学伪命题</title>
+      <link>http://dxy-developer.github.io/f2e/blog/2016/02/24/css%E5%93%B2%E5%AD%A6%E4%BC%AA%E5%91%BD%E9%A2%98/</link>
+      <pubDate>Wed, 24 Feb 2016 00:43:23 +0800</pubDate>
+      
+      <guid>http://dxy-developer.github.io/f2e/blog/2016/02/24/css%E5%93%B2%E5%AD%A6%E4%BC%AA%E5%91%BD%E9%A2%98/</guid>
+      <description>
+
+&lt;p&gt;标题党。这篇文章断断续续的修改过好几次，也没有满意，本来是想总结一下我这些零散的 CSS 知识结构，可能由于知识体系不全面，总是没能把知识点串联成一个通顺的内容。贴出来权当大家一起讨论下“前世今生”。文章后续可能会不定时更新。&lt;/p&gt;
+
+&lt;p&gt;CSS 作为 Web 的基础部分，极其容易上手。但是 CSS 并不算的上是一门编程语言，在语言能力上略显薄弱，往往导致整体的维护性变差。但是这并没有使得大家停止对 CSS 的探索，从命名规范，目录架构，预处理器(如&lt;code&gt;SASS&lt;/code&gt;)，后处理器（&lt;code&gt;PostCSS&lt;/code&gt;），模块化等等的方向上，努力把 CSS 变得更好。&lt;/p&gt;
+
+&lt;h3 id=&#34;关于自我历程&#34;&gt;关于自我历程&lt;/h3&gt;
+
+&lt;p&gt;其实我自己并没有系统的学习过 CSS（虽然我现在也不知道如何系统的学习），看了几个视频，扫了下中文版的 API，然后就开始了切图生涯，很多的知识点也都是后来一些零散的博客中了解到的。这过程中，的的确确踩过不少的坑，有的填了，有的继续祸害着项目里其它的同学。也导致我在很长的时段时间里都是走在一个混乱无序的 CSS 书写当中。&lt;/p&gt;
+
+&lt;p&gt;最早遇到的大概的是命名的问题了吧，因为本身积累的词汇量就少，动不动就没单词可用了。那个时候好像也就是网上列出一大堆像&lt;code&gt;menu&lt;/code&gt;， &lt;code&gt;siderbar&lt;/code&gt;之类的“命名大全”来模仿。再到后来接触到了 &lt;code&gt;Bootstrap&lt;/code&gt; 这种比较系统的框架（里面有好多可以值得借鉴的地方），而后又看到一些按类别划分文件，再配有特有的前缀的管理方式(那个时候还并不知道 &lt;code&gt;SMACSS&lt;/code&gt; 的名词)，还有一些原子化，把功能和样式分离等等的。在 &lt;code&gt;SASS&lt;/code&gt; 兴起的时候其实挺兴奋的，因为终于感觉有了点编程的能力，当然了，对变量，嵌套，&lt;code&gt;mixins&lt;/code&gt;等等的使用，很大程度上提高了编程效率。在后来同事的分享中，又了解了 BEM 的命名方式（初看很乱，了解后有一种豁然开然的感觉，细细回想起来，也就是大家约定一套共用的命名规范）。以及通过 &lt;code&gt;PostCSS&lt;/code&gt; 去实现 CSS 中一些自动处理的任务。在 React/ES6/Webpack 出现后，使得很大一部分程度上，CSS 写在 JS 中的方式也开始在特定的场合中频频出现。&lt;/p&gt;
+
+&lt;p&gt;以上，通通出现过我的项目中，在项目切换维护的时候，那感觉，心如刀割。并不是说上面涉及到的知识点有对错的问题，只是在一个团队中，如果没有一些统一的架构和约定，往往到项目的后期会变得越来越不稳定。这不禁又让我想起了 CSS 的学习曲线（像PHP？又来黑了），样式大家都能写，能愉快的维护，又是另一个层次了。&lt;/p&gt;
+
+&lt;p&gt;个人觉得 CSS 中有两个比较重要的点，&lt;strong&gt;语义化&lt;/strong&gt;和&lt;strong&gt;可维护性&lt;/strong&gt;，而最终都是为了提高开发的效率。&lt;/p&gt;
+
+&lt;p&gt;语义化很大一部分程度上是为了阅读需要，简易明了。建议团队内还是要尽量的保持风格一致。其它的，可以看一下&lt;a href=&#34;http://www.tychio.net/tech/2015/03/14/thinking-in-semantic-css.html&#34;&gt;CSS语义思维&lt;/a&gt;的内容，这里不展开讲了。&lt;/p&gt;
+
+&lt;p&gt;可维护性真的是一个很虚的概念，但是涉及到了多方面的各个点。比如，该怎么保持项目的简单性，灵活性，而同时又有足够的扩展能力？又比如如何抽取模块，是以功能划分还是以样式结构？如何重用样式？如何防止样式被覆盖，避免冗余代码等等。&lt;/p&gt;
+
+&lt;p&gt;除了一次性的单页面这种外，一般项目类型的，都建议在开始的时候就搭好底层，统一一下整体风格与使用习惯，保持良好组织结构，命名规范，不然越往后面，可能会遇到更大的问题。&lt;/p&gt;
+
+&lt;p&gt;比如，对文件做一个层次划分&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;基础框架（reset，iconfont，栅格）&lt;/li&gt;
+&lt;li&gt;通用模块（原子，统一规范的模块）&lt;/li&gt;
+&lt;li&gt;页面样式（继承通用模块）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;采用类似 &lt;code&gt;BEM/SUIT&lt;/code&gt; 等等的命名方式等等。&lt;/p&gt;
+
+&lt;h3 id=&#34;现有的技术选择&#34;&gt;现有的技术选择&lt;/h3&gt;
+
+&lt;p&gt;其实我们在平时应该或多或少的接触过一些 &lt;code&gt;SASS&lt;/code&gt;, &lt;code&gt;Compass&lt;/code&gt;, &lt;code&gt;BEM&lt;/code&gt;, &lt;code&gt;SMACSS&lt;/code&gt;, &lt;code&gt;OOCSS&lt;/code&gt; 的概念与设计模式。当然并没有一种解决方案是绝对的，合适当前的项目就可以了。&lt;/p&gt;
+
+&lt;h4 id=&#34;bem&#34;&gt;BEM&lt;/h4&gt;
+
+&lt;p&gt;用于解决项目命名规则问题。BEM 通过已&lt;code&gt;block(块)&lt;/code&gt;，&lt;code&gt;element(元素)&lt;/code&gt;，&lt;code&gt;modifier(修饰符)&lt;/code&gt; 的概念，使用连接符串联父级块作为前缀，来实现功能模块命名的唯一性。有兴趣的同学可以看一下 &lt;a href=&#34;http://www.w3cplus.com/css/the-history-of-the-bem-methodology.html&#34;&gt;BEM的进化史&lt;/a&gt;。发现一句话并不太好表述清楚，想要具体了解的同学可以移步&lt;a href=&#34;https://en.bem.info/&#34;&gt;官网&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;BEM&lt;/code&gt; 这种唯一性以及元素间的平级展开，往往在稍微复杂一点的项目里，就会把名字命名的很长很长。目前也有很多是在 &lt;code&gt;BEM&lt;/code&gt; 的基础上衍生出来的一些方式(如 &lt;code&gt;SUIT&lt;/code&gt;)。&lt;/p&gt;
+
+&lt;h4 id=&#34;oocss-object-oriented-css&#34;&gt;OOCSS （Object Oriented CSS）&lt;/h4&gt;
+
+&lt;p&gt;面向对象 CSS。是一种已面向对象的维护方式去管理组织 CSS 代码。其哲学理念是模块化，功能单一性，关注点分离。&lt;/p&gt;
+
+&lt;p&gt;OOCSS 中有两个重要的原则&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;结构和外观分离。样式尽量独立，和 DOM 无关&lt;/li&gt;
+&lt;li&gt;容器和内容分离。CSS 只关注内容&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;OOCSS&lt;/code&gt; 与 &lt;code&gt;SASS&lt;/code&gt; 结合是一个不错的选择，充分强大。&lt;/p&gt;
+
+&lt;h4 id=&#34;smacss-scalable-and-modular-architecture-for-css&#34;&gt;SMACSS(Scalable and Modular Architecture for CSS)&lt;/h4&gt;
+
+&lt;p&gt;可扩展和模块化 CSS。
+把 CSS 样式划分为若干个不同类别的文件，如基础，布局，模块，主题等等。在加上一些特有前缀的组合。&lt;/p&gt;
+
+&lt;h4 id=&#34;acss-atomic-css&#34;&gt;ACSS (Atomic CSS)&lt;/h4&gt;
+
+&lt;p&gt;原子化 CSS。遵循关注点分离原则。&lt;/p&gt;
+
+&lt;h3 id=&#34;css-模块化&#34;&gt;CSS 模块化&lt;/h3&gt;
+
+&lt;p&gt;随着 &lt;code&gt;React&lt;/code&gt; 的迅速引爆，其它关于 CSS 的另一种使用方式也在兴起。将样式在 JS 中定义。借助 &lt;code&gt;require/import&lt;/code&gt; 而解决了 CSS 中的命名空间的问题，使得单文件变得简单清晰。而通过组合，也可以实现快速的重复利用。甚至有些 CSS 可以单独与组件去绑定。&lt;/p&gt;
+
+&lt;p&gt;以及其它的一些方式。上述的方式，是比较让我眼前一亮的感觉。&lt;/p&gt;
+
+&lt;h3 id=&#34;未来走向&#34;&gt;未来走向&lt;/h3&gt;
+
+&lt;p&gt;待补充&amp;hellip;&lt;/p&gt;
+
+&lt;h3 id=&#34;扩展阅读&#34;&gt;扩展阅读&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://glenmaddern.com/articles/css-modules&#34;&gt;CSS模块&lt;/a&gt;&lt;a href=&#34;http://www.w3cplus.com/css/css-modules.html&#34;&gt;(中文翻译版)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://aliceui.org/docs/rule.html&#34;&gt;CSS 规范和最佳实践&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.w3cplus.com/css/the-history-of-the-bem-methodology.html&#34;&gt;BEM 进化史&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.zhihu.com/question/21943416&#34;&gt;如何理解 CSS 类名语义化&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.w3cplus.com/css/css-layers.html&#34;&gt;CSS 分层&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
