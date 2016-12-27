@@ -235,7 +235,7 @@ sup {
 &lt;p&gt;PC 端效果&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/huoteng/blog/master/media/custom-scrollbar/duty-info-pc.png&#34; alt=&#34;排版信息 - PC&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../duty-info-pc.png&#34; alt=&#34;排版信息 - PC&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
@@ -243,13 +243,13 @@ sup {
 &lt;p&gt;移动端效果&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/huoteng/blog/master/media/custom-scrollbar/duty-info-mobile.png&#34; alt=&#34;排版信息 - Mobile&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../duty-info-mobile.png&#34; alt=&#34;排版信息 - Mobile&#34; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;移动端效果（期望）&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/huoteng/blog/master/media/custom-scrollbar/duty-info-mobile-scroll.png&#34; alt=&#34;排版信息 - Mobile Expect&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../duty-info-mobile-scroll.png&#34; alt=&#34;排版信息 - Mobile Expect&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;要解决这个问题，我们可以去使用一些开源的滚动条插件，或者自己模拟。但是为了这么一个小功能就额外引用插件，而且为了保证设计上没有违和感，或许连同&lt;code&gt;HTML&lt;/code&gt;和&lt;code&gt;CSS&lt;/code&gt;也得跟着一起调整，未免小题大做了。&lt;/p&gt;
 
@@ -270,7 +270,7 @@ sup {
 ::-webkit-resizer                { /* 7 */ }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/huoteng/blog/master/media/custom-scrollbar/scrollbar-parts.png&#34; alt=&#34;Scrollbar Parts&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../scrollbar-parts.png&#34; alt=&#34;Scrollbar Parts&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;1-2-伪类所代表的不同状态&#34;&gt;1.2 伪类所代表的不同状态&lt;/h4&gt;
 
