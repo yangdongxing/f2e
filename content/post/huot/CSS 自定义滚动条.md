@@ -11,17 +11,17 @@ avatar = "huot.jpg"
 
 > PC 端效果
 
-![排版信息 - PC](https://raw.githubusercontent.com/huoteng/blog/master/media/custom-scrollbar/duty-info-pc.png)
+![排版信息 - PC](../duty-info-pc.png)
 
 <!--more-->
 
 > 移动端效果
 
-![排版信息 - Mobile](https://raw.githubusercontent.com/huoteng/blog/master/media/custom-scrollbar/duty-info-mobile.png)
+![排版信息 - Mobile](../duty-info-mobile.png)
 
 > 移动端效果（期望）
 
-![排版信息 - Mobile Expect](https://raw.githubusercontent.com/huoteng/blog/master/media/custom-scrollbar/duty-info-mobile-scroll.png)
+![排版信息 - Mobile Expect](../duty-info-mobile-scroll.png)
 
 要解决这个问题，我们可以去使用一些开源的滚动条插件，或者自己模拟。但是为了这么一个小功能就额外引用插件，而且为了保证设计上没有违和感，或许连同`HTML`和`CSS`也得跟着一起调整，未免小题大做了。
 
@@ -41,7 +41,7 @@ avatar = "huot.jpg"
 	::-webkit-scrollbar-corner       { /* 6 */ }
 	::-webkit-resizer                { /* 7 */ }
 
-![Scrollbar Parts](https://raw.githubusercontent.com/huoteng/blog/master/media/custom-scrollbar/scrollbar-parts.png)
+![Scrollbar Parts](../scrollbar-parts.png)
 
 #### 1.2 伪类所代表的不同状态
 
