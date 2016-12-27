@@ -11,6 +11,8 @@ avatar = "huot.jpg"
 
 SSL ( Secure Socket Layer ) ，有时也称为 TLS ( Transport Layer Security ) ，是介于传输层和应用层的拓展层，可以将应用层数据加密后送入传输层。因此，使用了 SSL 传输的 HTTP `报文整体`都是被加密的。
 
+<!--more-->
+
 # 真的安全吗？
 
 *为什么 HTTPS 比 HTTP 安全？下面来逐步分析其加密过程。*
