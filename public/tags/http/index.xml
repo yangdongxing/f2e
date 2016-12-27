@@ -14,11 +14,11 @@
       <pubDate>Tue, 27 Dec 2016 00:00:00 +0000</pubDate>
       
       <guid>http://dxy-developer.github.io/f2e/blog/2016/12/27/%E4%BB%80%E4%B9%88%E6%98%AF-https/</guid>
-      <description>
-
-&lt;p&gt;准确的说，HTTPS 不是一种协议，而是 HTTP 和 SSL 两种技术的组合，HTTP 本身所有的数据都是不加密的。&lt;/p&gt;
+      <description>&lt;p&gt;准确的说，HTTPS 不是一种协议，而是 HTTP 和 SSL 两种技术的组合，HTTP 本身所有的数据都是不加密的。&lt;/p&gt;
 
 &lt;p&gt;SSL ( Secure Socket Layer ) ，有时也称为 TLS ( Transport Layer Security ) ，是介于传输层和应用层的拓展层，可以将应用层数据加密后送入传输层。因此，使用了 SSL 传输的 HTTP &lt;code&gt;报文整体&lt;/code&gt;都是被加密的。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;真的安全吗&#34;&gt;真的安全吗？&lt;/h1&gt;
 
@@ -157,8 +157,7 @@
 &lt;li&gt;&lt;a href=&#34;https://www.zhihu.com/question/26161255/answer/35530559&#34;&gt;为什么 12306 页面的 HTTPS 会被划红线？&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.zhihu.com/question/26600336&#34;&gt;Charles 如何抓取 HTTPS 数据包的？&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.zhihu.com/question/22306245&#34;&gt;网上流传的所谓「支付宝偷偷添加根证书，将造成安全隐患」的说法是否正确？&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+&lt;/ul&gt;</description>
     </item>
     
   </channel>
