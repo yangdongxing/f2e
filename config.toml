@@ -18,6 +18,7 @@ hasCJKLanguage = true
         "阿wing" = "awing.jpg"
         yaoyj = "yaoyj.jpg"
         uojo = "uojo.jpg"
+        "徐溯阳" = "xusy.png"
 
 [indexes]
     tag = "tags"

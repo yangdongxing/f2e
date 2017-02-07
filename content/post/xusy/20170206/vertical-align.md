@@ -1,6 +1,6 @@
 +++
 title = "关于 vertical-align的一些试验"
-date = "20176-02-06T17:45:00+08:00"
+date = "2017-02-06T17:45:00+08:00"
 tags = ["css"]
 author = "徐溯阳"
 avatar = "xusy.jpg"
