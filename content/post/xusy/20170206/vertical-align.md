@@ -51,12 +51,12 @@ avatar = "xusy.jpg"
     }
 
 ### vertical-align:top ###
-![图片描述][1.png]
+![图片描述](../1.png)
 
 目标元素的 inline-box 的顶端边缘，与父元素的 line-box 的顶端边缘对齐。这很好理解。
 
 ### vertical-align:bottom ###
-![图片描述][2.png]
+![图片描述](../2.png)
 
 目标元素的 inline box 的底端边缘，与父元素的 line-box 的底端边缘对齐。同样很好理解。
 
@@ -66,7 +66,7 @@ avatar = "xusy.jpg"
 
 
 ### vertical-align:middle ###
-![图片描述][5.png]
+![图片描述](../5.png)
 
 目标元素的 inline-box 的垂直平分线，与父元素内匿名inline boxes的 middleline 对齐。这个属性恐怕是实战中使用最频繁的属性了。
 
@@ -81,26 +81,26 @@ avatar = "xusy.jpg"
 好了，理解了 `vertical-align:middle` ，我们再理解下面几个属性就简单多了。
 
 ### vertical-align:text-top ###
-![图片描述][4.png]
+![图片描述](../4.png)
 
 目标元素的 inline-box 的顶部边缘，与父元素内匿名 inline boxes 的顶线，topline对齐。这里要注意，topline 在视觉上并不和l、h这些高字母的顶端对齐，这是因为这些字母的高度都没有达到topline。topline 要比这些字母的顶端再高一些。
 
 ### vertical-align:text-bottom ###
-![图片描述][3.png]
+![图片描述](../3.png)
 
 目标元素的 inline-box 的底部边缘，与父元素内匿名 inline boxes 的底线，bottomline对齐。和 topline 不同，像 g 这样的下沉字母的底端一般都会达到 bottomline 的位置。
 
 ### vertical-align:baseline ###
-![图片描述][8.png]
+![图片描述](../8.png)
 
 这个默认属性反而放到后面来说？为什么？因为这里和上面有一点不同。在上面的情况下，目标元素参与对齐的参考线，都是 inline-box 的上下边缘，而这里是 baseline!
 
 ### vertical-align:sub ###
-![图片描述][6.png]
+![图片描述](../6.png)
 
 目标元素的 inline-box 的 baseline，与父元素内下标（sub 标签）的 inline boxes 的 baseline 对齐。
 
 ### vertical-align:super ###
-![图片描述][7.png]
+![图片描述](../7.png)
 
 目标元素的 inline-box 的 baseline，与父元素内上标（sup 标签）的 inline boxes 的 baseline 对齐。
