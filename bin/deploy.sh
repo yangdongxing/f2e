@@ -1,27 +1,26 @@
-#!/bin/bash
-
 echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 
-# Commit changes.
+# commit message
 msg="rebuilding site `date`"
+
 if [ $# -eq 1 ]
   then msg="$1"
 fi
 
+# update from remote origin
 git stash
 git fetch --all && git reset --hard gitlab/master
 git stash pop
-rm -rf public
 
-# Build the project.
+# rebuild
+rm -rf public
 hugo
 
-# Add changes to git.
+# push to gitlab
 git add -A
-
 git commit -m "$msg"
 
-
+# test
 
 
 
