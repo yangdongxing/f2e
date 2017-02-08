@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf public && hugo",
     "start": "hugo server --watch --buildDrafts",
+    "build": "rm -rf public && hugo",
     "publish": "git subtree push --prefix=public git@github.com:dxy-developer/f2e.git gh-pages"
   },
   "repository": {
