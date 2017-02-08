@@ -1,0 +1,46 @@
+<div class="post markdown-body">
+    <p class="post-info J-detail-option">
+        Author.<span class="J-author">{{ .Params.author }}</span> ·
+        Tag.{{ range .Params.tags }}<a href="{{ $.Site.BaseURL }}/tags/{{ . | urlize }}">{{ . }}</a>{{ end }} ·
+        {{ .Date.Format .Site.Params.DateFormat }}
+    </p>
+    <div class="post-body J-hack-url" data-url="{{.Site.BaseURL}}/{{ .Source.Dir }}">
+        {{ .Content }}
+    </div>
+</div>
+
+<script type="text/javascript">
+  $(function() {
+    var VisitTable = AV.Object.extend('Visit');
+    var URLLinkId = location.pathname;
+    var author = $('.J-author').text() || '';
+    var title = $('.J-title').text() || '';
+
+    // 推送访问请求
+    function postVisitData() {
+      var visit = new VisitTable();
+      var query = new AV.Query('Visit');
+
+      query.equalTo('link', URLLinkId)
+      query.find().then(function(list) {
+        var count = 1;
+        if (list.length > 0) {
+          var item = list[0];
+          item.increment('visitCount');
+          item.save();
+          count = item.get('visitCount');
+        } else {
+          visit.increment('visitCount');
+          visit.save({
+            link: URLLinkId,
+            author: author,
+            title: title
+          });
+        }
+        $('.J-detail-option').append('· 浏览量. <span>' + count + '</span>');
+      });
+    }
+
+    postVisitData();
+  });
+</script>
