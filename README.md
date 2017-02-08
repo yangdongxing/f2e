@@ -7,9 +7,6 @@
     # 预览
     npm start
 
-    # 构建
-    npm run build
-
     # 发布到 Github
     npm run publish
 

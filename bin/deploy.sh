@@ -2,12 +2,12 @@
 
 # echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 
-# # commit message
-# msg="rebuilding site `date`"
+# commit message
+msg="rebuilding site `date`"
 
-# if [ $# -eq 1 ]
-#   then msg="$1"
-# fi
+if [ $# -eq 1 ]
+  then msg="$1"
+fi
 
 # # update from remote origin
 # git stash
@@ -45,7 +45,7 @@ hugo
 git add -A
 
 # Commit and push to master
-git commit -m "Updating site" && git push origin master
+git commit -m "$msg" && git push origin master
 
 # Push the public subtree to the gh-pages branch
 git subtree push --prefix=public git@github.com:dxy-developer/f2e.git gh-pages
