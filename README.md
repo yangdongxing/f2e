@@ -7,7 +7,7 @@
     # 预览
     npm start
 
-    # 发布到 Github
+    # 发布到 github
     npm run publish
 
 # 新增文章
