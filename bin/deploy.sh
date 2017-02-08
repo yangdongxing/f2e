@@ -1,4 +1,4 @@
-# #!/bin/bash
+#!/bin/bash
 
 echo -e "\033[0;32mpublish to gitHub...\033[0m"
 
@@ -28,6 +28,6 @@ git remote add origin git@github.com:dxy-developer/f2e.git
 
 git add -A
 
-git commit -m "build success"
+git commit -m "rebuilding site `date`"
 
 git push origin master:gh-pages --force

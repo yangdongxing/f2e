@@ -8,7 +8,7 @@
     npm start
 
     # 发布到 github
-    npm run publish
+    npm run publish [commit message]
 
 # 新增文章
 

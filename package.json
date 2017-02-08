@@ -6,7 +6,7 @@
   "scripts": {
     "start": "hugo server --watch --buildDrafts",
     "build": "rm -rf public && hugo",
-    "publish": "sh bin/deploy.sh"
+    "publish": "bin/deploy.sh"
   },
   "repository": {
     "type": "git",
