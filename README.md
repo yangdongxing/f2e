@@ -7,7 +7,8 @@
     # 预览
     npm start
 
-    # 发布到 github 需要配置 ssh-key
+    # 发布到 github
+    # 需要配置 github 帐号，加入 https://github.com/dxy-developer
     npm run publish [commit message]
 
 # 新增文章
