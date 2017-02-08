@@ -2,3 +2,4 @@ node_modules
 tmp
 nohup.out
 .DS_Store
+public
