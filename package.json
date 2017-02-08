@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rm -rf public && hugo",
+    "start": "hugo server --watch --buildDrafts",
+    "publish": "git subtree push --prefix=public git@github.com:dxy-developer/f2e.git gh-pages"
   },
   "repository": {
     "type": "git",
