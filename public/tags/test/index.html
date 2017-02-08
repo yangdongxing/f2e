@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>什么是 HTTPS</title>
+    <title>Test</title>
     <meta charset="utf-8">
     <meta name='viewport' content='width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no' />
     
@@ -43,7 +43,7 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/http">http</a>
-        <span>(2)</span>
+        <span>(1)</span>
     </li>
     
     <li>
@@ -68,6 +68,11 @@
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/seo">seo</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
+        <a href="http://dxy-developer.github.io/f2e/tags/test">test</a>
         <span>(1)</span>
     </li>
     
@@ -96,7 +101,7 @@
     </div>
     <div class="header">
         <a href="http://dxy-developer.github.io/f2e">
-            <p class="title J-title">什么是 HTTPS</p>
+            <p class="title J-title">Test</p>
             <p class="title">回到首页</p>
             <p class="sub-title">DXY Tech&amp;Product Division</p>
             <hr />
@@ -105,71 +110,70 @@
 
 <div class="container">
     <div class="left">
-        <div class="post markdown-body">
-    <p class="post-info J-detail-option">
-        Author.<span class="J-author">huot</span> ·
-        Tag.<a href="http://dxy-developer.github.io/f2e/tags/http">http</a> ·
+        <div class="posts J-list">
+    
+    <div class="post">
+    <h1 class="post-title">
+
+        
+        
+
+        
+        <img src="http://dxy-developer.github.io/f2e/media/huot.jpg" />
+        
+
+        <a class="J-link" href="http://dxy-developer.github.io/f2e/blog/2018/12/27/test/">test</a>
+    </h1>
+
+    <p class="post-info">
+        Author.<span>huot</span> ·
+        Tag.<a href="http://dxy-developer.github.io/f2e/tags/test">test</a> ·
         Thu, Dec 27, 2018
     </p>
-    <div class="post-body J-hack-url" data-url="http://dxy-developer.github.io/f2e/post/huot/">
+
+    <div class="post-body markdown-body J-hack-url" data-url="http://dxy-developer.github.io/f2e/post/huot/">
+        
         
 
 <h1 id="test">test</h1>
 
+        
     </div>
-</div>
-
-<script type="text/javascript">
-  $(function() {
-    var VisitTable = AV.Object.extend('Visit');
-    var URLLinkId = location.pathname;
-    var author = $('.J-author').text() || '';
-    var title = $('.J-title').text() || '';
 
     
-    function postVisitData() {
-      var visit = new VisitTable();
-      var query = new AV.Query('Visit');
+</div>
 
-      query.equalTo('link', URLLinkId)
-      query.find().then(function(list) {
-        var count = 1;
-        if (list.length > 0) {
-          var item = list[0];
-          item.increment('visitCount');
-          item.save();
-          count = item.get('visitCount');
-        } else {
-          visit.increment('visitCount');
-          visit.save({
-            link: URLLinkId,
-            author: author,
-            title: title
-          });
-        }
-        $('.J-detail-option').append('· 浏览量. <span>' + count + '</span>');
+    
+</div>
+
+<script>
+  
+  function renderVisit() {
+    var query = new AV.Query('Visit');
+    query.limit(1000);
+    query.find().then(function(list) {
+      var treeMap = {};
+      list.forEach(function(item) {
+        var keyLink = item.get('link'),
+            count = item.get('visitCount');
+        treeMap[keyLink] = count;
       });
-    }
 
-    postVisitData();
-  });
+        $('.J-list .post').each(function() {
+          var a = document.createElement('a');
+          var el = $(this),
+              href = el.find('.J-link').attr('href'),
+              dom = el.find('.post-info');
+
+          a.href = href;
+          var link = a.pathname;
+          var len = treeMap[link] || 0;
+          dom.append('· 浏览量. <span>' + len + '</span>');
+        });
+    });
+  }
+  renderVisit();
 </script>
-
-
-        
-<div class="ds-thread" data-thread-key="http://dxy-developer.github.io/f2e/blog/2018/12/27/%E4%BB%80%E4%B9%88%E6%98%AF-https/" data-title="什么是 HTTPS" data-url="http://dxy-developer.github.io/f2e/blog/2018/12/27/%E4%BB%80%E4%B9%88%E6%98%AF-https/"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"dxy-developer"};
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0]
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-    </script>
-
 
     </div>
     <div class="right">
@@ -195,7 +199,7 @@ var duoshuoQuery = {short_name:"dxy-developer"};
     
     <li>
         <a href="http://dxy-developer.github.io/f2e/tags/http">http</a>
-        <span>(2)</span>
+        <span>(1)</span>
     </li>
     
     <li>
@@ -224,6 +228,11 @@ var duoshuoQuery = {short_name:"dxy-developer"};
     </li>
     
     <li>
+        <a href="http://dxy-developer.github.io/f2e/tags/test">test</a>
+        <span>(1)</span>
+    </li>
+    
+    <li>
         <a href="http://dxy-developer.github.io/f2e/tags/webpack">webpack</a>
         <span>(1)</span>
     </li>
@@ -247,6 +256,31 @@ var duoshuoQuery = {short_name:"dxy-developer"};
 
     </div>
 </div>
+ 
+    <div class="recommend">
+    <h3>文章列表</h3>
+    <div class="posts">
+        
+        
+        <div class="post">
+            <span class="post-title">
+                
+
+                
+                <img src="http://dxy-developer.github.io/f2e/media/huot.jpg" />
+                
+
+                <a href="http://dxy-developer.github.io/f2e/blog/2018/12/27/test/">test</a>
+            </span>
+            <span class="post-info">
+                Author.<span>huot</span> ·
+                Tag.<a href="http://dxy-developer.github.io/f2e/tags/test">test</a> ·
+                Thu, Dec 27, 2018
+            </span>
+        </div>
+        
+    </div>
+</div>
 
 </div>
 <div id="gotop">
@@ -259,7 +293,7 @@ var duoshuoQuery = {short_name:"dxy-developer"};
 </body>
 
 </html>
-
+ 
 <div id="particles-js"></div>
 <script type="text/javascript" src="http://dxy-developer.github.io/f2e/js/particles.js"></script>
 <script type="text/javascript">

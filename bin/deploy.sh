@@ -19,6 +19,8 @@ hugo
 # push to gitlab
 git add -A
 git commit -m "$msg"
+git push origin master -f
 
 # push to github
-git push git@github.com:dxy-developer/f2e.git master
+git push origin --delete gh-pages
+git subtree push --prefix=public git@github.com:dxy-developer/f2e.git gh-pages
