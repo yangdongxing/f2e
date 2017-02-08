@@ -7,7 +7,7 @@
     # 预览
     npm start
 
-    # 发布到 github
+    # 发布到 github 需要配置 ssh-key
     npm run publish [commit message]
 
 # 新增文章
