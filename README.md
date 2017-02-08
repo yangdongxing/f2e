@@ -32,8 +32,7 @@
 
 ### tips
 - 新建文章：`hugo new [path]/[name].md`，例如，`hugo new post/huot/test.md`
-- 自定义截断：md 中加 <!--more--> 可自定义文章列表中的详情长度（默认 70）
-- 路由说明：`http://site.com/blog/:year/:month/:day/:slug`，图片链接：content 同目录下为 ../xx.jpg
+- 自定义截断：`md`文件中插入`<!--more-->`可自定义文章截断位置，默认截断长度为`70`
 
 # 其他
 - 线上地址：`http://dxy-developer.github.io/f2e`
