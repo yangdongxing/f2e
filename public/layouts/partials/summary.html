@@ -1,0 +1,35 @@
+<div class="post">
+    <h1 class="post-title">
+
+        {{ $authors := .Site.Params.authors }}
+        {{ $ava := .Params.author }}
+
+        {{ if and (index $authors $ava) }}
+        <img src="{{ $.Site.BaseURL }}/media/{{ index $authors $ava }}" />
+        {{ else }}
+        <img src="{{ $.Site.BaseURL }}/media/default.png" />
+        {{ end }}
+
+        <a class="J-link" href="{{ .Permalink }}">{{ .Title }}</a>
+    </h1>
+
+    <p class="post-info">
+        Author.<span>{{ .Params.author }}</span> ·
+        Tag.{{ range .Params.tags }}<a href="{{ $.Site.BaseURL }}/tags/{{ . | urlize }}">{{ . }}</a>{{ end }} ·
+        {{ .Date.Format .Site.Params.DateFormat }}
+    </p>
+
+    <div class="post-body markdown-body J-hack-url" data-url="{{.Site.BaseURL}}/{{ .Source.Dir }}">
+        {{ if .Truncated }}
+        {{ .Summary }}
+        {{ else }}
+        {{ .Content }}
+        {{ end }}
+    </div>
+
+    {{ if .Truncated }}
+    <p class="post-more">
+        <a href="{{ .Permalink }}">查看更多…</a>
+    </p>
+    {{ end }}
+</div>

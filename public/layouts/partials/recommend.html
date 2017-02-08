@@ -1,0 +1,26 @@
+<div class="recommend">
+    <h3>文章列表</h3>
+    <div class="posts">
+        {{ $authors := .Site.Params.authors }}
+        {{ range first 5 .Paginator.Pages }}
+        <div class="post">
+            <span class="post-title">
+                {{ $ava := .Params.author }}
+
+                {{ if and (index $authors $ava) }}
+                <img src="{{ $.Site.BaseURL }}/media/{{ index $authors $ava }}" />
+                {{ else }}
+                <img src="{{ $.Site.BaseURL }}/media/default.png" />
+                {{ end }}
+
+                <a href="{{ .Permalink }}">{{ .Title }}</a>
+            </span>
+            <span class="post-info">
+                Author.<span>{{ .Params.author }}</span> ·
+                Tag.{{ range .Params.tags }}<a href="{{ $.Site.BaseURL }}/tags/{{ . | urlize }}">{{ . }}</a>{{ end }} ·
+                {{ .Date.Format .Site.Params.DateFormat }}
+            </span>
+        </div>
+        {{ end }}
+    </div>
+</div>
