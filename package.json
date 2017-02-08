@@ -6,7 +6,7 @@
   "scripts": {
     "start": "hugo server --watch --buildDrafts",
     "build": "rm -rf public && hugo",
-    "publish": "git subtree push --prefix=public git@github.com:dxy-developer/f2e.git gh-pages"
+    "publish": "sh bin/deploy.sh"
   },
   "repository": {
     "type": "git",
