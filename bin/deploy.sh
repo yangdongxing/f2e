@@ -24,10 +24,8 @@ cd public
 
 git init
 
-git remote add origin git@github.com:dxy-developer/f2e.git
-
 git add -A
 
 git commit -m "rebuilding site `date`"
 
-git push origin master:gh-pages --force
+git push git@github.com:dxy-developer/f2e.git master:gh-pages --force
